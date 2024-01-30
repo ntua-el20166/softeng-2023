@@ -3,7 +3,6 @@ import { Link, useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import styles from '../styles/Home.module.css';
 import axios from 'axios';
-import { Layout } from '/components';
 
 const Home = () => {
   // const [data, setData] = useState("");
@@ -15,11 +14,9 @@ const Home = () => {
   // }, [searchparams])
 
   return (
-    <Layout>
       <div>
         home
       </div>
-    </Layout>
   );
 }
 
