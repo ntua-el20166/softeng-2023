@@ -3,11 +3,9 @@ import { Link, useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import styles from '../styles/Home.module.css';
 import axios from 'axios';
-import { Footer } from '_components/_footer';
+import { Layout } from '/components';
 
-
-
-const Index = () => {
+const Home = () => {
   // const [data, setData] = useState("");
   // const [searchparams, setSearchparams] = useState();
 
@@ -17,8 +15,12 @@ const Index = () => {
   // }, [searchparams])
 
   return (
-   <Footer/>
+    <Layout>
+      <div>
+        home
+      </div>
+    </Layout>
   );
 }
 
-export default Index;
+export default Home;
