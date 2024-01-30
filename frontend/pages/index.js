@@ -1,19 +1,24 @@
 import Head from 'next/head';
-import { Link, useEffect } from 'react';
+import { Link, useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import styles from '../styles/Home.module.css';
+import axios from 'axios';
 
 
 
 export default function Home() {
+  const [data, setData] = useState("");
+  const [searchparams, setSearchparams] = useState();
 
   useEffect(() => {
-    //fetch data
-  }, [])
+    
+    setData (express.send('http:locaslhost.. url back/searchTitle', title))
+  }, [searchparams])
 
   return (
     <div className={styles.container}>
       <Head>
+        {data}
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
