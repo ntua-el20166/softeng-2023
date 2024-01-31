@@ -4,6 +4,7 @@
   "description": "the project",
   "main": "test.js",
   "scripts": {
+    "start": "concurrently \"cd backend && node app.js\" \"cd frontend && npm run dev\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +18,13 @@
   },
   "homepage": "https://github.com/ntua-el20166/softeng-2023#readme",
   "dependencies": {
+    "@reduxjs/toolkit": "^2.1.0",
     "axios": "^1.6.7",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "react-redux": "^9.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "3.2.4"
   }
 }
