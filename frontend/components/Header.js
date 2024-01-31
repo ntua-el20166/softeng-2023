@@ -1,5 +1,19 @@
+import { Box } from "@mui/material";
+
 const Header = () => {
-  return <div>header</div>;
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#264653",
+        color: "#f4a261",
+        fontSize: "30px",
+        textAlign: "center",
+        padding: "30px",
+      }}
+    >
+      Header
+    </Box>
+  );
 };
 
 export default Header;
