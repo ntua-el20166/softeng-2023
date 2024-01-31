@@ -35,11 +35,12 @@ app.get('/ntuaflix_api/searchname', (req, res)=> {
     .then((response) => {
       const responseData = response.data.results;      
       const filterdData = responseData
-        .filter((person) => person.name && person.name.includes(namePart))
+        .filter((person) => person.name ||  person.name.includes(namePart))
         .map((person) =>({
           personName: person.name
         }))
       res.status(200).send(filterdData);
+      console.log(filterdData)
     })
     .catch((error) => {
       if (error.response) {
