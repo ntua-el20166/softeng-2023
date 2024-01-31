@@ -11,15 +11,17 @@ app.get("/", (req, res) => {
 });
 
 app.get("/ntuaflix_api/searchtitle", (req, res) => {
-  axios.get(`${url}/search/movie?query=Jack+Reacher&api_key=${api_key}`)
+  axios.get(`${url}/search/movie?query=${req.titlePart}&api_key=${api_key}`)
   .then((response) => {
+    //kolpa sto response
     console.log(response.data.results);
+    res.send(response.data.results)
   })
 
   //imdb api call
   //data response from api imdb
 
-  //res.send(data)
+  //res.send(data)  
 })
 
 app.listen(port, () => {
