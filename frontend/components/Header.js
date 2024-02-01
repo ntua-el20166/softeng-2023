@@ -1,9 +1,10 @@
 import Link from "next/link";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import SearchIcon from "@mui/icons-material/Search";
-
 import { Box, Button, MenuItem, Menu, TextField, Grid } from "@mui/material";
 import React, { useState } from "react";
+
+import { fetchResults } from "../slices";
 
 const movieGenres = [
   "Action",
@@ -33,7 +34,6 @@ const Header = () => {
   const [searchInput, setSearchInput] = useState("");
 
   const handleClick1 = (event) => {
-    console.log("test123123123");
     setAnchorEl1(event.currentTarget);
   };
 
