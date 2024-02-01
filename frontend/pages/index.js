@@ -1,4 +1,5 @@
-import { Carousel } from "../components";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import React from "react";
 import {
   AppBar,
@@ -10,28 +11,41 @@ import {
   CardMedia,
 } from "@mui/material";
 
+import { Carousel } from "../components";
+
 const Home = () => {
-  const items = [
-    {
-      name: "First Title",
-      color: "#FFF",
-    },
-    {
-      name: "Second Title",
-      color: "#FFF",
-    },
-    {
-      name: "Third Title",
-      color: "#FFF",
-    },
-  ];
-  // const [data, setData] = useState("");
-  // const [searchparams, setSearchparams] = useState();
+  const titleObject = {
+    titleID: "tt1234567",
+    type: "movie",
+    originalTitle: "Πρωτότυπος τίτλος",
+    titlePoster:
+      "https://m.media-amazon.com/images/M/MV5BMGVmMWNiMDktYjQ0Mi00MWIxLTk0N2UtN2ZlYTdkN2IzNDNlXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg",
+    startYear: 2021,
+    endYear: null,
+    genres: ["Drama", "Adventure", "Sci-Fi"],
+    genreTitle: "Drama",
+    titleAkas: [
+      {
+        akaTitle: "Διεθνής τίτλος",
+        regionAbbrev: "US",
+      },
+      // ... other alternate titles
+    ],
+    principals: [
+      {
+        nameID: "nm0000001",
+        name: "Όνομα Συντελεστή",
+        category: "director",
+        rating: {
+          avRating: "7.5",
+          nVotes: "15000",
+        },
+      },
+      // ... other principal members
+    ],
+  };
+  const dummyList = [titleObject, titleObject, titleObject, titleObject];
 
-  // useEffect(() => {
-
-  //   setData (express.send('http:locaslhost.. url back/searchTitle', title))
-  // }, [searchparams])
   return (
     <Box
       sx={{
@@ -47,7 +61,6 @@ const Home = () => {
             variant="h3"
             color="inherit"
             sx={{
-              fontFamily: "Roboto",
               fontWeight: "600",
               fontSize: "150px",
               letterSpacing: "25px",
@@ -65,16 +78,27 @@ const Home = () => {
       <Typography
         variant="h4"
         gutterBottom
-        sx={{
-          textAlign: "left",
-          marginTop: "20px",
-          marginLeft: "20px",
-          fontSize: "30px",
-        }}
+        sx={{ marginTop: 10, paddingLeft: 10 }}
       >
         Featured Movies
       </Typography>
-      <Carousel items={items} />
+      {false ? (
+        <Box
+          sx={{ display: "flex", flexDirection: "row", alignSelf: "center" }}
+        >
+          <Box sx={{ width: 400, height: 400, padding: 2 }}>
+            <Skeleton height={400} />
+          </Box>
+          <Box sx={{ width: 400, height: 400, padding: 2 }}>
+            <Skeleton height={400} />
+          </Box>
+          <Box sx={{ width: 400, height: 400, padding: 2 }}>
+            <Skeleton height={400} />
+          </Box>
+        </Box>
+      ) : (
+        <Carousel items={dummyList} />
+      )}
     </Box>
   );
 };

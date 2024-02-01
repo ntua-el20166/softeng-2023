@@ -1,11 +1,8 @@
-import {
-  Box,
-  Typography,
-  Button,
-  MenuItem,
-  Menu,
-  TextField,
-} from "@mui/material";
+import Link from "next/link";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import SearchIcon from "@mui/icons-material/Search";
+
+import { Box, Button, MenuItem, Menu, TextField, Grid } from "@mui/material";
 import React, { useState } from "react";
 
 const movieGenres = [
@@ -26,17 +23,22 @@ const movieGenres = [
   "Family",
 ];
 
-const Ratings = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+"];
+const ratings = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+"];
 
 const Header = () => {
   const [anchorEl1, setAnchorEl1] = useState(null);
   const [anchorEl2, setAnchorEl2] = useState(null);
+  const [rating, setRating] = useState("");
+  const [genre, setGenre] = useState("");
+  const [searchInput, setSearchInput] = useState("");
 
   const handleClick1 = (event) => {
+    console.log("test123123123");
     setAnchorEl1(event.currentTarget);
   };
 
   const handleClose1 = () => {
+    // change name of func
     setAnchorEl1(null);
   };
 
@@ -48,53 +50,75 @@ const Header = () => {
     setAnchorEl2(null);
   };
 
+  const itemsPerColumn = Math.ceil(movieGenres.length / 2);
+  const genresColumns = [
+    movieGenres.slice(0, itemsPerColumn),
+    movieGenres.slice(itemsPerColumn),
+  ];
+
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "row",
-        backgroundColor: "#540000", // This sets the background color of the container box, not the buttons.
+        backgroundColor: "#540000",
         color: "#ffffff",
         fontSize: "30px",
         textAlign: "center",
-        padding: "40px",
-        flex: 1,
+        padding: "30px",
+        marginBottom: "70px",
+        "& > *:not(:last-child)": {
+          marginRight: "200px",
+        },
       }}
     >
-      <Button
-        variant="contained"
-        sx={{
-          flex: 1,
-          backgroundColor: "#540000", // Set the background color for the button
-          color: "#ffffff", // Ensure text color is white for visibility
-          "&:hover": {
-            backgroundColor: "#6f0000", // Darken the button on hover for a visual feedback
-          },
-        }}
-      >
-        NTUAFLIX
-      </Button>
+      <Link href="/">
+        <Button
+          variant="text"
+          sx={{
+            flex: 1,
+            backgroundColor: "#540000",
+            color: "#ffffff",
+            fontSize: 28,
+            fontWeight: "bold",
+            textShadow: "0px 8px 4px rgba(0, 0, 0, 0.5)",
+            borderRadius: "15px",
+            "&:hover": {
+              backgroundColor: "#4a0000",
+            },
+          }}
+        >
+          NTUAFLIX
+        </Button>
+      </Link>
       <Button
         variant="contained"
         onClick={handleClick1}
         sx={{
           flex: 1,
-          backgroundColor: "#540000", // Same here
+          backgroundColor: "#540000",
           color: "#ffffff",
           "&:hover": {
             backgroundColor: "#6f0000",
           },
         }}
       >
-        Dropdown 1
+        Ratings
+        <ArrowDropDownIcon />
       </Button>
       <Menu
+        onClose={handleClose1}
         anchorEl={anchorEl1}
         open={Boolean(anchorEl1)}
-        onClose={handleClose1}
       >
-        {Ratings.map((rating) => (
-          <MenuItem key={rating} onClick={handleClose1}>
+        {ratings.map((rating) => (
+          <MenuItem
+            key={rating}
+            onClick={() => {
+              handleClose1();
+              setRating(rating);
+            }}
+          >
             {rating}
           </MenuItem>
         ))}
@@ -104,27 +128,41 @@ const Header = () => {
         onClick={handleClick2}
         sx={{
           flex: 1,
-          backgroundColor: "#540000", // And here
+          backgroundColor: "#540000",
           color: "#ffffff",
           "&:hover": {
             backgroundColor: "#6f0000",
           },
         }}
       >
-        Dropdown 2
+        Genres
+        <ArrowDropDownIcon />
       </Button>
       <Menu
         anchorEl={anchorEl2}
         open={Boolean(anchorEl2)}
         onClose={handleClose2}
       >
-        {movieGenres.map((genre) => (
-          <MenuItem key={genre} onClick={handleClose2}>
-            {genre}
-          </MenuItem>
-        ))}
+        <Grid container>
+          {genresColumns.map((column, index) => (
+            <Grid item key={index} xs={6}>
+              {column.map((genre) => (
+                <MenuItem key={genre} onClick={handleClose2}>
+                  {genre}
+                </MenuItem>
+              ))}
+            </Grid>
+          ))}
+        </Grid>
       </Menu>
-      <TextField label="Search" variant="outlined" sx={{ flex: 1 }} />
+      <TextField
+        label="Search titles, people"
+        variant="standard"
+        sx={{
+          flex: 3,
+          //color: "#ffffff",
+        }}
+      />
     </Box>
   );
 };
