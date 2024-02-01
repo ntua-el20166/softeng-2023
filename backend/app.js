@@ -95,7 +95,7 @@ async function getMovieInfo(jsonObject){
               });
             return new titleObject(
               jsonObject.id,
-              jsonObject.media_type,
+              "movie",
               jsonObject.original_title,
               jsonObject.poster_path,
               jsonObject.release_date.substring(0, 4),
@@ -163,7 +163,7 @@ async function getTvInfo(jsonObject){
               });
             return new titleObject(
               jsonObject.id,
-              jsonObject.media_type,
+              "tv",
               jsonObject.original_name,
               jsonObject.poster_path,
               start_year,
@@ -174,7 +174,7 @@ async function getTvInfo(jsonObject){
               { avRating: rating, nVotes: votes }
             );
 }
-app.get("/ntuaflix_api/title",async (req,res)=>{
+app.get("/ntuaflix_api/title2",async (req,res)=>{
   
   // const [tvResponse, movieResponse] = await Promise.all([
   //   axios.get(`${url}/tv/${req.body.id}?api_key=${api_key}`),
@@ -212,6 +212,55 @@ catch (error) {
   res.status(204).end()
 }}
   })
+
+
+  app.get("/ntuaflix_api/title",async (req,res)=>{
+  
+    // const [tvResponse, movieResponse] = await Promise.all([
+    //   axios.get(`${url}/tv/${req.body.id}?api_key=${api_key}`),
+    //   axios.get(`${url}/movie/${req.body.id}?api_key=${api_key}`)
+    // ]);
+  
+    // const tv = tvResponse.data;
+    // const movie = movieResponse.data;
+  
+    // res.send({ tv, movie });
+    let response
+    let ret
+    try{
+   
+    response=await axios.get(`${url}/movie/${req.body.id}?api_key=${api_key}`);
+    ret=await getMovieInfo(response.data);}
+    catch (error){
+      if (error.response.data.status_code==34){
+        console.log("No movie")
+        try{
+        response= await axios.get(`${url}/tv/${req.body.id}?api_key=${api_key}`);
+        ret=await getTvInfo(response.data);}
+        catch(error){
+          if (error.response.data.status_code==34){
+            console.log("No data")
+            res.status(204).end()
+          }
+        }
+        
+      }
+    }
+
+    
+    res.send({titleObject:ret})}
+  
+  // catch (error) {
+  //   // if (error.message=='No data'){
+  //   // console.error('Error:', error.message);
+  //   // res.status(204).send({ error: "No data", status: 204 });
+  //   // }
+    
+  //   if (error.response.data.status_code==34){
+  //   console.log("No data")
+  //   res.status(204).end()
+  // }}
+    )
 
 app.get("/ntuaflix_api/searchtitle", (req, res) => {
   axios
