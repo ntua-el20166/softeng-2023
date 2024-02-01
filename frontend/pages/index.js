@@ -13,11 +13,15 @@ import {
 const Home = () => {
   const items = [
     {
-      name: "First Movie",
-      color: "#EEE",
+      name: "First Title",
+      color: "#FFF",
     },
     {
-      name: "Second Movie",
+      name: "Second Title",
+      color: "#FFF",
+    },
+    {
+      name: "Third Title",
       color: "#FFF",
     },
   ];
@@ -46,7 +50,7 @@ const Home = () => {
               fontFamily: "Roboto",
               fontWeight: "600",
               fontSize: "150px",
-              letterSpacing: "normal",
+              letterSpacing: "25px",
               color: "#730000",
               WebkitTextStroke: "1px #000000",
               textAlign: "center",
@@ -54,14 +58,19 @@ const Home = () => {
               width: "fit-content",
             }}
           >
-            N T U A F L I X
+            NTUAFLIX
           </Typography>
         </Toolbar>
       </AppBar>
       <Typography
         variant="h4"
         gutterBottom
-        sx={{ textAlign: "center", marginTop: "20px" }}
+        sx={{
+          textAlign: "left",
+          marginTop: "20px",
+          marginLeft: "20px",
+          fontSize: "30px",
+        }}
       >
         Featured Movies
       </Typography>
