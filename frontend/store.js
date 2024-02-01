@@ -1,6 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { singleTitleReducer } from './slices';
+import { configureStore } from "@reduxjs/toolkit";
+import { singleTitleReducer, resultsReducer } from "./slices";
 
 export const store = configureStore({
-  reducer: { singleTitle: singleTitleReducer },
-})
+  reducer: { singleTitle: singleTitleReducer, results: resultsReducer },
+});

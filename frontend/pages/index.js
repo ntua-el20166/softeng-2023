@@ -63,7 +63,7 @@ const Home = () => {
             sx={{
               fontWeight: "600",
               fontSize: "150px",
-              letterSpacing: "normal",
+              letterSpacing: "25px",
               color: "#730000",
               WebkitTextStroke: "1px #000000",
               textAlign: "center",
@@ -71,7 +71,7 @@ const Home = () => {
               width: "fit-content",
             }}
           >
-            N T U A F L I X
+            NTUAFLIX
           </Typography>
         </Toolbar>
       </AppBar>
