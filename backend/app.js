@@ -9,6 +9,7 @@ const url = "https://api.themoviedb.org/3";
 
 const bodyParser = require("body-parser");
 const { start } = require("repl");
+const { get } = require("http");
 app.use(bodyParser.json());
 
 /// isos thelei na kratisume 1 apo ta dio edo
@@ -43,6 +44,174 @@ class titleObject {
     this.rating = rating;
   }
 }
+
+async function getMovieInfo(jsonObject){
+  var movie_id = jsonObject.id;
+            var genres;
+            var alternative_titles;
+            var rating = jsonObject.vote_average;
+            var votes = jsonObject.vote_count;
+            var principals;
+            
+                genres = jsonObject.genres.map((genre) => {
+                  return { genreTitle: genre.name };
+                });
+                // rating = response.data.vote_average;
+                // votes = response.data.vote_count;
+            
+            await axios
+              .get(
+                `${url}/movie/${movie_id}/alternative_titles?api_key=${api_key}`
+              )
+              .then((response) => {
+                alternative_titles =
+                  response.data.titles?.map((title) => {
+                    return {
+                      AkaTitle: title.title,
+                      regionAbbr: title.iso_3166_1,
+                    };
+                  }) || [];
+              });
+            await axios
+              .get(`${url}/movie/${movie_id}/credits?api_key=${api_key}`)
+              .then((response) => {
+                const cast = response.data.cast;
+                var one = cast.map((person) => {
+                  return {
+                    nameID: person.id,
+                    name: person.name,
+                    category: person.known_for_department,
+                  };
+                });
+                const crew = response.data.crew;
+                var two = crew.map((person) => {
+                  return {
+                    nameID: person.id,
+                    name: person.name,
+                    category: person.known_for_department,
+                  };
+                });
+                principals = one.concat(two);
+              });
+            return new titleObject(
+              jsonObject.id,
+              jsonObject.media_type,
+              jsonObject.original_title,
+              jsonObject.poster_path,
+              jsonObject.release_date.substring(0, 4),
+              null,
+              genres,
+              alternative_titles,
+              principals,
+              { avRating: rating, nVotes: votes }
+            );
+}
+
+async function getTvInfo(jsonObject){
+  var series_id = jsonObject.id;
+            var genres;
+            var alternative_titles;
+            var rating = jsonObject.vote_average;
+            var votes = jsonObject.vote_count;
+            var start_year;
+            var last_year;
+            var principals;
+            
+                genres = jsonObject.genres.map((genre) => {
+                  return { genreTitle: genre.name };
+                });
+                // rating = response.data.vote_average;
+                // votes = response.data.vote_count;
+                start_year = jsonObject.first_air_date.substring(0, 4);
+                last_year = jsonObject.last_air_date.substring(0, 4);
+              
+
+            ///////before
+            await axios
+              .get(
+                `${url}/tv/${series_id}/alternative_titles?api_key=${api_key}`
+              )
+              .then((response) => {
+                alternative_titles =
+                  response.data.titles?.map((title) => {
+                    return {
+                      AkaTitle: title.title,
+                      regionAbbr: title.iso_3166_1,
+                    };
+                  }) || [];
+              });
+            await axios
+              .get(`${url}/tv/${series_id}/credits?api_key=${api_key}`)
+              .then((response) => {
+                const cast = response.data.cast;
+                var one = cast.map((person) => {
+                  return {
+                    nameID: person.id,
+                    name: person.name,
+                    category: person.known_for_department,
+                  };
+                });
+                const crew = response.data.crew;
+                var two = crew.map((person) => {
+                  return {
+                    nameID: person.id,
+                    name: person.name,
+                    category: person.known_for_department,
+                  };
+                });
+                principals = one.concat(two);
+              });
+            return new titleObject(
+              jsonObject.id,
+              jsonObject.media_type,
+              jsonObject.original_name,
+              jsonObject.poster_path,
+              start_year,
+              last_year,
+              genres,
+              alternative_titles,
+              principals,
+              { avRating: rating, nVotes: votes }
+            );
+}
+app.get("/ntuaflix_api/title",async (req,res)=>{
+  
+  // const [tvResponse, movieResponse] = await Promise.all([
+  //   axios.get(`${url}/tv/${req.body.id}?api_key=${api_key}`),
+  //   axios.get(`${url}/movie/${req.body.id}?api_key=${api_key}`)
+  // ]);
+
+  // const tv = tvResponse.data;
+  // const movie = movieResponse.data;
+
+  // res.send({ tv, movie });
+  try{
+  let response
+  let ret
+  if (req.body.type=="tv"){
+    response= await axios.get(`${url}/tv/${req.body.id}?api_key=${api_key}`);
+    ret=await getTvInfo(response.data);
+
+  }
+  else{
+    response=await axios.get(`${url}/movie/${req.body.id}?api_key=${api_key}`);
+    ret=await getMovieInfo(response.data);
+  }
+ 
+  
+  res.send({titleObject:ret})}
+
+catch (error) {
+  // if (error.message=='No data'){
+  // console.error('Error:', error.message);
+  // res.status(204).send({ error: "No data", status: 204 });
+  // }
+  
+  if (error.response.data.status_code==34){
+  console.log("No data")
+  res.status(204).end()
+}}
+  })
 
 app.get("/ntuaflix_api/searchtitle", (req, res) => {
   axios
