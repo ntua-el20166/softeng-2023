@@ -542,9 +542,7 @@ class nameObject {
     birthYr,
     deathYr,
     profession,
-    nameTitles,
-    titleID,
-    category
+    nameTitles
   ) {
     this.nameID = nameID;
     this.name = name;
@@ -553,50 +551,80 @@ class nameObject {
     this.deathYr = deathYr;
     this.profession = profession;
     this.nameTitles = nameTitles;
-    this.titleID = titleID;
-    this.category = category;
   }
 }
 
-app.get("/ntuaflix_api/name/:nameID", (req, res) => {
-  const { nameID } = req.params;
-  axios
-    .get(`${url}/person/${nameID}?api_key=${api_key}`)
-    .then((response) => {
-      const data = response.data;
-      const nameObject = {
-        nameID: data.id,
-        name: data.name,
-        //namePoster: data.profile_path,
-        birthYr: data.birthday,
-        deathYr: data.deathday,
-        //profession:,
-        //nameTitles:,
-        //titleID:,
-        //category:,
-      };
-      console.log(nameObject);
-      res.status(200).json(nameObject);
-    })
-    .catch((error) => {
-      if (error.response) {
-        const statusCode = error.response.status;
+async function getPersonInfo(nameID) {
+  try {
+    const namePoster = await axios.get(
+      `${url}/person/${nameID}/images?api_key=${api_key}`
+    );
+    await axios
+      .get(`${url}/person/${nameID}/combined_credicts?api_key=${api_key}`)
+      .then((response) => {
+        const cast = response.data.cast;
+        var one = cast.map((person) => {
+          return {
+            titleID: person.id,
+            category: "Actor",
+          };
+        });
+        const crew = response.data.crew;
+        var two = crew.map((person) => {
+          return {
+            titleID: person.id,
+            category: person.job,
+          };
+        });
+        nameTitles = one.concat(two);
+      });
+    return {
+      namePoster,
+      nameTitles,
+    };
+  } catch (error) {}
+}
 
-        if (statusCode === 400) {
-          res.status(400).send("Bad request"); // 400 Bad request
-        } else if (statusCode === 404) {
-          res.status(404).send("Not available"); // 404 Not available
-        } else {
-          res.status(500).send("Internal server error"); // Other status codes
-        }
-      } else if (error.request) {
-        console.error("No response received from server");
-        res.status(500).send("Internal Server Error"); // 500 Internal server error
+app.get("/ntuaflix_api/name/:nameID", async (req, res) => {
+  try {
+    const { nameID } = req.params;
+    const response = await axios.get(
+      `${url}/person/${nameID}?api_key=${api_key}`
+    );
+    const data = response.data;
+    const birthYear = data.birthday ? data.birthday.substring(0, 4) : null;
+    const deathYear = data.deathday ? data.deathday.substring(0, 4) : null;
+    const data2 = await getPersonInfo(data.id);
+    const nameObject1 = new nameObject(
+      data.id.toString(),
+      data.name,
+      data2.namePoster,
+      birthYear,
+      deathYear,
+      data.known_for_department,
+      data2.nameTitles
+    );
+    console.log(nameObject1);
+    res.status(200).json(nameObject1);
+  } catch (error) {
+    if (error.response) {
+      const statusCode = error.response.status;
+
+      if (statusCode === 400) {
+        res.status(400).send("Bad request"); // 400 Bad request
+      } else if (statusCode === 404) {
+        res.status(404).send("Not available"); // 404 Not available
       } else {
-        console.error("Error setting up the request:", error.message);
-        res.status(500).send("Internal Server Error"); // 500 Internal server error
+        res.status(500).send("Internal server error"); // Other status codes
       }
-    });
+    } else if (error.request) {
+      console.error("No response received from server");
+      res.status(500).send("Internal Server Error"); // 500 Internal server error
+    } else {
+      console.error("Error setting up the request:", error.message);
+      res.status(500).send("Internal Server Error"); // 500 Internal server error
+    }
+  }
 });
 
 app.get("/ntuaflix_api/searchname", (req, res) => {
