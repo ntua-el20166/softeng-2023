@@ -54,15 +54,15 @@ async function getMovieInfo(jsonObject) {
   var principals;
 
   await axios
-  .get(`${url}/movie/${movie_id}?api_key=${api_key}`)
-  .then((response) => {
-    genres = response.data.genres.map((genre) => {
-      return { genreTitle: genre.name };
+    .get(`${url}/movie/${movie_id}?api_key=${api_key}`)
+    .then((response) => {
+      genres = response.data.genres.map((genre) => {
+        return { genreTitle: genre.name };
+      });
+      // rating = response.data.vote_average;
+      // votes = response.data.vote_count;
     });
-    // rating = response.data.vote_average;
-    // votes = response.data.vote_count;
-  });
-  
+
   // rating = response.data.vote_average;
   // votes = response.data.vote_count;
 
@@ -123,16 +123,16 @@ async function getTvInfo(jsonObject) {
   var principals;
 
   await axios
-  .get(`${url}/tv/${series_id}?api_key=${api_key}`)
-  .then((response) => {
-    genres = response.data.genres.map((genre) => {
-      return { genreTitle: genre.name };
+    .get(`${url}/tv/${series_id}?api_key=${api_key}`)
+    .then((response) => {
+      genres = response.data.genres.map((genre) => {
+        return { genreTitle: genre.name };
+      });
+      // rating = response.data.vote_average;
+      // votes = response.data.vote_count;
+      start_year = response.data.first_air_date.substring(0, 4);
+      last_year = response.data.last_air_date.substring(0, 4);
     });
-    // rating = response.data.vote_average;
-    // votes = response.data.vote_count;
-    start_year = response.data.first_air_date.substring(0, 4);
-    last_year = response.data.last_air_date.substring(0, 4);
-  });
   // rating = response.data.vote_average;
   // votes = response.data.vote_count;
 
@@ -208,7 +208,7 @@ app.get("/ntuaflix_api/title2", async (req, res) => {
       ret = await getMovieInfo(response.data);
     }
 
-    console.log(response.data)
+    console.log(response.data);
 
     res.send({ titleObject: ret });
   } catch (error) {
@@ -222,6 +222,34 @@ app.get("/ntuaflix_api/title2", async (req, res) => {
       res.status(204).end();
     }
   }
+});
+
+app.get("/ntuaflix_api/popular_movies", async (req, res) => {
+  let response = await axios.get(
+    `${url}/trending/movie/${req.body.duration}?api_key=${api_key}`
+  );
+  const movies = response.data.results;
+  let to_send = await Promise.all(
+    movies.map(async (obj) => {
+      return await getMovieInfo(obj);
+    })
+  );
+
+  res.send({ result: to_send });
+});
+
+app.get("/ntuaflix_api/similar_movies", async (req, res) => {
+  let response = await axios.get(
+    `${url}/movie/${req.body.movie_id}/similar?api_key=${api_key}`
+  );
+  console.log("AAAAAAAAAA");
+  const movies = response.data.results;
+  let to_send = await Promise.all(
+    movies?.map(async (obj) => {
+      return await getMovieInfo(obj);
+    }) ?? []
+  );
+  res.send({ result: to_send });
 });
 
 app.get(
@@ -446,65 +474,68 @@ class gqueryObject {
 }
 
 function normalizeString(str) {
-  return str.trim().toLowerCase().replace(/&/g, 'and');
+  return str.trim().toLowerCase().replace(/&/g, "and");
 }
 
-app.get("/ntuaflix_api/bygenre", async (req, res) =>{
+app.get("/ntuaflix_api/bygenre", async (req, res) => {
   const gqueryObject = req.body;
-  let date_to=gqueryObject.yrTo+"-12-31"
-  let date_from=gqueryObject.yrFrom+"-01-01"
-  let genre=normalizeString(gqueryObject.qgenre)
+  let date_to = gqueryObject.yrTo + "-12-31";
+  let date_from = gqueryObject.yrFrom + "-01-01";
+  let genre = normalizeString(gqueryObject.qgenre);
 
-  const genreList_response=await axios.get(
+  const genreList_response = await axios.get(
     `${url}/genre/movie/list?api_key=${api_key}`
   );
-  const genreList=genreList_response.data.genres
-  let genre_id=genreList.find(obj=>normalizeString(obj.name)==genre)?.id
+  const genreList = genreList_response.data.genres;
+  let genre_id = genreList.find(
+    (obj) => normalizeString(obj.name) == genre
+  )?.id;
 
-  const genreList_response2=await axios.get(
+  const genreList_response2 = await axios.get(
     `${url}/genre/tv/list?api_key=${api_key}`
   );
 
-    const genreList2=genreList_response2.data.genres
-    let genre_id2=genreList2.find(obj=>normalizeString(obj.name)==genre)?.id
-    if (!(genre_id || genre_id2)){
-      console.log("Invalid genre name")/// na mpei error 
-      res.status(400).send("Invalid genre name");
-      return
-    }
-    let movies=[];
-    let tvs=[];
-if (genre_id){
-  let movie_response = await axios.get(
-    `${url}/discover/movie?with_genres=${genre_id}&vote_average.gte=${gqueryObject.minrating}&primary_release_date.gte=${date_from}&primary_release_date.lte=${date_to}&api_key=${api_key}`
+  const genreList2 = genreList_response2.data.genres;
+  let genre_id2 = genreList2.find(
+    (obj) => normalizeString(obj.name) == genre
+  )?.id;
+  if (!(genre_id || genre_id2)) {
+    console.log("Invalid genre name"); /// na mpei error
+    res.status(400).send("Invalid genre name");
+    return;
+  }
+  let movies = [];
+  let tvs = [];
+  if (genre_id) {
+    let movie_response = await axios.get(
+      `${url}/discover/movie?with_genres=${genre_id}&vote_average.gte=${gqueryObject.minrating}&primary_release_date.gte=${date_from}&primary_release_date.lte=${date_to}&api_key=${api_key}`
+    );
+    movies = movie_response.data.results.map((obj) => ({
+      ...obj,
+      type: "movie",
+    }));
+  }
+  if (genre_id2) {
+    let tv_response = await axios.get(
+      `${url}/discover/tv?with_genres=${genre_id2}&vote_average.gte=${gqueryObject.minrating}&first_air_date.gte=${date_from}&first_air_date.lte=${date_to}&api_key=${api_key}`
+    );
+    tvs = tv_response.data.results.map((obj) => ({ ...obj, type: "tv" }));
+  }
+
+  let data = movies.concat(tvs);
+  data.sort((a, b) => b.popularity - a.popularity);
+
+  let to_send = await Promise.all(
+    data.map(async (obj) => {
+      if (obj.type == "movie") {
+        return await getMovieInfo(obj);
+      } else {
+        return await getTvInfo(obj);
+      }
+    })
   );
-   movies=movie_response.data.results.map((obj)=>({...obj, type: "movie"}))
-}
-if (genre_id2){
-  let tv_response = await axios.get(
-    `${url}/discover/tv?with_genres=${genre_id2}&vote_average.gte=${gqueryObject.minrating}&first_air_date.gte=${date_from}&first_air_date.lte=${date_to}&api_key=${api_key}`
-  );
-   tvs=tv_response.data.results.map((obj)=>({...obj, type: "tv"}))
-
-}
-
-  
-  
-  let data=movies.concat(tvs);
-  data.sort((a,b)=>b.popularity-a.popularity)
-
-  let  to_send= await Promise.all(data.map(async(obj)=>{
-    if (obj.type=="movie"){
-      return await getMovieInfo(obj)
-    }
-    else{
-      return await getTvInfo(obj)
-    }
-  }))
-  res.send({result:  to_send})
-
-})
-
+  res.send({ result: to_send });
+});
 
 // app.get("ntuaflix_api/bygenre", (req, res) => {
 //   const gqueryObject = req.body;
