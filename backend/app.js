@@ -12,7 +12,6 @@ const { start } = require("repl");
 const { get } = require("http");
 app.use(bodyParser.json());
 
-/// isos thelei na kratisume 1 apo ta dio edo
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -185,7 +184,7 @@ async function getTvInfo(jsonObject) {
     { avRating: rating, nVotes: votes }
   );
 }
-app.get("/ntuaflix_api/title2", async (req, res) => {
+app.get("/ntuaflix_api/title2/:titleID", async (req, res) => {
   // const [tvResponse, movieResponse] = await Promise.all([
   //   axios.get(`${url}/tv/${req.body.id}?api_key=${api_key}`),
   //   axios.get(`${url}/movie/${req.body.id}?api_key=${api_key}`)
@@ -199,11 +198,13 @@ app.get("/ntuaflix_api/title2", async (req, res) => {
     let response;
     let ret;
     if (req.body.type == "tv") {
-      response = await axios.get(`${url}/tv/${req.body.id}?api_key=${api_key}`);
+      response = await axios.get(
+        `${url}/tv/${req.params.titleID}?api_key=${api_key}`
+      );
       ret = await getTvInfo(response.data);
     } else {
       response = await axios.get(
-        `${url}/movie/${req.body.id}?api_key=${api_key}`
+        `${url}/movie/${req.params.titleID}?api_key=${api_key}`
       );
       ret = await getMovieInfo(response.data);
     }
@@ -253,7 +254,7 @@ app.get("/ntuaflix_api/similar_movies", async (req, res) => {
 });
 
 app.get(
-  "/ntuaflix_api/title",
+  "/ntuaflix_api/title/:titleID",
   async (req, res) => {
     // const [tvResponse, movieResponse] = await Promise.all([
     //   axios.get(`${url}/tv/${req.body.id}?api_key=${api_key}`),
@@ -268,7 +269,7 @@ app.get(
     let ret;
     try {
       response = await axios.get(
-        `${url}/movie/${req.body.id}?api_key=${api_key}`
+        `${url}/movie/${req.params.titleID}?api_key=${api_key}`
       );
       ret = await getMovieInfo(response.data);
     } catch (error) {
@@ -276,7 +277,7 @@ app.get(
         console.log("No movie");
         try {
           response = await axios.get(
-            `${url}/tv/${req.body.id}?api_key=${api_key}`
+            `${url}/tv/${req.params.titleID}?api_key=${api_key}`
           );
           ret = await getTvInfo(response.data);
         } catch (error) {
