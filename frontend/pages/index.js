@@ -29,7 +29,14 @@ const Home = () => {
   //   setData (express.send('http:locaslhost.. url back/searchTitle', title))
   // }, [searchparams])
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        minHeight: "100vh",
+      }}
+    >
       <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar>
           <Typography
@@ -47,7 +54,7 @@ const Home = () => {
               width: "fit-content",
             }}
           >
-            NTUAFLIX
+            N T U A F L I X
           </Typography>
         </Toolbar>
       </AppBar>
