@@ -238,6 +238,20 @@ app.get("/ntuaflix_api/popular_movies", async (req, res) => {
   res.send({ result: to_send });
 });
 
+app.get("/ntuaflix_api/similar_movies", async (req, res) => {
+  let response = await axios.get(
+    `${url}/movie/${req.body.movie_id}/similar?api_key=${api_key}`
+  );
+  console.log("AAAAAAAAAA");
+  const movies = response.data.results;
+  let to_send = await Promise.all(
+    movies?.map(async (obj) => {
+      return await getMovieInfo(obj);
+    }) ?? []
+  );
+  res.send({ result: to_send });
+});
+
 app.get(
   "/ntuaflix_api/title",
   async (req, res) => {
