@@ -9,6 +9,7 @@ const Header = () => {
         fontSize: "30px",
         textAlign: "center",
         padding: "30px",
+        marginBottom: "70px",
       }}
     >
       Header
