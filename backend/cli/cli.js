@@ -4,6 +4,7 @@ const axios = require("axios");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const fs = require("fs");
 const path = require("path");
+const { title } = require("process");
 
 const apiBaseUrl = "http://localhost:9876/ntuaflix_api";
 const outputDirectory = path.join(__dirname, "output"); // Specify the output directory
@@ -14,6 +15,53 @@ if (!fs.existsSync(outputDirectory)) {
 }
 
 program.version("1.0.0").description("CLI for ntuaflix");
+
+program
+  .command("title")
+  .requiredOption("--titleID <titleID>", "Id of the movie")
+  .option(
+    "--format <format>",
+    "Specify the output format (json or csv)",
+    "json"
+  )
+  .action(async (options) => {
+    try {
+      const { titleID, format } = options;
+      const response = await axios.get(`${apiBaseUrl}/title/${titleID}`);
+      const titleObject = response.data;
+
+      if (format === "json") {
+        console.log(JSON.stringify(titleObject, null, 2));
+      } else if (format === "csv") {
+        const csvFilePath = path.join(outputDirectory, "title.csv");
+
+        const csvWriter = createCsvWriter({
+          path: csvFilePath,
+          header: [
+            { id: "titleID", title: "Title ID" },
+            { id: "type", title: "Type" },
+            { id: "originalTitle", title: "Original Title" },
+            { id: "titlePoster", title: "Title Poster" },
+            { id: "startYear", title: "Start Year" },
+            { id: "endYear", title: "End Year" },
+            { id: "genres", title: "Genres" },
+            { id: "titleAkas", title: "Title Akas" },
+            { id: "principals", title: "Principals" },
+            { id: "rating", title: "Rating" },
+          ],
+        });
+
+        // Write data to CSV file
+        await csvWriter.writeRecords([titleObject]);
+        console.log("CSV file generated successfully.");
+      } else {
+        console.error('Invalid format. Use "json" or "csv".');
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      process.exit(1); // Exit with an error code
+    }
+  });
 
 program
   .command("name")
