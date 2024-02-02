@@ -4,16 +4,8 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const TitleCard = ({
-  rating,
-  title,
-  startYear,
-  endYear,
-  actors,
-  poster,
-  media,
-  loading,
-}) => {
+const NameCard = ({ name, birthYr, deathYr, poster, profession, loading }) => {
+  console.log(poster);
   return (
     <Card
       sx={{
@@ -40,7 +32,11 @@ const TitleCard = ({
         <CardMedia
           component="img"
           sx={{ width: 151, background: "#C4C4C4" }}
-          image={`https://image.tmdb.org/t/p/w500${poster}`}
+          image={
+            poster
+              ? `https://image.tmdb.org/t/p/w500${poster}`
+              : "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0QEA0ODg0PDQ4ODRAODw8PDQ8PDQ0NFREWFhURFhMYHSggGBolGxMTITEhJSkrLi4uFx8zODMtNygtLjcBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAaAAEAAwEBAQAAAAAAAAAAAAAAAwQFAQIH/8QAMRABAAECAwYEBQMFAAAAAAAAAAECEQMEIQUxQVFhcRIiMpFygbHB0TNCoVKCkuHx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APqIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAizGPTRGus8IjfKlO0KuFNP8AMg0aqojfMR3eYxaZ3VR7wycfHqrt4rWjdEaQiBvDDiqY3TMfNJTmcSP3z9QbAyac5iRN/FfpMRZey2apr09NXLhPYFgAAAAAAAAAAAAAAAAAAABRzOdtpR/l+HjPZmZmaKZ0jSesqYEzMzeZvIAAAAADtFVpieUxLgDTnPYfWelnrLZmK76Wtui8XlkuxPEG6IMnjeOnX1RpPXqnAAAAAAAAAAAAAAAeMevw01Vcon34PartKryW5zH5BmAAAAAAAAAAAAtbOrtXMc4+jTZGTnz092uAAAAAAAAAAAAAAAo7UnSjvMryhtT9nzBRAAAAAAAAAAABLlfXR3bDHynro7tgAAAAAAAAAAAAAABT2n6aefi+y4o7T3Ud59wZ7oAAAAAAAAAAAmyX6lPz+jXZez488dIlqAAAAAAAAAAAAAAAK2dro8M0zNpteO/BZY2anz19wROgAAAAAAAAAAC/szD9VXPSPuvM/ZkzerlaPe7QAAAAAAAAAAAAAAAZWfw7VzPCrWGqqbRovTf+mY9p0BmgAAAAAAAAAAA0dm0+WZ51LiDIxbDp63n3lOAAAAAAAAAAAAAAA8Y9Hipqp50z7vYDD8M2vMWi9vm409o03ovymJ+zMAAAAAAAAATZfK1V63tETa/4QNnK0WopjpEz3nUHuim0RHKLPQAAAAAAAAAAAAAAAAA84lEVRNM8YmGJMTF4nfE2nu3WftHA18cf3fkFIAAAAAAACmmZmIjfOjciGds2I8UzyjRpAAAAAAAAAAAAAAAAAAAIsz6K/hlKjzHor+GQYw46AAAAAAC1s31z8LTZWz588dYlqgAAAAAAAAAAAAAAAAAAIc3XairrFvdzFzeHTxvPKNVDNZma7Ra0R1vcFd0AAAAAAASZaq1dM9bfZssFbw89XERExFVvewNMVcPPUTvvTPXd7rMTE7tYB0AAAAAAAAAAHKqojWZtHUHRWqz2HHGZ7RKlmc1VXpup5cZ7gt4+epjSnzT7Uwo4uYrq3zpyjSEToOOgAAAAAAAAAAA94WLVT6Zt9PZ4AaWBnqZ0q8s8/wBsrcMFLg49dPpnTlwBsipg56mdKvLP8f6Won/u+AdAAAABXzWZijTfVy5dwe8xj00RrvndHNl42NVXN53cI4Q8V1TMzMzeZcAAAAAAAAAAAAAAAAAAAAASYOPVRun5TuRgNTL5umq0T5auXCeyywWhkczM+SrWbaT9gXgAJY2a9dfxSAIwAAAAAAAAAAAAAAAAAAAAAAAE2S/Up+f0dAaoAP/Z"
+          }
         />
       )}
       <CardContent
@@ -53,7 +49,7 @@ const TitleCard = ({
             </Box>
           ) : (
             <Typography component="div" variant="h6">
-              {title}
+              {name}
             </Typography>
           )}
           {loading ? (
@@ -63,7 +59,7 @@ const TitleCard = ({
           ) : (
             <Typography variant="body2" color="text.secondary">
               {(() => {
-                switch (media) {
+                switch (profession) {
                   case "tv":
                     return "TV-Series";
                   case "movie":
@@ -82,39 +78,21 @@ const TitleCard = ({
             </Box>
           ) : (
             <Typography
-              variant="subtitle1"
+              variant="subname1"
               color="text.secondary"
               component="div"
             >
-              {startYear}
-              {endYear ? ` - ${endYear}` : ""}
-            </Typography>
-          )}
-          {loading ? (
-            <Box sx={{ width: 350 }}>
-              <Skeleton />
-            </Box>
-          ) : (
-            <Typography variant="body2" color="text.secondary">
-              {actors.slice(0, 3).map((actor) => `${actor}, `)}
+              {birthYr}
+              {deathYr ? ` - ${deathYr}` : ""}
             </Typography>
           )}
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <StarBorderIcon sx={{ marginRight: 1 }} />
-          {loading ? (
-            <Box sx={{ width: 50 }}>
-              <Skeleton height={30} />
-            </Box>
-          ) : (
-            <Typography component="div" variant="h6">
-              {rating}
-            </Typography>
-          )}
         </div>
       </CardContent>
     </Card>
   );
 };
 
-export default TitleCard;
+export default NameCard;
