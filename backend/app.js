@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use(express.json());
+const stringSimilarity = require("string-similarity");
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -712,6 +713,93 @@ app.get("/ntuaflix_api/searchname", async (req, res) => {
       res.status(500).send("Internal Server Error"); // 500 Internal server error
     }
   }
+});
+
+app.get("/ntuaflix_api/filtersearch", async (req, res) => {
+  // let date_to = gqueryObject.yrTo + "-12-31";
+  // let date_from = gqueryObject.yrFrom + "-01-01";
+  let genre = normalizeString(req.body.genre);
+  const titlePart = normalizeString(req.body.titlePart);
+
+  const genreList_response = await axios.get(
+    `${url}/genre/movie/list?api_key=${api_key}`
+  );
+  const genreList = genreList_response.data.genres;
+  let genre_id = genreList.find(
+    (obj) => normalizeString(obj.name) == genre
+  )?.id;
+
+  const genreList_response2 = await axios.get(
+    `${url}/genre/tv/list?api_key=${api_key}`
+  );
+
+  const genreList2 = genreList_response2.data.genres;
+  let genre_id2 = genreList2.find(
+    (obj) => normalizeString(obj.name) == genre
+  )?.id;
+  if (!(genre_id || genre_id2)) {
+    console.log("Invalid genre name"); /// na mpei error
+    res.status(400).send("Invalid genre name");
+    return;
+  }
+  let movies = [];
+  let tvs = [];
+  if (genre_id) {
+    let movie_response = await axios.get(
+      `${url}/discover/movie?with_genres=${genre_id}&vote_average.gte=${req.body.minrating}&api_key=${api_key}`
+    );
+    movies = movie_response.data.results.map((obj) => ({
+      ...obj,
+      type: "movie",
+    }));
+  }
+  if (genre_id2) {
+    let tv_response = await axios.get(
+      `${url}/discover/tv?with_genres=${genre_id2}&vote_average.gte=${req.body.minrating}&api_key=${api_key}`
+    );
+    tvs = tv_response.data.results.map((obj) => ({ ...obj, type: "tv" }));
+  }
+
+  let data = movies.concat(tvs);
+  data.sort((a, b) => b.popularity - a.popularity);
+
+  let to_send = await Promise.all(
+    data.map(async (obj) => {
+      if (obj.type == "movie") {
+        return await getMovieInfo(obj);
+      } else {
+        return await getTvInfo(obj);
+      }
+    })
+  );
+
+  const final_to_send = to_send.filter((item) => {
+    return (
+      normalizeString(item.originalTitle).includes(titlePart) ||
+      (item.titleAkas.length > 0 &&
+        item.titleAkas.some((altTitle) =>
+          normalizeString(altTitle.AkaTitle).includes(titlePart)
+        ))
+    );
+  });
+
+  // const final_to_send = to_send.filter((item) => {
+  //   return (
+  //     stringSimilarity.compareTwoStrings(
+  //       normalizeString(item.originalTitle),
+  //       titlePart
+  //     ) > 0.2 ||
+  //     (item.titleAkas.length > 0 &&
+  //       item.titleAkas.some(
+  //         (altTitle) =>
+  //           stringSimilarity.compareTwoStrings(
+  //             normalizeString(altTitle.AkaTitle),
+  //             titlePart
+  //           ) > 0.2
+  //       ))
+  //   );
+  // });
+  res.send({ result: final_to_send });
 });
 
 app.listen(port, () => {

@@ -26,7 +26,8 @@
     "express-async-errors": "^3.1.1",
     "react-multi-carousel": "^2.8.4",
     "react-redux": "^9.1.0",
-    "redux-observable": "^3.0.0-rc.2"
+    "redux-observable": "^3.0.0-rc.2",
+    "string-similarity": "^4.0.4"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
