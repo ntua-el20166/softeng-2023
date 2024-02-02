@@ -114,6 +114,62 @@ program
   });
 
 program
+  .command("bygenre")
+  .requiredOption("--genre <genre>", "genre of Movie")
+  .requiredOption("--min <min>", "min rating of Movie")
+  .option("--from <from>", "from year")
+  .option("--to <to>", "to year")
+  .option(
+    "--format <format>",
+    "Specify the output format (json or csv)",
+    "json"
+  )
+  .action(async (options) => {
+    try {
+      const { genre, min, from, to, format } = options;
+      const data = {
+        qgenre: genre,
+        minrating: min,
+        yrFrom: from,
+        yrTo: to,
+      };
+      const response = await axios.post(`${apiBaseUrl}/bygenre`, data);
+      const titleObjects = response.data;
+
+      if (format === "json") {
+        console.log(JSON.stringify(titleObjects, null, 2));
+      } else if (format === "csv") {
+        const csvFilePath = path.join(outputDirectory, "titlepart.csv");
+
+        const csvWriter = createCsvWriter({
+          path: csvFilePath,
+          header: [
+            { id: "titleID", title: "Title ID" },
+            { id: "type", title: "Type" },
+            { id: "originalTitle", title: "Original Title" },
+            { id: "titlePoster", title: "Title Poster" },
+            { id: "startYear", title: "Start Year" },
+            { id: "endYear", title: "End Year" },
+            { id: "genres", title: "Genres" },
+            { id: "titleAkas", title: "Title Akas" },
+            { id: "principals", title: "Principals" },
+            { id: "rating", title: "Rating" },
+          ],
+        });
+
+        // Write data to CSV file
+        await csvWriter.writeRecords([titleObjects]);
+        console.log("CSV file generated successfully.");
+      } else {
+        console.error('Invalid format. Use "json" or "csv".');
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      process.exit(1); // Exit with an error code
+    }
+  });
+
+program
   .command("name")
   .requiredOption("--nameid <nameid>", "Id of the person")
   .option(
