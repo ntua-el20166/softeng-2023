@@ -7,7 +7,7 @@ import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { fetchResults } from "../slices/results";
+//import { fetchResults } from "../slices/results";
 
 const genres = [
   "Action",
