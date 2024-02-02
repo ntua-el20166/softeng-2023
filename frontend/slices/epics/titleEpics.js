@@ -17,10 +17,10 @@ const fetchPopularMoviesEpic = (action$) =>
           return popularMoviesSlice.actions.fetchPopularMoviesSucceeded(
             data.result
           );
-        })
-        // catchError((error) =>
-        //   of(popularMoviesSlice.actions.fetchPopularMoviesFailed(error))
-        // )
+        }),
+        catchError((error) =>
+          of(popularMoviesSlice.actions.fetchPopularMoviesFailed(error))
+        )
       )
     )
   );
