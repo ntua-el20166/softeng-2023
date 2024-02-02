@@ -7,12 +7,15 @@ import { useSelector } from "react-redux";
 
 const Layout = ({ children, statusCode }) => {
   const [hasError, setHasError] = useState(false);
-  const error = useSelector((state) => state.popularMovies.error); // error -> popularMoviesError + prosthetw resultsError
+  const popularMoviesError = useSelector((state) => state.popularMovies.error);
+  const resultsError = useSelector((state) => state.results.error);
+
   useEffect(() => {
-    if (error) {
+    if (popularMoviesError || resultsError) {
+      // add || resultsError
       setHasError(true);
     }
-  }, [error]); // [popularMoviesError, resultsError]
+  }, [popularMoviesError, resultsError]); // add , resultsError
 
   return (
     <>

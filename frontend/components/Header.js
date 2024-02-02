@@ -61,6 +61,19 @@ const Header = () => {
     setSearchInput(event.target.value);
   };
 
+  const handleSearch = () => {
+    dispatch(fetchResults({ titlePart: searchInput }));
+    router.replace(`/search-results/${searchInput}`);
+    setSearchInput("");
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSearch();
+    }
+  };
+
   const itemsPerColumn = Math.ceil(genres.length / 2);
   const genresColumns = [
     genres.slice(0, itemsPerColumn),
@@ -183,21 +196,19 @@ const Header = () => {
           }}
         >
           <InputBase
+            name="search_input" // bc of console message
             sx={{ ml: 1, flex: 1 }}
             placeholder="Search titles, people"
             inputProps={{ "aria-label": "search google maps" }}
             value={searchInput}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
           <IconButton
             type="button"
             sx={{ p: "10px" }}
             aria-label="search"
-            onClick={() => {
-              dispatch(fetchResults({ titlePart: searchInput }));
-              router.replace(`/search-results/${searchInput}`);
-              setSearchInput("");
-            }}
+            onClick={() => handleSearch()}
           >
             <SearchIcon />
           </IconButton>

@@ -4,7 +4,7 @@
   "description": "the project",
   "main": "test.js",
   "scripts": {
-    "start": "concurrently \"cd backend && node app.js\" \"cd frontend && npm run dev\"",
+    "start": "concurrently \"cd backend/script_files && node server.js\" \"cd frontend && npm run dev\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
