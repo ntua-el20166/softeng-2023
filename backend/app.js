@@ -60,12 +60,7 @@ async function getMovieInfo(jsonObject) {
       genres = response.data.genres.map((genre) => {
         return { genreTitle: genre.name };
       });
-      // rating = response.data.vote_average;
-      // votes = response.data.vote_count;
     });
-
-  // rating = response.data.vote_average;
-  // votes = response.data.vote_count;
 
   await axios
     .get(`${url}/movie/${movie_id}/alternative_titles?api_key=${api_key}`)
@@ -129,18 +124,9 @@ async function getTvInfo(jsonObject) {
       genres = response.data.genres.map((genre) => {
         return { genreTitle: genre.name };
       });
-      // rating = response.data.vote_average;
-      // votes = response.data.vote_count;
       start_year = response.data.first_air_date.substring(0, 4);
       last_year = response.data.last_air_date.substring(0, 4);
     });
-  // rating = response.data.vote_average;
-  // votes = response.data.vote_count;
-
-  // start_year = jsonObject.first_air_date.substring(0, 4);
-  // last_year = jsonObject.last_air_date.substring(0, 4);
-
-  ///////before
   await axios
     .get(`${url}/tv/${series_id}/alternative_titles?api_key=${api_key}`)
     .then((response) => {
@@ -187,15 +173,6 @@ async function getTvInfo(jsonObject) {
   );
 }
 app.get("/ntuaflix_api/title2/:titleID", async (req, res) => {
-  // const [tvResponse, movieResponse] = await Promise.all([
-  //   axios.get(`${url}/tv/${req.body.id}?api_key=${api_key}`),
-  //   axios.get(`${url}/movie/${req.body.id}?api_key=${api_key}`)
-  // ]);
-
-  // const tv = tvResponse.data;
-  // const movie = movieResponse.data;
-
-  // res.send({ tv, movie });
   try {
     let response;
     let ret;
@@ -211,18 +188,24 @@ app.get("/ntuaflix_api/title2/:titleID", async (req, res) => {
       ret = await getMovieInfo(response.data);
     }
 
-    console.log(response.data);
-
     res.send({ titleObject: ret });
   } catch (error) {
-    // if (error.message=='No data'){
-    // console.error('Error:', error.message);
-    // res.status(204).send({ error: "No data", status: 204 });
-    // }
+    if (error.response) {
+      const statusCode = error.response.status;
 
-    if (error.response.data.status_code == 34) {
-      console.log("No data");
-      res.status(204).end();
+      if (statusCode === 400) {
+        res.status(400).send("Bad request"); // 400 Bad request
+      } else if (statusCode === 404) {
+        res.status(404).send("Not available"); // 404 Not available
+      } else {
+        res.status(500).send("Internal server error"); // Other status codes
+      }
+    } else if (error.request) {
+      console.error("No response received from server");
+      res.status(500).send("Internal Server Error"); // 500 Internal server error
+    } else {
+      console.error("Error setting up the request:", error.message);
+      res.status(500).send("Internal Server Error"); // 500 Internal server error
     }
   }
 });
@@ -244,7 +227,6 @@ app.get("/ntuaflix_api/similar_movies", async (req, res) => {
   let response = await axios.get(
     `${url}/movie/${req.body.movie_id}/similar?api_key=${api_key}`
   );
-  console.log("AAAAAAAAAA");
   const movies = response.data.results;
   let to_send = await Promise.all(
     movies?.map(async (obj) => {
@@ -254,67 +236,39 @@ app.get("/ntuaflix_api/similar_movies", async (req, res) => {
   res.send({ result: to_send });
 });
 
-app.get(
-  "/ntuaflix_api/title/:titleID",
-  async (req, res) => {
-    // const [tvResponse, movieResponse] = await Promise.all([
-    //   axios.get(`${url}/tv/${req.body.id}?api_key=${api_key}`),
-    //   axios.get(`${url}/movie/${req.body.id}?api_key=${api_key}`)
-    // ]);
-
-    // const tv = tvResponse.data;
-    // const movie = movieResponse.data;
-
-    // res.send({ tv, movie });
-    let response;
-    let ret;
-    try {
-      response = await axios.get(
-        `${url}/movie/${req.params.titleID}?api_key=${api_key}`
-      );
-      ret = await getMovieInfo(response.data);
-    } catch (error) {
-      if (error.response.data.status_code == 34) {
-        console.log("No movie");
-        try {
-          response = await axios.get(
-            `${url}/tv/${req.params.titleID}?api_key=${api_key}`
-          );
-          ret = await getTvInfo(response.data);
-        } catch (error) {
-          if (error.response.data.status_code == 34) {
-            console.log("No data");
-            res.status(204).end();
-          }
+app.get("/ntuaflix_api/title/:titleID", async (req, res) => {
+  let response;
+  let ret;
+  try {
+    response = await axios.get(
+      `${url}/movie/${req.params.titleID}?api_key=${api_key}`
+    );
+    ret = await getMovieInfo(response.data);
+  } catch (error) {
+    if (error.response.data.status_code == 34) {
+      console.log("No movie");
+      try {
+        response = await axios.get(
+          `${url}/tv/${req.params.titleID}?api_key=${api_key}`
+        );
+        ret = await getTvInfo(response.data);
+      } catch (error) {
+        if (error.response.data.status_code == 34) {
+          console.log("No data");
+          res.status(204).end();
         }
       }
     }
-
-    res.send({ titleObject: ret });
   }
 
-  // catch (error) {
-  //   // if (error.message=='No data'){
-  //   // console.error('Error:', error.message);
-  //   // res.status(204).send({ error: "No data", status: 204 });
-  //   // }
-
-  //   if (error.response.data.status_code==34){
-  //   console.log("No data")
-  //   res.status(204).end()
-  // }}
-);
+  res.send({ titleObject: ret });
+});
 
 app.get("/ntuaflix_api/searchtitle", (req, res) => {
   axios
     .get(`${url}/search/multi?query=${req.body.titlePart}&api_key=${api_key}`)
     .then((response) => {
-      //kolpa sto response
-
       const results = response.data.results;
-
-      console.log("AAAAAAAAAAAAAAAAAAAA");
-      console.log(results);
       const to_send = Promise.all(
         results.map(async (jsonObject) => {
           if (jsonObject.media_type == "person") {
@@ -335,13 +289,11 @@ app.get("/ntuaflix_api/searchtitle", (req, res) => {
                 genres = response.data.genres.map((genre) => {
                   return { genreTitle: genre.name };
                 });
-                // rating = response.data.vote_average;
-                // votes = response.data.vote_count;
+
                 start_year = response.data.first_air_date.substring(0, 4);
                 last_year = response.data.last_air_date.substring(0, 4);
               });
 
-            ///////before
             await axios
               .get(
                 `${url}/tv/${series_id}/alternative_titles?api_key=${api_key}`
@@ -402,8 +354,6 @@ app.get("/ntuaflix_api/searchtitle", (req, res) => {
                 genres = response.data.genres.map((genre) => {
                   return { genreTitle: genre.name };
                 });
-                // rating = response.data.vote_average;
-                // votes = response.data.vote_count;
               });
             await axios
               .get(
@@ -457,13 +407,7 @@ app.get("/ntuaflix_api/searchtitle", (req, res) => {
       to_send.then((data) => {
         res.send(data.filter(Boolean));
       });
-      //res.send(to_send);
     });
-
-  //imdb api call
-  //data response from api imdb
-
-  //res.send(data)
 });
 
 class gqueryObject {
@@ -502,7 +446,7 @@ app.get("/ntuaflix_api/bygenre", async (req, res) => {
     (obj) => normalizeString(obj.name) == genre
   )?.id;
   if (!(genre_id || genre_id2)) {
-    console.log("Invalid genre name"); /// na mpei error
+    console.log("Invalid genre name");
     res.status(400).send("Invalid genre name");
     return;
   }
@@ -538,34 +482,6 @@ app.get("/ntuaflix_api/bygenre", async (req, res) => {
   );
   res.send({ result: to_send });
 });
-
-// app.get("ntuaflix_api/bygenre", (req, res) => {
-//   const gqueryObject = req.body;
-//   axios
-//     .get(`${url}/genre/movie/${gqueryObject.qgenre}?api_key=${api_key}`)
-//     .then(() => {
-//       console.log("giorgos");
-//     })
-//     .catch((error) => {
-//       if (error.response) {
-//         const statusCode = error.response.status;
-
-//         if (statusCode === 400) {
-//           res.status(400).send("Bad request"); // 400 Bad request
-//         } else if (statusCode === 404) {
-//           res.status(404).send("Not available"); // 404 Not available
-//         } else {
-//           res.status(500).send("Internal server error"); // Other status codes
-//         }
-//       } else if (error.request) {
-//         console.error("No response received from server");
-//         res.status(500).send("Internal Server Error"); // 500 Internal server error
-//       } else {
-//         console.error("Error setting up the request:", error.message);
-//         res.status(500).send("Internal Server Error"); // 500 Internal server error
-//       }
-//     });
-// });
 
 class nameObject {
   constructor(
@@ -640,7 +556,6 @@ app.get("/ntuaflix_api/name/:nameID", async (req, res) => {
       data.known_for_department,
       data2.nameTitles
     );
-    console.log(nameObject1);
     res.status(200).json(nameObject1);
   } catch (error) {
     if (error.response) {
@@ -692,7 +607,6 @@ app.get("/ntuaflix_api/searchname", async (req, res) => {
       );
       listOfNameObjects.push(nameObject1);
     }
-    console.log(listOfNameObjects);
     res.status(200).json(listOfNameObjects);
   } catch (error) {
     if (error.response) {
