@@ -1,12 +1,15 @@
 import Link from "next/link";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, MenuItem, Menu, TextField, Grid } from "@mui/material";
 import React, { useState } from "react";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+//import { fetchResults } from "../slices/results";
 
-import { fetchResults } from "../slices";
-
-const movieGenres = [
+const genres = [
   "Action",
   "Adventure",
   "Animation",
@@ -27,33 +30,38 @@ const movieGenres = [
 const ratings = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+"];
 
 const Header = () => {
-  const [anchorEl1, setAnchorEl1] = useState(null);
-  const [anchorEl2, setAnchorEl2] = useState(null);
+  const [anchorEl1, setAnchorElRatings] = useState(null);
+  const [anchorEl2, setAnchorElGenres] = useState(null);
   const [rating, setRating] = useState("");
   const [genre, setGenre] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
-  const handleClick1 = (event) => {
-    setAnchorEl1(event.currentTarget);
+  const handleClickRatings = (event) => {
+    setAnchorElRatings(event.currentTarget);
   };
 
-  const handleClose1 = () => {
-    // change name of func
-    setAnchorEl1(null);
+  const handleCloseRatings = () => {
+    setAnchorElRatings(null);
   };
 
-  const handleClick2 = (event) => {
-    setAnchorEl2(event.currentTarget);
+  const handleClickGenres = (event) => {
+    setAnchorElGenres(event.currentTarget);
   };
 
-  const handleClose2 = () => {
-    setAnchorEl2(null);
+  const handleCloseGenres = () => {
+    setAnchorElGenres(null);
   };
 
-  const itemsPerColumn = Math.ceil(movieGenres.length / 2);
+  // Function to handle search bar input changes
+  const handleInputChange = (event) => {
+    setSearchInput(event.target.value);
+    console.log(event.target.value); // comment this later.
+  };
+
+  const itemsPerColumn = Math.ceil(genres.length / 2);
   const genresColumns = [
-    movieGenres.slice(0, itemsPerColumn),
-    movieGenres.slice(itemsPerColumn),
+    genres.slice(0, itemsPerColumn),
+    genres.slice(itemsPerColumn),
   ];
 
   return (
@@ -93,7 +101,7 @@ const Header = () => {
       </Link>
       <Button
         variant="contained"
-        onClick={handleClick1}
+        onClick={handleClickRatings}
         sx={{
           flex: 1,
           backgroundColor: "#540000",
@@ -107,7 +115,7 @@ const Header = () => {
         <ArrowDropDownIcon />
       </Button>
       <Menu
-        onClose={handleClose1}
+        onClose={handleCloseRatings}
         anchorEl={anchorEl1}
         open={Boolean(anchorEl1)}
       >
@@ -115,7 +123,7 @@ const Header = () => {
           <MenuItem
             key={rating}
             onClick={() => {
-              handleClose1();
+              handleCloseRatings();
               setRating(rating);
             }}
           >
@@ -125,7 +133,7 @@ const Header = () => {
       </Menu>
       <Button
         variant="contained"
-        onClick={handleClick2}
+        onClick={handleClickGenres}
         sx={{
           flex: 1,
           backgroundColor: "#540000",
@@ -141,13 +149,19 @@ const Header = () => {
       <Menu
         anchorEl={anchorEl2}
         open={Boolean(anchorEl2)}
-        onClose={handleClose2}
+        onClose={handleCloseGenres}
       >
         <Grid container>
           {genresColumns.map((column, index) => (
             <Grid item key={index} xs={6}>
               {column.map((genre) => (
-                <MenuItem key={genre} onClick={handleClose2}>
+                <MenuItem
+                  key={genre}
+                  onClick={() => {
+                    handleCloseGenres();
+                    setGenre(genre);
+                  }}
+                >
                   {genre}
                 </MenuItem>
               ))}
@@ -155,14 +169,35 @@ const Header = () => {
           ))}
         </Grid>
       </Menu>
-      <TextField
-        label="Search titles, people"
-        variant="standard"
-        sx={{
-          flex: 3,
-          //color: "#ffffff",
-        }}
-      />
+      {
+        <Paper
+          component="form"
+          sx={{
+            p: "2px 4px",
+            display: "flex",
+            alignItems: "center",
+            width: 400,
+          }}
+        >
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Search titles, people"
+            inputProps={{ "aria-label": "search google maps" }}
+            value={searchInput} // Controlled component
+            onChange={handleInputChange} // Update state upon input change
+          />
+          <IconButton
+            type="button"
+            sx={{ p: "10px" }}
+            aria-label="search"
+            onClick={() => {
+              // fetchResults {rating, genre, searchInput}
+            }}
+          >
+            <SearchIcon />
+          </IconButton>
+        </Paper>
+      }
     </Box>
   );
 };

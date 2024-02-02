@@ -1,6 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { singleTitleReducer, resultsReducer } from "./slices";
+import { createEpicMiddleware } from "redux-observable";
+
+import {
+  singleTitleReducer,
+  resultsReducer,
+  popularMoviesReducer,
+  fetchPopularMoviesEpic,
+} from "./slices";
+
+const epicMiddleware = createEpicMiddleware();
 
 export const store = configureStore({
-  reducer: { singleTitle: singleTitleReducer, results: resultsReducer },
+  reducer: {
+    singleTitle: singleTitleReducer,
+    results: resultsReducer,
+    popularMovies: popularMoviesReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(epicMiddleware),
 });
+
+epicMiddleware.run(fetchPopularMoviesEpic);
