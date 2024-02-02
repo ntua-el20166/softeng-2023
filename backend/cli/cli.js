@@ -64,6 +64,56 @@ program
   });
 
 program
+  .command("searchtitle")
+  .requiredOption("--titlepart <titlepart>", "Part of Movie title")
+  .option(
+    "--format <format>",
+    "Specify the output format (json or csv)",
+    "json"
+  )
+  .action(async (options) => {
+    try {
+      const { titlepart, format } = options;
+      const data = {
+        titlePart: titlepart,
+      };
+      const response = await axios.post(`${apiBaseUrl}/searchtitle`, data);
+      const titleObjects = response.data;
+
+      if (format === "json") {
+        console.log(JSON.stringify(titleObjects, null, 2));
+      } else if (format === "csv") {
+        const csvFilePath = path.join(outputDirectory, "titlepart.csv");
+
+        const csvWriter = createCsvWriter({
+          path: csvFilePath,
+          header: [
+            { id: "titleID", title: "Title ID" },
+            { id: "type", title: "Type" },
+            { id: "originalTitle", title: "Original Title" },
+            { id: "titlePoster", title: "Title Poster" },
+            { id: "startYear", title: "Start Year" },
+            { id: "endYear", title: "End Year" },
+            { id: "genres", title: "Genres" },
+            { id: "titleAkas", title: "Title Akas" },
+            { id: "principals", title: "Principals" },
+            { id: "rating", title: "Rating" },
+          ],
+        });
+
+        // Write data to CSV file
+        await csvWriter.writeRecords([titleObjects]);
+        console.log("CSV file generated successfully.");
+      } else {
+        console.error('Invalid format. Use "json" or "csv".');
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      process.exit(1); // Exit with an error code
+    }
+  });
+
+program
   .command("name")
   .requiredOption("--nameid <nameid>", "Id of the person")
   .option(
@@ -97,6 +147,50 @@ program
 
         // Write data to CSV file
         await csvWriter.writeRecords([nameObject]);
+        console.log("CSV file generated successfully.");
+      } else {
+        console.error('Invalid format. Use "json" or "csv".');
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      process.exit(1); // Exit with an error code
+    }
+  });
+
+program
+  .command("searchname")
+  .requiredOption("--name <name>", "Name of Person")
+  .option(
+    "--format <format>",
+    "Specify the output format (json or csv)",
+    "json"
+  )
+  .action(async (options) => {
+    try {
+      const { name, format } = options;
+      const response = await axios.get(`${apiBaseUrl}/searchname/${name}`);
+      const nameObjects = response.data;
+
+      if (format === "json") {
+        console.log(JSON.stringify(nameObjects, null, 2));
+      } else if (format === "csv") {
+        const csvFilePath = path.join(outputDirectory, "searchname.csv");
+
+        const csvWriter = createCsvWriter({
+          path: csvFilePath,
+          header: [
+            { id: "nameID", title: "Name ID" },
+            { id: "name", title: "Name" },
+            { id: "namePoster", title: "Name Poster" },
+            { id: "birthYr", title: "Birth Year" },
+            { id: "deathYr", title: "Death Year" },
+            { id: "profession", title: "Profession" },
+            { id: "nameTitles", title: "Name Titles" },
+          ],
+        });
+
+        // Write data to CSV file
+        await csvWriter.writeRecords([nameObjects]);
         console.log("CSV file generated successfully.");
       } else {
         console.error('Invalid format. Use "json" or "csv".');
