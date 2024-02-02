@@ -572,34 +572,37 @@ class nameObject {
 }
 
 async function getPersonInfo(nameID) {
+  let nameTitles;
   try {
-    const namePoster = await axios.get(
-      `${url}/person/${nameID}/images?api_key=${api_key}`
+    let response = await axios.get(
+      `${url}/person/${nameID}/combined_credits?api_key=${api_key}`
     );
-    await axios
-      .get(`${url}/person/${nameID}/combined_credicts?api_key=${api_key}`)
-      .then((response) => {
-        const cast = response.data.cast;
-        var one = cast.map((person) => {
-          return {
-            titleID: person.id,
-            category: "Actor",
-          };
-        });
-        const crew = response.data.crew;
-        var two = crew.map((person) => {
-          return {
-            titleID: person.id,
-            category: person.job,
-          };
-        });
-        nameTitles = one.concat(two);
-      });
+
+    const cast = response.data.cast;
+    var one = cast.map((person) => {
+      return {
+        titleID: person.id,
+        category: "Actor",
+      };
+    });
+    const crew = response.data.crew;
+    var two = crew.map((person) => {
+      return {
+        titleID: person.id,
+        category: person.job,
+      };
+    });
+    nameTitles = one.concat(two);
+
     return {
-      namePoster,
       nameTitles,
     };
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error:", error.message);
+    return {
+      nameTitles: [],
+    };
+  }
 }
 
 app.get("/ntuaflix_api/name/:nameID", async (req, res) => {
@@ -615,7 +618,7 @@ app.get("/ntuaflix_api/name/:nameID", async (req, res) => {
     const nameObject1 = new nameObject(
       data.id.toString(),
       data.name,
-      data2.namePoster,
+      data.profile_path,
       birthYear,
       deathYear,
       data.known_for_department,
@@ -644,39 +647,56 @@ app.get("/ntuaflix_api/name/:nameID", async (req, res) => {
   }
 });
 
-app.get("/ntuaflix_api/searchname", (req, res) => {
+app.get("/ntuaflix_api/searchname", async (req, res) => {
   const { namePart } = req.body;
-  axios
-    .get(`${url}/search/person?query=${namePart}&api_key=${api_key}`)
-    .then((response) => {
-      const responseData = response.data.results;
-      const filterdData = responseData
-        .filter((person) => person.name || person.name.includes(namePart))
-        .map((person) => ({
-          personName: person.name,
-        }));
-      res.status(200).send(filterdData);
-      console.log(filterdData);
-    })
-    .catch((error) => {
-      if (error.response) {
-        const statusCode = error.response.status;
 
-        if (statusCode === 400) {
-          res.status(400).send("Bad request"); // 400 Bad request
-        } else if (statusCode === 404) {
-          res.status(404).send("Not available"); // 404 Not available
-        } else {
-          res.status(500).send("Internal server error"); // Other status codes
-        }
-      } else if (error.request) {
-        console.error("No response received from server");
-        res.status(500).send("Internal Server Error"); // 500 Internal server error
+  try {
+    const response = await axios.get(
+      `${url}/search/person?query=${namePart}&api_key=${api_key}`
+    );
+    let listOfNameObjects = [];
+    objectsArray = response.data.results;
+    for (let i = 0; i < objectsArray.length; i++) {
+      const object = objectsArray[i];
+      const response2 = await axios.get(
+        `${url}/person/${object.id}?api_key=${api_key}`
+      );
+      const data = response2.data;
+      const birthYear = data.birthday ? data.birthday.substring(0, 4) : null;
+      const deathYear = data.deathday ? data.deathday.substring(0, 4) : null;
+      const data2 = await getPersonInfo(object.id);
+      const nameObject1 = new nameObject(
+        object.id.toString(),
+        object.name,
+        object.profile_path,
+        birthYear,
+        deathYear,
+        object.known_for_department,
+        data2.nameTitles
+      );
+      listOfNameObjects.push(nameObject1);
+    }
+    console.log(listOfNameObjects);
+    res.status(200).json(listOfNameObjects);
+  } catch (error) {
+    if (error.response) {
+      const statusCode = error.response.status;
+
+      if (statusCode === 400) {
+        res.status(400).send("Bad request"); // 400 Bad request
+      } else if (statusCode === 404) {
+        res.status(404).send("Not available"); // 404 Not available
       } else {
-        console.error("Error setting up the request:", error.message);
-        res.status(500).send("Internal Server Error"); // 500 Internal server error
+        res.status(500).send("Internal server error"); // Other status codes
       }
-    });
+    } else if (error.request) {
+      console.error("No response received from server");
+      res.status(500).send("Internal Server Error"); // 500 Internal server error
+    } else {
+      console.error("Error setting up the request:", error.message);
+      res.status(500).send("Internal Server Error"); // 500 Internal server error
+    }
+  }
 });
 
 app.listen(port, () => {
