@@ -1,13 +1,15 @@
 import { Typography, Box } from "@mui/material";
 
 const CarouselItem = ({ item }) => {
+  const poster = item.titlePoster ?? item.namePoster;
+  const title = item.originalTitle ?? item.name;
   return (
     <Box
       sx={{
         width: 400,
         height: 550,
         position: "relative",
-        backgroundImage: `url(https://image.tmdb.org/t/p/w780${item.titlePoster})`,
+        backgroundImage: `url(https://image.tmdb.org/t/p/w780${poster})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         borderRadius: "8px",
@@ -47,7 +49,7 @@ const CarouselItem = ({ item }) => {
           transition: "opacity 0.3s ease-in-out",
         }}
       >
-        {item.originalTitle}
+        {title}
       </Typography>
     </Box>
   );

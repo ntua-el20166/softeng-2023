@@ -61,6 +61,8 @@ app.post("/ntuaflix_api/searchtitle", searchTitlePost);
 
 app.post("/ntuaflix_api/bygenre", byGenrePost);
 
+app.post("/ntuaflix_api/searchname", getSearchNameResult);
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

@@ -62,12 +62,9 @@ const Header = () => {
   };
 
   const handleSearch = () => {
-    const trimmedInput = searchInput.trim();
-    if (trimmedInput) {
-      dispatch(fetchResults({ titlePart: trimmedInput }));
-      router.replace(`/search-results/${trimmedInput}`);
-      setSearchInput("");
-    }
+    dispatch(fetchResults({ titlePart: searchInput }));
+    router.replace(`/search-results/${searchInput}`);
+    setSearchInput("");
   };
 
   const handleKeyDown = (event) => {
@@ -211,7 +208,7 @@ const Header = () => {
             type="button"
             sx={{ p: "10px" }}
             aria-label="search"
-            onClick={handleSearch}
+            onClick={() => handleSearch()}
           >
             <SearchIcon />
           </IconButton>

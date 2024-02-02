@@ -920,7 +920,7 @@ app.get("/", (req, res) => {
 //     });
 // });
 
-//by genre endpoint but with post method
+// by genre endpoint but with post method
 // app.post("/ntuaflix_api/bygenre", async (req, res) => {
 //   const gqueryObject = req.body;
 //   let date_to = gqueryObject.yrTo + "-12-31";
