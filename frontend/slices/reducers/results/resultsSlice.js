@@ -4,15 +4,27 @@ export const resultsSlice = createSlice({
   name: "results",
   initialState: {
     resultsLoading: false,
-    results: [],
+    titleResults: [],
+    nameResults: [],
+    error: null,
   },
   reducers: {
-    fetchResults: (state, { payload }) => {
+    fetchResults: (state) => {
       state.resultsLoading = true;
+    },
+    fetchResultsSucceeded: (state, { payload }) => {
+      state.titleResults = payload.titles;
+      state.nameResults = payload.names;
+      console.log(payload);
       state.resultsLoading = false;
+    },
+    fetchResultsFailed: (state, { payload }) => {
+      state.resultsLoading = false;
+      state.error = payload;
     },
   },
 });
 
-export const { fetchResults } = resultsSlice.actions;
+export const { fetchResults, fetchResultsSucceeded, fetchResultsFailed } =
+  resultsSlice.actions;
 export const resultsReducer = resultsSlice.reducer;

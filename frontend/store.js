@@ -5,7 +5,7 @@ import {
   singleTitleReducer,
   resultsReducer,
   popularMoviesReducer,
-  fetchPopularMoviesEpic,
+  rootEpic,
 } from "./slices";
 
 const epicMiddleware = createEpicMiddleware();
@@ -20,4 +20,4 @@ export const store = configureStore({
     getDefaultMiddleware().concat(epicMiddleware),
 });
 
-epicMiddleware.run(fetchPopularMoviesEpic);
+epicMiddleware.run(rootEpic);
