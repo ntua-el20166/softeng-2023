@@ -5,9 +5,9 @@ const CarouselItem = ({ item }) => {
     <Box
       sx={{
         width: 400,
-        height: 400,
+        height: 550,
         position: "relative",
-        backgroundImage: `url(${item.titlePoster})`,
+        backgroundImage: `url(https://image.tmdb.org/t/p/w780${item.titlePoster})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         borderRadius: "8px",

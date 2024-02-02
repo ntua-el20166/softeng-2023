@@ -1,2 +1,2 @@
-export * from "./singleTitle";
-export * from "./results";
+export * from "./reducers";
+export * from "./epics";

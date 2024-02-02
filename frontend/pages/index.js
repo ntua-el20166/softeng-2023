@@ -1,19 +1,24 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Box,
-  Button,
-  Card,
-  CardMedia,
-} from "@mui/material";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 
 import { Carousel } from "../components";
+import { fetchPopularMovies } from "../slices";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!dispatch) return;
+    dispatch(fetchPopularMovies());
+  }, [dispatch]);
+
+  const popularMovies = useSelector(
+    (state) => state.popularMovies.popularMovies
+  );
+
   const titleObject = {
     titleID: "tt1234567",
     type: "movie",
@@ -97,7 +102,7 @@ const Home = () => {
           </Box>
         </Box>
       ) : (
-        <Carousel items={dummyList} />
+        <Carousel items={popularMovies} />
       )}
     </Box>
   );

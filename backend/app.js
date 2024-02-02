@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const { error } = require("console");
+const cors = require("cors");
 
 const app = express();
 const api_key = "f98bafc1f4c7d1e56519e6d382d1774f";
@@ -11,6 +12,7 @@ const bodyParser = require("body-parser");
 const { start } = require("repl");
 const { get } = require("http");
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use(express.json());
 
@@ -227,7 +229,7 @@ app.get("/ntuaflix_api/title2/:titleID", async (req, res) => {
 
 app.get("/ntuaflix_api/popular_movies", async (req, res) => {
   let response = await axios.get(
-    `${url}/trending/movie/${req.body.duration}?api_key=${api_key}`
+    `${url}/trending/movie/day?api_key=${api_key}`
   );
   const movies = response.data.results;
   let to_send = await Promise.all(
@@ -235,7 +237,6 @@ app.get("/ntuaflix_api/popular_movies", async (req, res) => {
       return await getMovieInfo(obj);
     })
   );
-
   res.send({ result: to_send });
 });
 
