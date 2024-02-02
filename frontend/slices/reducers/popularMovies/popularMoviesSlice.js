@@ -8,19 +8,16 @@ export const popularMoviesSlice = createSlice({
     error: null,
   },
   reducers: {
-    fetchPopularMovies: (state, { payload }) => {
+    fetchPopularMovies: (state) => {
       state.popularMoviesLoading = true;
     },
     fetchPopularMoviesSucceeded: (state, { payload }) => {
       state.popularMoviesLoading = false;
-      console.log(payload);
       state.popularMovies = payload;
     },
-    fetchPopularMoviesFailed: (state, action) => {
-      console.log(action);
-
+    fetchPopularMoviesFailed: (state, { payload }) => {
       state.popularMoviesLoading = false;
-      state.error = action.payload;
+      state.error = payload;
     },
   },
 });

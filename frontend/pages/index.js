@@ -19,37 +19,9 @@ const Home = () => {
     (state) => state.popularMovies.popularMovies
   );
 
-  const titleObject = {
-    titleID: "tt1234567",
-    type: "movie",
-    originalTitle: "Πρωτότυπος τίτλος",
-    titlePoster:
-      "https://m.media-amazon.com/images/M/MV5BMGVmMWNiMDktYjQ0Mi00MWIxLTk0N2UtN2ZlYTdkN2IzNDNlXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg",
-    startYear: 2021,
-    endYear: null,
-    genres: ["Drama", "Adventure", "Sci-Fi"],
-    genreTitle: "Drama",
-    titleAkas: [
-      {
-        akaTitle: "Διεθνής τίτλος",
-        regionAbbrev: "US",
-      },
-      // ... other alternate titles
-    ],
-    principals: [
-      {
-        nameID: "nm0000001",
-        name: "Όνομα Συντελεστή",
-        category: "director",
-        rating: {
-          avRating: "7.5",
-          nVotes: "15000",
-        },
-      },
-      // ... other principal members
-    ],
-  };
-  const dummyList = [titleObject, titleObject, titleObject, titleObject];
+  const popularMoviesLoading = useSelector(
+    (state) => state.popularMovies.popularMoviesLoading
+  );
 
   return (
     <Box
@@ -87,23 +59,24 @@ const Home = () => {
       >
         Featured Movies
       </Typography>
-      {false ? (
+      {popularMoviesLoading ? (
         <Box
           sx={{ display: "flex", flexDirection: "row", alignSelf: "center" }}
         >
-          <Box sx={{ width: 400, height: 400, padding: 2 }}>
-            <Skeleton height={400} />
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
           </Box>
-          <Box sx={{ width: 400, height: 400, padding: 2 }}>
-            <Skeleton height={400} />
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
           </Box>
-          <Box sx={{ width: 400, height: 400, padding: 2 }}>
-            <Skeleton height={400} />
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
           </Box>
         </Box>
       ) : (
         <Carousel items={popularMovies} />
       )}
+      <Box sx={{ height: "200px" }} />
     </Box>
   );
 };

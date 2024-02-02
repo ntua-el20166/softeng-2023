@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import { Box } from "@mui/material";
 import { useRouter } from "next/navigation";
 
-import { CarouselItem, CustomRightArrow } from "./components";
+import { CarouselItem, CustomRightArrow, CustomLeftArrow } from "./components";
 
 const CustomCarousel = ({ items }) => {
   const router = useRouter();
@@ -48,6 +48,7 @@ const CustomCarousel = ({ items }) => {
         <Carousel
           responsive={responsive}
           customRightArrow={<CustomRightArrow />}
+          customLeftArrow={<CustomLeftArrow />}
         >
           {items.map((item, i) => (
             <Box

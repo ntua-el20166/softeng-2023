@@ -305,7 +305,7 @@ app.get(
   // }}
 );
 
-app.get("/ntuaflix_api/searchtitle", (req, res) => {
+app.post("/ntuaflix_api/searchtitle", (req, res) => {
   axios
     .get(`${url}/search/multi?query=${req.body.titlePart}&api_key=${api_key}`)
     .then((response) => {
@@ -313,8 +313,6 @@ app.get("/ntuaflix_api/searchtitle", (req, res) => {
 
       const results = response.data.results;
 
-      console.log("AAAAAAAAAAAAAAAAAAAA");
-      console.log(results);
       const to_send = Promise.all(
         results.map(async (jsonObject) => {
           if (jsonObject.media_type == "person") {
@@ -338,7 +336,8 @@ app.get("/ntuaflix_api/searchtitle", (req, res) => {
                 // rating = response.data.vote_average;
                 // votes = response.data.vote_count;
                 start_year = response.data.first_air_date.substring(0, 4);
-                last_year = response.data.last_air_date.substring(0, 4);
+                last_year =
+                  response.data.last_air_date?.substring(0, 4) ?? null;
               });
 
             ///////before
@@ -663,7 +662,7 @@ app.get("/ntuaflix_api/name/:nameID", async (req, res) => {
   }
 });
 
-app.get("/ntuaflix_api/searchname", async (req, res) => {
+app.post("/ntuaflix_api/searchname", async (req, res) => {
   const { namePart } = req.body;
 
   try {

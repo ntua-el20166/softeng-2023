@@ -1,13 +1,15 @@
 import Link from "next/link";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Box, Button, MenuItem, Menu, TextField, Grid } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-//import { fetchResults } from "../slices/results";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+
+import { fetchResults } from "../slices";
 
 const genres = [
   "Action",
@@ -30,6 +32,9 @@ const genres = [
 const ratings = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+"];
 
 const Header = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const [anchorEl1, setAnchorElRatings] = useState(null);
   const [anchorEl2, setAnchorElGenres] = useState(null);
   const [rating, setRating] = useState("");
@@ -52,10 +57,8 @@ const Header = () => {
     setAnchorElGenres(null);
   };
 
-  // Function to handle search bar input changes
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
-    console.log(event.target.value); // comment this later.
   };
 
   const itemsPerColumn = Math.ceil(genres.length / 2);
@@ -111,7 +114,7 @@ const Header = () => {
           },
         }}
       >
-        Ratings
+        {rating ? rating : "RATINGS"}
         <ArrowDropDownIcon />
       </Button>
       <Menu
@@ -143,7 +146,7 @@ const Header = () => {
           },
         }}
       >
-        Genres
+        {genre ? genre : "GENRES"}
         <ArrowDropDownIcon />
       </Button>
       <Menu
@@ -183,15 +186,17 @@ const Header = () => {
             sx={{ ml: 1, flex: 1 }}
             placeholder="Search titles, people"
             inputProps={{ "aria-label": "search google maps" }}
-            value={searchInput} // Controlled component
-            onChange={handleInputChange} // Update state upon input change
+            value={searchInput}
+            onChange={handleInputChange}
           />
           <IconButton
             type="button"
             sx={{ p: "10px" }}
             aria-label="search"
             onClick={() => {
-              // fetchResults {rating, genre, searchInput}
+              dispatch(fetchResults({ titlePart: searchInput }));
+              router.replace(`/search-results/${searchInput}`);
+              setSearchInput("");
             }}
           >
             <SearchIcon />
