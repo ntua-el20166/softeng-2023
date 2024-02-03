@@ -3,7 +3,12 @@ import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { fetchResults } from "../../slices";
+import {
+  fetchResults,
+  setSingleName,
+  setSingleName,
+  setSingleTitle,
+} from "../../slices";
 import { TitleCard, NameCard } from "./_components";
 
 const SearchResults = () => {
@@ -20,14 +25,19 @@ const SearchResults = () => {
     if (titleResults.length === 0 && searchInput) {
       dispatch(fetchResults({ titlePart: searchInput }));
     }
-  }, [titleResults, searchInput]);
+  }, [searchInput]);
+
   const [loadedTitles, setLoadedTitles] = useState(3);
   const [loadedNames, setLoadedNames] = useState(3);
 
   const handleItemClick = (item) => {
-    item.titleID
-      ? router.push(`movie/${item.titleID}`)
-      : router.push(`name/${item.nameID}`);
+    if (item.titleID) {
+      setSingleTitle(item);
+      router.replace(`/title/${item.titleID}`);
+    } else {
+      setSingleName(item);
+      router.replace(`/name/${item.nameID}`);
+    }
   };
 
   return (
@@ -64,7 +74,7 @@ const SearchResults = () => {
             <TitleCard loading={true} />
             <TitleCard loading={true} />
           </Box>
-        ) : (
+        ) : titleResults.length > 0 ? (
           titleResults
             .filter((title) => (title.titlePoster ? true : false))
             .slice(0, loadedTitles)
@@ -84,6 +94,8 @@ const SearchResults = () => {
                 />
               </Box>
             ))
+        ) : (
+          <Typography>No Titles Found</Typography>
         )}
         {loadedTitles < titleResults.length && (
           <Button
@@ -130,7 +142,7 @@ const SearchResults = () => {
             <TitleCard loading={true} />
             <TitleCard loading={true} />
           </Box>
-        ) : (
+        ) : nameResults.length > 0 ? (
           nameResults.slice(0, loadedNames).map((name, i) => (
             <Box key={i} onClick={() => handleItemClick(name)}>
               <NameCard
@@ -143,6 +155,8 @@ const SearchResults = () => {
               />
             </Box>
           ))
+        ) : (
+          <Typography>No Names Found</Typography>
         )}
         {loadedNames < nameResults.length && (
           <Button

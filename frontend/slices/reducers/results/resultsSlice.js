@@ -15,7 +15,6 @@ export const resultsSlice = createSlice({
     fetchResultsSucceeded: (state, { payload }) => {
       state.titleResults = payload.titles;
       state.nameResults = payload.names;
-      console.log(payload);
       state.resultsLoading = false;
     },
     fetchResultsFailed: (state, { payload }) => {

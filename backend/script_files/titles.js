@@ -52,7 +52,7 @@ async function getTitle(req, res) {
     }
   }
 
-  res.send({ titleObject: ret });
+  res.send(ret);
 }
 
 async function getTitle2(req, res) {

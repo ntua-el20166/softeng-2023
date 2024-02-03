@@ -275,7 +275,7 @@ async function byGenre(req, res) {
       }
     })
   );
-  res.send({ result: to_send });
+  res.send(to_send);
 }
 
 module.exports = { searchTitle, byGenre, getFilterSearchResults };
