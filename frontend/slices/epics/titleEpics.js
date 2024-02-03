@@ -31,12 +31,12 @@ const fetchResultsEpic = (action$) =>
     mergeMap(({ payload }) =>
       forkJoin({
         titles: from(
-          axios.post(`${backendUrl}/searchtitle`, {
+          axios.get(`${backendUrl}/searchtitle`, {
             titlePart: payload.titlePart,
           })
         ).pipe(map(({ data }) => data)),
         names: from(
-          axios.post(`${backendUrl}/searchname`, {
+          axios.get(`${backendUrl}/searchname`, {
             namePart: payload.titlePart,
           })
         ).pipe(map(({ data }) => data)),

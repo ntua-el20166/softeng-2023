@@ -29,7 +29,7 @@ async function searchTitlePost(req, res) {
             });
 
             start_year = response.first_air_date.substring(0, 4);
-            last_year = response.last_air_date.substring(0, 4);
+            last_year = response.last_air_date?.substring(0, 4) ?? null;
           });
 
           await fetchData(`/tv/${series_id}/alternative_titles`).then(

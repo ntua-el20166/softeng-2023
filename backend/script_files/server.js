@@ -30,6 +30,7 @@ const {
   searchTitle,
   byGenre,
   getFilterSearchResults,
+  getFilterSearchResults2,
 } = require("./title search and filters.js");
 
 const {
@@ -49,7 +50,7 @@ app.get("/ntuaflix_api/title/:titleID", getTitle);
 
 app.get("/ntuaflix_api/title2/:titleID", getTitle2);
 
-app.get("/ntuaflix_api/filtersearch", getFilterSearchResults);
+app.get("/ntuaflix_api/filtersearch", getFilterSearchResults2);
 
 app.get("/ntuaflix_api/searchname", getSearchNameResult);
 
