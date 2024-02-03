@@ -33,11 +33,9 @@ const fetchPopularMoviesEpic = (action$) =>
 const fetchSingleTitleEpic = (action$) =>
   action$.pipe(
     ofType("singleTitle/fetchSingleTitle"),
-    tap((payload) => {
-      console.log(payload);
-    }),
     mergeMap(({ payload }) =>
       from(axios.get(`${backendUrl}/title/${payload.titleID}`)).pipe(
+        //title2
         map(({ data }) => {
           return fetchSingleTitleSucceeded(data);
         }),
