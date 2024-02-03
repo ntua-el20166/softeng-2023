@@ -9,7 +9,9 @@ import { CarouselItem, CustomRightArrow, CustomLeftArrow } from "./components";
 const CustomCarousel = ({ items }) => {
   const router = useRouter();
   const handleItemClick = (item) => {
-    router.push(`movie/${item.titleID}`);
+    item.titleID
+      ? router.push(`movie/${item.titleID}`)
+      : router.push(`name/${item.nameID}`); // vazw thn logikh [type]/itemID , titleID, nameID
   };
 
   const responsive = {
