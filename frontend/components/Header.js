@@ -84,151 +84,144 @@ const Header = () => {
   ];
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        backgroundColor: "#540000",
-        color: "#ffffff",
-        fontSize: "30px",
-        margin: "auto",
-        textAlign: "center",
-        padding: "30px",
-        marginBottom: "70px",
-        "& > *:not(:last-child)": {
-          marginRight: "200px",
-        },
-      }}
-    >
-      <Button
-        onClick={() => router.replace("/")}
-        variant="text"
-        sx={{
-          marginLeft: 5,
-          flex: 1,
-          backgroundColor: "#540000",
-          color: "#ffffff",
-          fontSize: 28,
-          fontWeight: "bold",
-          textShadow: "0px 8px 4px rgba(0, 0, 0, 0.5)",
-          borderRadius: "15px",
-          "&:hover": {
-            backgroundColor: "#4a0000",
-          },
-        }}
+    <Box sx={{ flexGrow: 1, marginBottom: "70px" }}>
+      <Grid
+        container
+        spacing={2}
+        alignItems="center"
+        justifyContent="space-between"
+        sx={{ backgroundColor: "#540000", color: "#ffffff", padding: "10px" }}
       >
-        NTUAFLIX
-      </Button>
-      <Button
-        variant="contained"
-        onClick={handleClickRatings}
-        sx={{
-          minWidth: 200,
-          flex: 1,
-          backgroundColor: "#FFFFFF",
-          color: "#000000",
-          "&:hover": {
-            backgroundColor: "#F4DDD6",
-          },
-        }}
-      >
-        {rating ? rating : "RATINGS"}
-        <ArrowDropDownIcon />
-      </Button>
-      <Menu
-        onClose={handleCloseRatings}
-        anchorEl={anchorEl1}
-        open={Boolean(anchorEl1)}
-      >
-        {ratings.map((rating) => (
-          <MenuItem
-            key={rating}
-            onClick={() => {
-              handleCloseRatings();
-              setRating(rating);
+        <Grid item xs={2}>
+          <Button
+            onClick={() => router.replace("/")}
+            variant="text"
+            sx={{
+              backgroundColor: "#540000",
+              color: "#ffffff",
+              fontSize: 28,
+              fontWeight: "bold",
+              textShadow: "0px 8px 4px rgba(0, 0, 0, 0.5)",
+              borderRadius: "15px",
+              "&:hover": {
+                backgroundColor: "#4a0000",
+              },
             }}
           >
-            {rating}
-          </MenuItem>
-        ))}
-      </Menu>
-      <Button
-        variant="contained"
-        onClick={handleClickGenres}
-        sx={{
-          minWidth: 200,
-          flex: 1,
-          backgroundColor: "#FFFFFF",
-          color: "#000000",
-          "&:hover": {
-            backgroundColor: "#F4DDD6",
-          },
-        }}
-      >
-        {genre ? genre : "GENRES"}
-        <ArrowDropDownIcon />
-      </Button>
-      <Menu
-        anchorEl={anchorEl2}
-        open={Boolean(anchorEl2)}
-        onClose={handleCloseGenres}
-      >
-        <Grid container>
-          {genresColumns.map((column, index) => (
-            <Grid item key={index} xs={6}>
-              {column.map((genre) => (
-                <MenuItem
-                  key={genre}
-                  onClick={() => {
-                    handleCloseGenres();
-                    setGenre(genre);
-                  }}
-                >
-                  {genre}
-                </MenuItem>
+            NTUAFLIX
+          </Button>
+        </Grid>
+
+        <Grid item xs>
+          <Button
+            variant="contained"
+            onClick={handleClickRatings}
+            sx={{
+              minWidth: 200,
+              flex: 1,
+              backgroundColor: "#FFFFFF",
+              color: "#000000",
+              "&:hover": {
+                backgroundColor: "#F4DDD6",
+              },
+            }}
+          >
+            {rating ? rating : "RATINGS"}
+            <ArrowDropDownIcon />
+          </Button>
+          <Menu
+            onClose={handleCloseRatings}
+            anchorEl={anchorEl1}
+            open={Boolean(anchorEl1)}
+          >
+            {ratings.map((rating) => (
+              <MenuItem
+                key={rating}
+                onClick={() => {
+                  handleCloseRatings();
+                  setRating(rating);
+                }}
+              >
+                {rating}
+              </MenuItem>
+            ))}
+          </Menu>
+        </Grid>
+
+        <Grid item xs>
+          <Button
+            variant="contained"
+            onClick={handleClickGenres}
+            sx={{
+              minWidth: 200,
+              flex: 1,
+              backgroundColor: "#FFFFFF",
+              color: "#000000",
+              "&:hover": {
+                backgroundColor: "#F4DDD6",
+              },
+            }}
+          >
+            {genre ? genre : "GENRES"}
+            <ArrowDropDownIcon />
+          </Button>
+          <Menu
+            anchorEl={anchorEl2}
+            open={Boolean(anchorEl2)}
+            onClose={handleCloseGenres}
+          >
+            <Grid container>
+              {genresColumns.map((column, index) => (
+                <Grid item key={index} xs={6}>
+                  {column.map((genre) => (
+                    <MenuItem
+                      key={genre}
+                      onClick={() => {
+                        handleCloseGenres();
+                        setGenre(genre);
+                      }}
+                    >
+                      {genre}
+                    </MenuItem>
+                  ))}
+                </Grid>
               ))}
             </Grid>
-          ))}
+          </Menu>
         </Grid>
-      </Menu>
-      {
-        <>
-          <Box sx={{ backgroundColor: "transparent", minWidth: 100 }} />
+
+        <Grid item>
           <Paper
             component="form"
             sx={{
               p: "2px 4px",
               display: "flex",
               alignItems: "center",
-              minWidth: 400,
-              top: 44,
-              position: "absolute",
-              right: 15,
+              width: 300, // Set a fixed width for the search bar or adjust as needed
               "&:hover": {
                 backgroundColor: "#F4DDD6",
               },
             }}
           >
             <InputBase
-              name="search_input" // bc of console message
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search titles, people"
-              inputProps={{ "aria-label": "search google maps" }}
+              inputProps={{ "aria-label": "search" }}
               value={searchInput}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
             />
             <IconButton
-              type="button"
+              type="submit"
               sx={{ p: "10px" }}
               aria-label="search"
-              onClick={() => handleSearch()}
+              onClick={handleSearch}
             >
               <SearchIcon />
             </IconButton>
           </Paper>
-        </>
-      }
+        </Grid>
+      </Grid>
     </Box>
   );
 };
