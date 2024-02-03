@@ -3,12 +3,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import {
-  fetchResults,
-  setSingleName,
-  setSingleName,
-  setSingleTitle,
-} from "../../slices";
+import { fetchResults, setSingleName, setSingleTitle } from "../../slices";
 import { TitleCard, NameCard } from "./_components";
 
 const SearchResults = () => {

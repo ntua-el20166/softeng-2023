@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Card, CardContent, Typography, CardMedia } from "@mui/material";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -83,9 +82,6 @@ const NameCard = ({ name, birthYr, deathYr, poster, profession, loading }) => {
               {deathYr ? ` - ${deathYr}` : ""}
             </Typography>
           )}
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <StarBorderIcon sx={{ marginRight: 1 }} />
         </div>
       </CardContent>
     </Card>
