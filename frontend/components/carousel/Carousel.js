@@ -3,18 +3,24 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Box } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 import { CarouselItem, CustomRightArrow, CustomLeftArrow } from "./components";
 import { setSingleName, setSingleTitle } from "../../slices";
 
 const CustomCarousel = ({ items }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const handleItemClick = (item) => {
-    if (item.titleID) {
-      setSingleTitle(item);
-      router.push(`title/${item.titleID}`);
+    if (item.type === "movie") {
+      dispatch(setSingleTitle(item));
+      router.push(`title/movie/${item.titleID}`);
+    } else if (item.type === "tv") {
+      dispatch(setSingleTitle(item));
+      router.push(`/title/tv/${item.titleID}`);
     } else {
-      setSingleName(item);
+      dispatch(setSingleName(item));
       router.push(`name/${item.nameID}`);
     }
   };

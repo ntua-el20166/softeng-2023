@@ -6,10 +6,12 @@ export const resultsSlice = createSlice({
     resultsLoading: false,
     titleResults: [],
     nameResults: [],
+    lastSearchInput: null,
     error: null,
   },
   reducers: {
-    fetchResults: (state) => {
+    fetchResults: (state, { payload }) => {
+      state.lastSearchInput = payload.lastSearchInput;
       state.resultsLoading = true;
     },
     fetchResultsSucceeded: (state, { payload }) => {
