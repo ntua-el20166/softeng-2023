@@ -17,7 +17,7 @@ const SearchResults = () => {
   const searchInput = router.query.searchInput;
 
   useEffect(() => {
-    if (titleResults.length === 0 && searchInput) {
+    if (titleResults.length === 0 && searchInput && titleResults) {
       dispatch(fetchResults({ titlePart: searchInput }));
     }
   }, [searchInput]);
@@ -26,11 +26,14 @@ const SearchResults = () => {
   const [loadedNames, setLoadedNames] = useState(3);
 
   const handleItemClick = (item) => {
-    if (item.titleID) {
-      setSingleTitle(item);
-      router.replace(`/title/${item.titleID}`);
+    if (item.type === "movie") {
+      dispatch(setSingleTitle(item));
+      router.replace(`/title/movie/${item.titleID}`);
+    } else if (item.type === "tv") {
+      dispatch(setSingleTitle(item));
+      router.replace(`/title/tv/${item.titleID}`);
     } else {
-      setSingleName(item);
+      dispatch(setSingleName(item));
       router.replace(`/name/${item.nameID}`);
     }
   };

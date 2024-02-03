@@ -10,16 +10,24 @@ export const singleTitleSlice = createSlice({
     setSingleTitle: (state, { payload }) => {
       state.singleTitle = payload;
     },
-    fetchSingleTitle: (state) => {
+    fetchSingleMovie: (state) => {
+      state.singleTitleLoading = true;
+    },
+    fetchSingleTv: (state) => {
       state.singleTitleLoading = true;
     },
     fetchSingleTitleSucceeded: (state, { payload }) => {
+      console.log(payload);
       state.singleTitle = payload;
       state.singleTitleLoading = false;
     },
   },
 });
 
-export const { setSingleTitle, fetchSingleTitle, fetchSingleTitleSucceeded } =
-  singleTitleSlice.actions;
+export const {
+  setSingleTitle,
+  fetchSingleTitleSucceeded,
+  fetchSingleMovie,
+  fetchSingleTv,
+} = singleTitleSlice.actions;
 export const singleTitleReducer = singleTitleSlice.reducer;

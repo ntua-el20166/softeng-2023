@@ -34,6 +34,7 @@ const ratings = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+"];
 const Header = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const lastSearchInput = useSelector((state) => state.results.lastSearchInput);
 
   const [anchorEl1, setAnchorElRatings] = useState(null);
   const [anchorEl2, setAnchorElGenres] = useState(null);
@@ -62,12 +63,15 @@ const Header = () => {
   };
 
   const handleSearch = () => {
-    console.log(rating);
-    if (searchInput !== "" || rating || genre) {
-      dispatch(fetchResults({ titlePart: searchInput }));
-      router.replace(`/search-results/${searchInput ?? "search-results/"}`);
-      setSearchInput("");
+    if (searchInput !== lastSearchInput) {
+      dispatch(
+        fetchResults({ titlePart: searchInput, lastSearchInput: searchInput })
+      );
     }
+    if (searchInput !== "" || rating || genre) {
+      router.replace(`/search-results/${searchInput ?? "search-results/"}`);
+    }
+    setSearchInput("");
   };
 
   const handleKeyDown = (event) => {

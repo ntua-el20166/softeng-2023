@@ -39,10 +39,8 @@ async function getTitle(req, res) {
     if (error.response.data.status_code == 34) {
       console.log("No movie");
       try {
-        response = await axios.get(
-          `${url}/tv/${req.params.titleID}?api_key=${api_key}`
-        );
-        ret = await getTvInfo(response.data);
+        response = await fetchData(`/tv/${req.params.titleID}`);
+        ret = await getTvInfo(response);
       } catch (error) {
         if (error.response.data.status_code == 34) {
           console.log("No data");
@@ -59,15 +57,16 @@ async function getTitle2(req, res) {
   try {
     let response;
     let ret;
-    if (req.query.type == "tv") {
+
+    if (req.body.type == "tv") {
       response = await fetchData(`/tv/${req.params.titleID}`);
-      ret = await getTvInfo(response.data);
+      ret = await getTvInfo(response);
     } else {
       response = await fetchData(`/movie/${req.params.titleID}`);
-      ret = await getMovieInfo(response.data);
+      ret = await getMovieInfo(response);
     }
 
-    res.send({ titleObject: ret });
+    res.send(ret);
   } catch (error) {
     if (error.response) {
       const statusCode = error.response.status;

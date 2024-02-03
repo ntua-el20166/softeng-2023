@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 
-import { fetchSingleTitle } from "../../../slices";
+import { fetchSingleMovie } from "../../../slices";
 
 const singleTitle = () => {
   const router = useRouter();
@@ -12,13 +12,13 @@ const singleTitle = () => {
   const singleTitle = useSelector((state) => state.singleTitle.singleTitle);
   useEffect(() => {
     if (titleID !== singleTitle?.titleID && titleID) {
-      dispatch(fetchSingleTitle({ titleID: titleID }));
+      dispatch(fetchSingleMovie({ titleID: titleID }));
     }
   }, [titleID]);
   const singleTitleLoading = useSelector(
     (state) => state.singleTitle.singleTitleLoading
   );
-  return <Typography>{singleTitle?.rating.avRating}</Typography>;
+  return <Typography>{singleTitle?.originalTitle}</Typography>;
 };
 
 export default singleTitle;
