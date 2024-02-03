@@ -26,7 +26,7 @@ const CarouselItem = ({ item }) => {
           bottom: 0,
           right: 0,
           backgroundColor: "rgba(0,0,0,0)",
-          transition: "background-color 0.3s ease-in-out",
+          transition: "background-color 0.1s ease-in-out",
         },
         "&:hover": {
           "& .overlay-text": {
