@@ -34,5 +34,8 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "prettier": "3.2.4"
+  },
+  "bin": {
+    "se2349": "./backend/cli/se2349"
   }
 }

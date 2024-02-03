@@ -5,6 +5,7 @@ const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const fs = require("fs");
 const path = require("path");
 const { title } = require("process");
+const { response } = require("express");
 
 const apiBaseUrl = "http://localhost:9876/ntuaflix_api";
 const outputDirectory = path.join(__dirname, "output"); // Specify the output directory
@@ -15,6 +16,46 @@ if (!fs.existsSync(outputDirectory)) {
 }
 
 program.version("1.0.0").description("CLI for ntuaflix");
+
+program
+  .command("healthcheck")
+  .option(
+    "--format <format>",
+    "Specify the output format (json or csv)",
+    "json"
+  )
+  .action(async (options) => {
+    try {
+      const response = await axios.get(`${apiBaseUrl}/admin/healthcheck`);
+      const data = response.data;
+
+      const selectedFormat = options.format || "json";
+
+      if (selectedFormat === "json") {
+        console.log(JSON.stringify(data, null, 2));
+      } else if (selectedFormat === "csv") {
+        const csvFilePath = path.join(outputDirectory, "healthcheck.csv");
+
+        const csvWriter = createCsvWriter({
+          path: csvFilePath,
+          header: [
+            { id: "status", title: "status" },
+            { id: "url", title: "Url of the Api" },
+            { id: "key", title: "Key of the Api" },
+          ],
+        });
+
+        // Write data to CSV file
+        await csvWriter.writeRecords([data]);
+        console.log("CSV file generated successfully.");
+      } else {
+        console.error('Invalid format. Use "json" or "csv".');
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      process.exit(1); // Exit with an error code
+    }
+  });
 
 program
   .command("title")
