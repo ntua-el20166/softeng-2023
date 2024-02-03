@@ -5,13 +5,18 @@ import { Box } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 import { CarouselItem, CustomRightArrow, CustomLeftArrow } from "./components";
+import { setSingleName, setSingleTitle } from "../../slices";
 
 const CustomCarousel = ({ items }) => {
   const router = useRouter();
   const handleItemClick = (item) => {
-    item.titleID
-      ? router.push(`movie/${item.titleID}`)
-      : router.push(`name/${item.nameID}`); // vazw thn logikh [type]/itemID , titleID, nameID
+    if (item.titleID) {
+      setSingleTitle(item);
+      router.push(`title/${item.titleID}`);
+    } else {
+      setSingleName(item);
+      router.push(`name/${item.nameID}`);
+    }
   };
 
   const responsive = {
