@@ -3,7 +3,14 @@ import { combineEpics } from "redux-observable";
 import { from, forkJoin, of } from "rxjs";
 import { mergeMap, catchError, map } from "rxjs/operators";
 import { popularMoviesSlice } from "../reducers/popularMovies";
-import { fetchResultsSucceeded, fetchResultsFailed } from "../reducers";
+import {
+  fetchResultsSucceeded,
+  fetchResultsFailed,
+  //ta parakato gia title
+  fetchTitleStart,
+  fetchTitleSuccess,
+  fetchTitleFailure,
+} from "../reducers";
 import axios from "axios";
 
 import { backendUrl } from "../../constants";
@@ -47,4 +54,38 @@ const fetchResultsEpic = (action$) =>
     )
   );
 
-export const rootEpic = combineEpics(fetchPopularMoviesEpic, fetchResultsEpic);
+// const fetchtitleEpic = (action$) =>
+//   action$.pipe(
+//     ofType("singleTitle/setSingleTitle"),
+//     mergeMap((payload) =>
+//       from(axios.get(`${backendUrl}/title/${payload.titleID}`)).pipe(
+//         map((data) => {
+//           return singleTitleSlice.actions.setSingleTitle(data.titleObject);
+//         }),
+//         catchError(
+//           console.log("fetchtitleepic error") ///change the error
+//         )
+//       )
+//     )
+//   );
+
+const fetchTitleEpic = (action$) =>
+  action$.pipe(
+    ofType(fetchTitleStart.type),
+    mergeMap((action) => {
+      // console.log("Action:", action); // Log the action
+      return from(
+        axios.get(`${backendUrl}/title/${action.payload.titleID}`)
+      ).pipe(
+        mergeMap((response) =>
+          of(fetchTitleSuccess(response.data.titleObject))
+        ),
+        catchError((error) => of(fetchTitleFailure(error.message)))
+      );
+    })
+  );
+export const rootEpic = combineEpics(
+  fetchPopularMoviesEpic,
+  fetchResultsEpic,
+  fetchTitleEpic
+);
