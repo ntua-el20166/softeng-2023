@@ -3,6 +3,7 @@ const {
   titleObject,
   gqueryObject,
   normalizeString,
+  searchTitleHelp,
   getTvInfo,
 } = require("./helpers.js");
 const { fetchData } = require("./apiService.js");
@@ -71,155 +72,30 @@ async function getFilterSearchResults(req, res) {
     );
   });
 
-  // const final_to_send = to_send.filter((item) => {
-  //   return (
-  //     stringSimilarity.compareTwoStrings(
-  //       normalizeString(item.originalTitle),
-  //       titlePart
-  //     ) > 0.2 ||
-  //     (item.titleAkas.length > 0 &&
-  //       item.titleAkas.some(
-  //         (altTitle) =>
-  //           stringSimilarity.compareTwoStrings(
-  //             normalizeString(altTitle.AkaTitle),
-  //             titlePart
-  //           ) > 0.2
-  //       ))
-  //   );
-  // });
+  res.send({ result: final_to_send });
+}
+
+async function getFilterSearchResults2(req, res) {
+  const titlePart = normalizeString(req.body.titlePart);
+
+  const resTitles = await searchTitleHelp(req.body.titlePart);
+
+  const final_to_send = resTitles.filter((item) => {
+    return (
+      item.rating.avRating >= req.body.minrating &&
+      (req.body.genre == null ||
+        (item.genres.length > 0 &&
+          item.genres.some(
+            (g) => normalizeString(g.genreTitle) == req.body.genre
+          )))
+    );
+  });
+
   res.send({ result: final_to_send });
 }
 
 async function searchTitle(req, res) {
-  fetchData(`/search/multi?query=${req.body.titlePart}`).then((response) => {
-    const results = response.results;
-    const to_send = Promise.all(
-      results.map(async (jsonObject) => {
-        if (jsonObject.media_type == "person") {
-          return null;
-        }
-        if (jsonObject.media_type == "tv") {
-          var series_id = jsonObject.id;
-          var genres;
-          var alternative_titles;
-          var rating = jsonObject.vote_average;
-          var votes = jsonObject.vote_count;
-          var start_year;
-          var last_year;
-          var principals;
-          await fetchData(`/tv/${series_id}`).then((response) => {
-            genres = response.genres.map((genre) => {
-              return { genreTitle: genre.name };
-            });
-
-            start_year = response.first_air_date.substring(0, 4);
-            last_year = response.last_air_date.substring(0, 4);
-          });
-
-          await fetchData(`/tv/${series_id}/alternative_titles`).then(
-            (response) => {
-              alternative_titles =
-                response.titles?.map((title) => {
-                  return {
-                    AkaTitle: title.title,
-                    regionAbbr: title.iso_3166_1,
-                  };
-                }) || [];
-            }
-          );
-          await fetchData(`/tv/${series_id}/credits`).then((response) => {
-            const cast = response.cast;
-            var one = cast.map((person) => {
-              return {
-                nameID: person.id,
-                name: person.name,
-                category: person.known_for_department,
-              };
-            });
-            const crew = response.crew;
-            var two = crew.map((person) => {
-              return {
-                nameID: person.id,
-                name: person.name,
-                category: person.known_for_department,
-              };
-            });
-            principals = one.concat(two);
-          });
-          return new titleObject(
-            jsonObject.id,
-            jsonObject.media_type,
-            jsonObject.original_name,
-            jsonObject.poster_path,
-            start_year,
-            last_year,
-            genres,
-            alternative_titles,
-            principals,
-            { avRating: rating, nVotes: votes }
-          );
-        }
-        if (jsonObject.media_type == "movie") {
-          var movie_id = jsonObject.id;
-          var genres;
-          var alternative_titles;
-          var rating = jsonObject.vote_average;
-          var votes = jsonObject.vote_count;
-          var principals;
-          await fetchData(`/movie/${movie_id}`).then((response) => {
-            genres = response.genres.map((genre) => {
-              return { genreTitle: genre.name };
-            });
-          });
-          await fetchData(`/movie/${movie_id}/alternative_titles`).then(
-            (response) => {
-              alternative_titles =
-                response.titles?.map((title) => {
-                  return {
-                    AkaTitle: title.title,
-                    regionAbbr: title.iso_3166_1,
-                  };
-                }) || [];
-            }
-          );
-          await fetchData(`/movie/${movie_id}/credits`).then((response) => {
-            const cast = response.cast;
-            var one = cast.map((person) => {
-              return {
-                nameID: person.id,
-                name: person.name,
-                category: person.known_for_department,
-              };
-            });
-            const crew = response.crew;
-            var two = crew.map((person) => {
-              return {
-                nameID: person.id,
-                name: person.name,
-                category: person.known_for_department,
-              };
-            });
-            principals = one.concat(two);
-          });
-          return new titleObject(
-            jsonObject.id,
-            jsonObject.media_type,
-            jsonObject.original_title,
-            jsonObject.poster_path,
-            jsonObject.release_date.substring(0, 4),
-            null,
-            genres,
-            alternative_titles,
-            principals,
-            { avRating: rating, nVotes: votes }
-          );
-        }
-      })
-    );
-    to_send.then((data) => {
-      res.send(data.filter(Boolean));
-    });
-  });
+  res.send(await searchTitleHelp(req.body.titlePart));
 }
 
 async function byGenre(req, res) {
@@ -278,4 +154,9 @@ async function byGenre(req, res) {
   res.send(to_send);
 }
 
-module.exports = { searchTitle, byGenre, getFilterSearchResults };
+module.exports = {
+  searchTitle,
+  byGenre,
+  getFilterSearchResults,
+  getFilterSearchResults2,
+};

@@ -211,6 +211,140 @@ function normalizeString(str) {
   return str.trim().toLowerCase().replace(/&/g, "and");
 }
 
+async function searchTitleHelp(titlePart) {
+  const reply = await fetchData(`/search/multi?query=${titlePart}`).then(
+    async (response) => {
+      const results = response.results;
+      const to_send = await Promise.all(
+        results.map(async (jsonObject) => {
+          if (jsonObject.media_type == "person") {
+            return null;
+          }
+          if (jsonObject.media_type == "tv") {
+            var series_id = jsonObject.id;
+            var genres;
+            var alternative_titles;
+            var rating = jsonObject.vote_average;
+            var votes = jsonObject.vote_count;
+            var start_year;
+            var last_year;
+            var principals;
+            await fetchData(`/tv/${series_id}`).then((response) => {
+              genres = response.genres.map((genre) => {
+                return { genreTitle: genre.name };
+              });
+
+              start_year = response.first_air_date.substring(0, 4);
+              last_year = response.last_air_date?.substring(0, 4) ?? null;
+            });
+
+            await fetchData(`/tv/${series_id}/alternative_titles`).then(
+              (response) => {
+                alternative_titles =
+                  response.titles?.map((title) => {
+                    return {
+                      AkaTitle: title.title,
+                      regionAbbr: title.iso_3166_1,
+                    };
+                  }) || [];
+              }
+            );
+            await fetchData(`/tv/${series_id}/credits`).then((response) => {
+              const cast = response.cast;
+              var one = cast.map((person) => {
+                return {
+                  nameID: person.id,
+                  name: person.name,
+                  category: person.known_for_department,
+                };
+              });
+              const crew = response.crew;
+              var two = crew.map((person) => {
+                return {
+                  nameID: person.id,
+                  name: person.name,
+                  category: person.known_for_department,
+                };
+              });
+              principals = one.concat(two);
+            });
+            return new titleObject(
+              jsonObject.id,
+              jsonObject.media_type,
+              jsonObject.original_name,
+              jsonObject.poster_path,
+              start_year,
+              last_year,
+              genres,
+              alternative_titles,
+              principals,
+              { avRating: rating, nVotes: votes }
+            );
+          }
+          if (jsonObject.media_type == "movie") {
+            var movie_id = jsonObject.id;
+            var genres;
+            var alternative_titles;
+            var rating = jsonObject.vote_average;
+            var votes = jsonObject.vote_count;
+            var principals;
+            await fetchData(`/movie/${movie_id}`).then((response) => {
+              genres = response.genres.map((genre) => {
+                return { genreTitle: genre.name };
+              });
+            });
+            await fetchData(`/movie/${movie_id}/alternative_titles`).then(
+              (response) => {
+                alternative_titles =
+                  response.titles?.map((title) => {
+                    return {
+                      AkaTitle: title.title,
+                      regionAbbr: title.iso_3166_1,
+                    };
+                  }) || [];
+              }
+            );
+            await fetchData(`/movie/${movie_id}/credits`).then((response) => {
+              const cast = response.cast;
+              var one = cast.map((person) => {
+                return {
+                  nameID: person.id,
+                  name: person.name,
+                  category: person.known_for_department,
+                };
+              });
+              const crew = response.crew;
+              var two = crew.map((person) => {
+                return {
+                  nameID: person.id,
+                  name: person.name,
+                  category: person.known_for_department,
+                };
+              });
+              principals = one.concat(two);
+            });
+            return new titleObject(
+              jsonObject.id,
+              jsonObject.media_type,
+              jsonObject.original_title,
+              jsonObject.poster_path,
+              jsonObject.release_date.substring(0, 4),
+              null,
+              genres,
+              alternative_titles,
+              principals,
+              { avRating: rating, nVotes: votes }
+            );
+          }
+        })
+      );
+
+      return to_send;
+    }
+  );
+  return reply;
+}
+
 module.exports = {
   getMovieInfo,
   getTvInfo,
@@ -219,4 +353,5 @@ module.exports = {
   titleObject,
   gqueryObject,
   normalizeString,
+  searchTitleHelp,
 };
