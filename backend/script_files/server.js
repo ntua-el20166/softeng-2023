@@ -64,6 +64,8 @@ app.post("/ntuaflix_api/bygenre", byGenrePost);
 
 app.post("/ntuaflix_api/searchname", getSearchNameResult);
 
+app.post("/ntuaflix_api/similar_movies", getSimilarMovies);
+
 app.post("/ntuaflix_api/title2/:titleID", getTitle2);
 
 app.listen(port, () => {

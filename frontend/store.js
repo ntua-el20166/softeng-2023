@@ -5,6 +5,7 @@ import {
   singleTitleReducer,
   resultsReducer,
   popularMoviesReducer,
+  similarMoviesReducer,
   singleNameReducer,
   rootEpic,
 } from "./slices";
@@ -17,6 +18,7 @@ export const store = configureStore({
     singleName: singleNameReducer,
     results: resultsReducer,
     popularMovies: popularMoviesReducer,
+    similarMovies: similarMoviesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(epicMiddleware),
