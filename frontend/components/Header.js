@@ -29,7 +29,7 @@ const genres = [
   "Family",
 ];
 
-const ratings = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+"];
+const ratings = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 const Header = () => {
   const router = useRouter();
@@ -65,7 +65,7 @@ const Header = () => {
   const handleSearch = () => {
     if (searchInput !== lastSearchInput) {
       dispatch(
-        fetchResults({ titlePart: searchInput, lastSearchInput: searchInput })
+        fetchResults({ titlePart: searchInput, rating: Number(rating), genre })
       );
     }
     if (searchInput !== "" || rating || genre) {
