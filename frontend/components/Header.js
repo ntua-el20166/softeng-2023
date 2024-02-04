@@ -34,6 +34,7 @@ const ratings = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+"];
 const Header = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const lastSearchInput = useSelector((state) => state.results.lastSearchInput);
 
   const [anchorEl1, setAnchorElRatings] = useState(null);
   const [anchorEl2, setAnchorElGenres] = useState(null);
@@ -62,8 +63,14 @@ const Header = () => {
   };
 
   const handleSearch = () => {
-    dispatch(fetchResults({ titlePart: searchInput }));
-    router.replace(`/search-results/${searchInput}`);
+    if (searchInput !== lastSearchInput) {
+      dispatch(
+        fetchResults({ titlePart: searchInput, lastSearchInput: searchInput })
+      );
+    }
+    if (searchInput !== "" || rating || genre) {
+      router.replace(`/search-results/${searchInput ?? "search-results/"}`);
+    }
     setSearchInput("");
   };
 
@@ -88,6 +95,7 @@ const Header = () => {
         backgroundColor: "#540000",
         color: "#ffffff",
         fontSize: "30px",
+        margin: "auto",
         textAlign: "center",
         padding: "30px",
         marginBottom: "70px",
@@ -96,34 +104,35 @@ const Header = () => {
         },
       }}
     >
-      <Link href="/">
-        <Button
-          variant="text"
-          sx={{
-            flex: 1,
-            backgroundColor: "#540000",
-            color: "#ffffff",
-            fontSize: 28,
-            fontWeight: "bold",
-            textShadow: "0px 8px 4px rgba(0, 0, 0, 0.5)",
-            borderRadius: "15px",
-            "&:hover": {
-              backgroundColor: "#4a0000",
-            },
-          }}
-        >
-          NTUAFLIX
-        </Button>
-      </Link>
+      <Button
+        onClick={() => router.replace("/")}
+        variant="text"
+        sx={{
+          marginLeft: 5,
+          flex: 1,
+          backgroundColor: "#540000",
+          color: "#ffffff",
+          fontSize: 28,
+          fontWeight: "bold",
+          textShadow: "0px 8px 4px rgba(0, 0, 0, 0.5)",
+          borderRadius: "15px",
+          "&:hover": {
+            backgroundColor: "#4a0000",
+          },
+        }}
+      >
+        NTUAFLIX
+      </Button>
       <Button
         variant="contained"
         onClick={handleClickRatings}
         sx={{
+          minWidth: 200,
           flex: 1,
-          backgroundColor: "#540000",
-          color: "#ffffff",
+          backgroundColor: "#FFFFFF",
+          color: "#000000",
           "&:hover": {
-            backgroundColor: "#6f0000",
+            backgroundColor: "#F4DDD6",
           },
         }}
       >
@@ -151,11 +160,12 @@ const Header = () => {
         variant="contained"
         onClick={handleClickGenres}
         sx={{
+          minWidth: 200,
           flex: 1,
-          backgroundColor: "#540000",
-          color: "#ffffff",
+          backgroundColor: "#FFFFFF",
+          color: "#000000",
           "&:hover": {
-            backgroundColor: "#6f0000",
+            backgroundColor: "#F4DDD6",
           },
         }}
       >
@@ -186,33 +196,42 @@ const Header = () => {
         </Grid>
       </Menu>
       {
-        <Paper
-          component="form"
-          sx={{
-            p: "2px 4px",
-            display: "flex",
-            alignItems: "center",
-            width: 400,
-          }}
-        >
-          <InputBase
-            name="search_input" // bc of console message
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="Search titles, people"
-            inputProps={{ "aria-label": "search google maps" }}
-            value={searchInput}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />
-          <IconButton
-            type="button"
-            sx={{ p: "10px" }}
-            aria-label="search"
-            onClick={() => handleSearch()}
+        <>
+          <Box sx={{ backgroundColor: "transparent", minWidth: 100 }} />
+          <Paper
+            component="form"
+            sx={{
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              minWidth: 400,
+              top: 44,
+              position: "absolute",
+              right: 15,
+              "&:hover": {
+                backgroundColor: "#F4DDD6",
+              },
+            }}
           >
-            <SearchIcon />
-          </IconButton>
-        </Paper>
+            <InputBase
+              name="search_input" // bc of console message
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search titles, people"
+              inputProps={{ "aria-label": "search google maps" }}
+              value={searchInput}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+            />
+            <IconButton
+              type="button"
+              sx={{ p: "10px" }}
+              aria-label="search"
+              onClick={() => handleSearch()}
+            >
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+        </>
       }
     </Box>
   );

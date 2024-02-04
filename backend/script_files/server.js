@@ -1,5 +1,4 @@
 const express = require("express");
-const axios = require("axios");
 const { error } = require("console");
 const cors = require("cors");
 
@@ -12,6 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use(express.json());
+const { getHealthCheck } = require("./healthcheck.js");
 
 const {
   getPopularMovies,
@@ -48,8 +48,6 @@ app.get("/ntuaflix_api/bygenre", byGenre);
 
 app.get("/ntuaflix_api/title/:titleID", getTitle);
 
-app.get("/ntuaflix_api/title2/:titleID", getTitle2);
-
 app.get("/ntuaflix_api/filtersearch", getFilterSearchResults2);
 
 app.get("/ntuaflix_api/searchname", getSearchNameResult);
@@ -58,11 +56,15 @@ app.get("/ntuaflix_api/searchname/:namePart", getSearchNameResult2);
 
 app.get("/ntuaflix_api/name/:nameID", getName);
 
+app.get("/ntuaflix_api/admin/healthcheck", getHealthCheck);
+
 app.post("/ntuaflix_api/searchtitle", searchTitlePost);
 
 app.post("/ntuaflix_api/bygenre", byGenrePost);
 
 app.post("/ntuaflix_api/searchname", getSearchNameResult);
+
+app.post("/ntuaflix_api/title2/:titleID", getTitle2);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

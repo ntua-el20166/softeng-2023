@@ -20,26 +20,31 @@ import { createSlice } from "@reduxjs/toolkit";
 const singleTitleSlice = createSlice({
   name: "singleTitle",
   initialState: {
-    title: null,
-    loading: false,
-    error: null,
+    singleTitle: null,
+    singleTitleLoading: false,
   },
   reducers: {
-    fetchTitleStart: (state) => {
-      state.loading = true;
-      state.error = null;
+    setSingleTitle: (state, { payload }) => {
+      state.singleTitle = payload;
     },
-    fetchTitleSuccess: (state, action) => {
-      state.loading = false;
-      state.title = action.payload;
+    fetchSingleMovie: (state) => {
+      state.singleTitleLoading = true;
     },
-    fetchTitleFailure: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
+    fetchSingleTv: (state) => {
+      state.singleTitleLoading = true;
+    },
+    fetchSingleTitleSucceeded: (state, { payload }) => {
+      console.log(payload);
+      state.singleTitle = payload;
+      state.singleTitleLoading = false;
     },
   },
 });
 
-export const { fetchTitleStart, fetchTitleSuccess, fetchTitleFailure } =
-  singleTitleSlice.actions;
+export const {
+  setSingleTitle,
+  fetchSingleTitleSucceeded,
+  fetchSingleMovie,
+  fetchSingleTv,
+} = singleTitleSlice.actions;
 export const singleTitleReducer = singleTitleSlice.reducer;

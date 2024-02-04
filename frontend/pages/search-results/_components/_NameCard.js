@@ -1,11 +1,9 @@
 import React from "react";
 import { Box, Card, CardContent, Typography, CardMedia } from "@mui/material";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const NameCard = ({ name, birthYr, deathYr, poster, profession, loading }) => {
-  console.log(poster);
   return (
     <Card
       sx={{
@@ -60,12 +58,10 @@ const NameCard = ({ name, birthYr, deathYr, poster, profession, loading }) => {
             <Typography variant="body2" color="text.secondary">
               {(() => {
                 switch (profession) {
-                  case "tv":
-                    return "TV-Series";
-                  case "movie":
-                    return "Movie";
-                  case "short":
-                    return "Short";
+                  case "Acting":
+                    return "Actor";
+                  case "Directing":
+                    return "Director";
                   default:
                     return "";
                 }
@@ -86,9 +82,6 @@ const NameCard = ({ name, birthYr, deathYr, poster, profession, loading }) => {
               {deathYr ? ` - ${deathYr}` : ""}
             </Typography>
           )}
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <StarBorderIcon sx={{ marginRight: 1 }} />
         </div>
       </CardContent>
     </Card>
