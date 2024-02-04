@@ -191,7 +191,7 @@ async function byGenrePost(req, res) {
       }
     })
   );
-  res.send({ result: to_send });
+  res.send(to_send);
 }
 
 module.exports = { searchTitlePost, byGenrePost };
