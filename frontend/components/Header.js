@@ -130,7 +130,7 @@ const Header = () => {
               },
             }}
           >
-            {rating ? rating : "RATINGS"}
+            {rating ? `${rating}+` : "RATINGS"}
             <ArrowDropDownIcon />
           </Button>
           <Menu
@@ -146,7 +146,7 @@ const Header = () => {
                   setRating(rating);
                 }}
               >
-                {rating}
+                {`${rating}+`}
               </MenuItem>
             ))}
           </Menu>
