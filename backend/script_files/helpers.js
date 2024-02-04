@@ -90,7 +90,7 @@ async function getMovieInfo(jsonObject) {
       return {
         nameID: person.id,
         name: person.name,
-        category: person.known_for_department,
+        category: "actor",
       };
     });
     const crew = response.crew;
@@ -98,7 +98,7 @@ async function getMovieInfo(jsonObject) {
       return {
         nameID: person.id,
         name: person.name,
-        category: person.known_for_department,
+        category: person.job,
       };
     });
     principals = one.concat(two);
@@ -310,7 +310,7 @@ async function searchTitleHelp(titlePart) {
                 return {
                   nameID: person.id,
                   name: person.name,
-                  category: person.known_for_department,
+                  category: "actor",
                 };
               });
               const crew = response.crew;
@@ -318,7 +318,7 @@ async function searchTitleHelp(titlePart) {
                 return {
                   nameID: person.id,
                   name: person.name,
-                  category: person.known_for_department,
+                  category: person.job,
                 };
               });
               principals = one.concat(two);

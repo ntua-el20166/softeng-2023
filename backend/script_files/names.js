@@ -1,4 +1,5 @@
 const { getPersonInfo, getTvInfo, nameObject } = require("./helpers.js");
+const { getPersonInfo2, getTvInfo2, nameObject2 } = require("./helpers2.js");
 const { fetchData } = require("./apiService.js");
 
 async function getSearchNameResult(req, res) {
@@ -87,6 +88,46 @@ async function getName(req, res) {
   }
 }
 
+async function getName2(req, res) {
+  try {
+    const { nameID } = req.params;
+    const response = await fetchData(`/person/${nameID}`);
+    const data = response;
+    const birthYear = data.birthday ? data.birthday.substring(0, 4) : null;
+    const deathYear = data.deathday ? data.deathday.substring(0, 4) : null;
+    const data2 = await getPersonInfo2(data.id);
+    const nameObject1 = new nameObject2(
+      data.id.toString(),
+      data.name,
+      data.profile_path,
+      data.biography,
+      birthYear,
+      deathYear,
+      data.known_for_department,
+      data2.nameTitles
+    );
+    res.status(200).json(nameObject1);
+  } catch (error) {
+    if (error.response) {
+      const statusCode = error.response.status;
+
+      if (statusCode === 400) {
+        res.status(400).send("Bad request"); // 400 Bad request
+      } else if (statusCode === 404) {
+        res.status(404).send("Not available"); // 404 Not available
+      } else {
+        res.status(500).send("Internal server error"); // Other status codes
+      }
+    } else if (error.request) {
+      console.error("No response received from server");
+      res.status(500).send("Internal Server Error"); // 500 Internal server error
+    } else {
+      console.error("Error setting up the request:", error.message);
+      res.status(500).send("Internal Server Error"); // 500 Internal server error
+    }
+  }
+}
+
 async function getSearchNameResult2(req, res) {
   const { namePart } = req.params;
 
@@ -134,4 +175,9 @@ async function getSearchNameResult2(req, res) {
   }
 }
 
-module.exports = { getSearchNameResult, getSearchNameResult2, getName };
+module.exports = {
+  getSearchNameResult,
+  getSearchNameResult2,
+  getName,
+  getName2,
+};
