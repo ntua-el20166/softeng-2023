@@ -19,7 +19,7 @@ const singleName = () => {
   const singleNameLoading = useSelector(
     (state) => state.singleName.singleNameLoading
   );
-  return <Typography>{singleName?.name}</Typography>;
+  return <Typography>{"heeeeeee"}</Typography>;
 };
 
 export default singleName;
