@@ -1,7 +1,7 @@
 import { ofType } from "redux-observable";
 import { combineEpics } from "redux-observable";
 import { from, forkJoin, of, tap } from "rxjs";
-import { mergeMap, catchError, map } from "rxjs/operators";
+import { mergeMap, catchError, map, filter } from "rxjs/operators";
 import { popularMoviesSlice } from "./reducers/popularMovies";
 import {
   fetchResultsSucceeded,
@@ -82,41 +82,100 @@ const fetchSingleNameEpic = (action$) =>
     )
   );
 
-const fetchResultsEpic = (action$) =>
-  action$.pipe(
-    ofType("results/fetchResults"),
-    mergeMap(({ payload }) =>
-      forkJoin({
-        titles: from(
-          axios.post(`${backendUrl}/searchtitle`, {
-            titlePart: payload.titlePart,
-          })
-        ).pipe(map(({ data }) => data)),
-        names: from(
-          axios.post(`${backendUrl}/searchname`, {
-            namePart: payload.titlePart,
-          })
-        ).pipe(map(({ data }) => data)),
-      }).pipe(
-        map(({ titles, names }) => fetchResultsSucceeded({ titles, names })),
-        catchError((error) => {
-          of(fetchResultsFailed(error.message));
-        })
-      )
-    )
-  );
+// const fetchResultsEpic = (action$) =>
+//   action$.pipe(
+//     ofType("results/fetchResults"),
+//     mergeMap(({ payload }) =>
+//       forkJoin({
+//         titles: from(
+//           axios.post(`${backendUrl}/searchtitle`, {
+//             titlePart: payload.titlePart,
+//           })
+//         ).pipe(map(({ data }) => data)),
+//         names: from(
+//           axios.post(`${backendUrl}/searchname`, {
+//             namePart: payload.titlePart,
+//           })
+//         ).pipe(map(({ data }) => data)),
+//       }).pipe(
+//         map(({ titles, names }) => fetchResultsSucceeded({ titles, names })),
+//         catchError((error) => {
+//           of(fetchResultsFailed(error.message));
+//         })
+//       )
+//     )
+//   );
 
-const NewfetchResultsEpic = (action$) =>
+const helper = (first, second) => {
+  axios.post(`${backendUrl}/bygenre`, {
+    qgenre: first,
+    minrating: payload.rating,
+    yrTo: "2024",
+    yrFrom: "1800",
+  });
+  axios.post(`${backendUrl}/bygenre`, {
+    qgenre: second,
+    minrating: payload.rating,
+    yrTo: "2024",
+    yrFrom: "1800",
+  });
+};
+
+const newFetchResultsEpic = (action$) =>
   action$.pipe(
     ofType("results/fetchResults"),
     mergeMap(({ payload }) =>
       forkJoin({
-        // axios.post(bygenre "action" rating "1")
         titles: from(
-          axios.post(`${backendUrl}/searchtitle`, {
-            titlePart: payload.titlePart,
-          })
-        ).pipe(map(({ data }) => data)),
+          payload.titlePart !== ""
+            ? axios.post(`${backendUrl}/searchtitle`, {
+                titlePart: payload.titlePart,
+              })
+            : axios.post(`${backendUrl}/bygenre`, {
+                qgenre: payload.genre,
+                minrating: payload.rating,
+                yrTo: "2024",
+                yrFrom: "1800",
+              })
+          // : () => {
+          //     switch (payload.genre) {
+          //       case "Action":
+          //         helper("action", "action & adventure");
+          //         break;
+          //       case "Adventure":
+          //         helper("adventure", "action & adventure");
+          //         break;
+          //       case "Fantasy":
+          //         helper("fantasy", "sci-fi & fantasy");
+          //         break;
+          //       case "Sci-Fi":
+          //         helper("science fiction", "sci-fi & fantasy");
+          //         break;
+          //       default:
+          //         axios.post(`${backendUrl}/bygenre`, {
+          //           qgenre: payload.genre,
+          //           minrating: payload.rating,
+          //           yrTo: "2024",
+          //           yrFrom: "1800",
+          //         });
+          //     }
+          //   }
+        ).pipe(
+          map(({ data }) =>
+            data.filter((title) => {
+              console.log(payload, title);
+              return (
+                (!payload.rating || title.rating.avRating >= payload.rating) &&
+                (!payload.genre ||
+                  title.genres.some(
+                    ({ genreTitle }) => genreTitle === payload.genre
+                  )) &&
+                (payload.titlePart !== "" ||
+                  title.originalTitle.includes(payload.titlePart))
+              );
+            })
+          )
+        ),
         names: from(
           axios.post(`${backendUrl}/searchname`, {
             namePart: payload.titlePart,
@@ -132,8 +191,9 @@ const NewfetchResultsEpic = (action$) =>
   );
 export const rootEpic = combineEpics(
   fetchPopularMoviesEpic,
-  fetchResultsEpic,
+  //fetchResultsEpic,
   fetchSingleNameEpic,
   fetchSingleTvEpic,
-  fetchSingleMovieEpic
+  fetchSingleMovieEpic,
+  newFetchResultsEpic
 );

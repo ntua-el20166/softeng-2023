@@ -11,7 +11,7 @@ export const resultsSlice = createSlice({
   },
   reducers: {
     fetchResults: (state, { payload }) => {
-      state.lastSearchInput = payload.lastSearchInput;
+      state.lastSearchInput = payload.titlePart;
       state.resultsLoading = true;
     },
     fetchResultsSucceeded: (state, { payload }) => {
