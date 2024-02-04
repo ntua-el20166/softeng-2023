@@ -219,7 +219,7 @@ const Header = () => {
               type="submit"
               sx={{ p: "10px" }}
               aria-label="search"
-              onClick={handleSearch}
+              onClick={() => handleSearch()}
             >
               <SearchIcon />
             </IconButton>
