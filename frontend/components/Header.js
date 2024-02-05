@@ -71,8 +71,10 @@ const Header = () => {
       rating: Number(rating),
       genre,
     };
-    if (searchParams !== lastSearchInput.titlePart) {
-      dispatch(fetchResults({ ...searchParams, searchParams }));
+    if (searchInput !== lastSearchInput) {
+      dispatch(
+        fetchResults({ titlePart: searchInput, rating: Number(rating), genre })
+      );
     }
     if (searchInput !== "" || rating || genre) {
       const searchURL = `/search-results?searchInput=${encodeURIComponent(searchInput)}&rating=${encodeURIComponent(rating)}&genre=${encodeURIComponent(genre)}`;
@@ -237,7 +239,10 @@ const Header = () => {
               type="submit"
               sx={{ p: "10px" }}
               aria-label="search"
-              onClick={() => handleSearch()}
+              onClick={(event) => {
+                event.preventDefault(); // Prevent the default form action
+                handleSearch();
+              }}
             >
               <SearchIcon />
             </IconButton>
