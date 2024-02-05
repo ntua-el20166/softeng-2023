@@ -18,7 +18,7 @@ const Layout = ({ children, statusCode }) => {
   }, [popularMoviesError, resultsError]); // add , resultsError
 
   return (
-    <div style={{ width: "100%" }}>
+    <>
       <Header />
       {hasError && (
         <ErrorModal
@@ -35,7 +35,7 @@ const Layout = ({ children, statusCode }) => {
         />
       )}
       <Footer />
-    </div>
+    </>
   );
 };
 

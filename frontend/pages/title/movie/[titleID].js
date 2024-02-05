@@ -69,22 +69,33 @@ const singleTitle = () => {
         Description
       </Typography>
       <Box
-        width={1400} // Set the width of the inner box
-        height={200} // Set the height of the inner box
-        bgcolor="black"
+        width={1500} // Set the width of the inner box
+        bgcolor={"#F4DDD6"}
+        borderRadius={3}
         marginLeft={5}
         margin={"auto"}
-      ></Box>
+      >
+        <Typography variant="h6" gutterBottom padding={2}>
+          {singleTitleLoading ? "loading" : singleTitle?.description}
+        </Typography>
+      </Box>
+      <Box height={50} />
+      <Typography variant="h5" gutterBottom marginLeft={10}>
+        Actors and Crew
+      </Typography>
+      <Box height={50} />
+      {singleTitleLoading
+        ? "loading actors and crew"
+        : singleTitle && <Carousel items={singleTitle?.principals} />}
+      <Box height={50} />
       <Box height={50} />
       <Typography variant="h5" gutterBottom marginLeft={10}>
         Similar Movies
       </Typography>
       <Box height={50} />
-      {similarMoviesLoading ? (
-        "loading similar movies"
-      ) : (
-        <Carousel items={similarMovies} />
-      )}
+      {similarMoviesLoading
+        ? "loading similar movies"
+        : similarMovies && <Carousel items={similarMovies} />}
       <Box height={50} />
     </div>
   );

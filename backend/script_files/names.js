@@ -141,11 +141,12 @@ async function getSearchNameResult2(req, res) {
       const data = response2;
       const birthYear = data.birthday ? data.birthday.substring(0, 4) : null;
       const deathYear = data.deathday ? data.deathday.substring(0, 4) : null;
-      const data2 = await getPersonInfo(object.id);
-      const nameObject1 = new nameObject(
+      const data2 = await getPersonInfo2(object.id);
+      const nameObject1 = new nameObject2(
         object.id.toString(),
         object.name,
         object.profile_path,
+        data.biography,
         birthYear,
         deathYear,
         object.known_for_department,

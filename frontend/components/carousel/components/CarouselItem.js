@@ -1,7 +1,7 @@
 import { Typography, Box } from "@mui/material";
 
 const CarouselItem = ({ item }) => {
-  const poster = item.titlePoster ?? item.namePoster;
+  const poster = item.titlePoster ?? item.profile;
   const title = item.originalTitle ?? item.name;
   return (
     <Box
@@ -26,7 +26,7 @@ const CarouselItem = ({ item }) => {
           bottom: 0,
           right: 0,
           backgroundColor: "rgba(0,0,0,0)",
-          transition: "background-color 0.3s ease-in-out",
+          transition: "background-color 0.1s ease-in-out",
         },
         "&:hover": {
           "& .overlay-text": {
@@ -50,6 +50,7 @@ const CarouselItem = ({ item }) => {
         }}
       >
         {title}
+        {item.character ? ` as ${item.character}` : null}
       </Typography>
     </Box>
   );
