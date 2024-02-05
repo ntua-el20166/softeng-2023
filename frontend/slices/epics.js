@@ -3,6 +3,8 @@ import { combineEpics } from "redux-observable";
 import { from, forkJoin, of, tap } from "rxjs";
 import { mergeMap, catchError, map, filter } from "rxjs/operators";
 import { popularMoviesSlice } from "./reducers/popularMovies";
+
+import { similarMoviesSlice } from "./reducers/similarMovies";
 import {
   fetchResultsSucceeded,
   fetchResultsFailed,
@@ -25,6 +27,27 @@ const fetchPopularMoviesEpic = (action$) =>
         }),
         catchError((error) =>
           of(popularMoviesSlice.actions.fetchPopularMoviesFailed(error))
+        )
+      )
+    )
+  );
+
+const fetchSimilarMoviesEpic = (action$) =>
+  action$.pipe(
+    ofType("similarMovies/fetchSimilarMovies"),
+    mergeMap(({ payload }) =>
+      from(
+        axios.post(`${backendUrl}/similar_movies`, {
+          movie_id: payload.movie_id,
+        })
+      ).pipe(
+        map(({ data }) => {
+          return similarMoviesSlice.actions.fetchSimilarMoviesSucceeded(
+            data.result
+          );
+        }),
+        catchError((error) =>
+          of(similarMoviesSlice.actions.fetchSimilarMoviesFailed(error))
         )
       )
     )
@@ -71,8 +94,9 @@ const fetchSingleNameEpic = (action$) =>
   action$.pipe(
     ofType("singleName/fetchSingleName"),
     mergeMap(({ payload }) =>
-      from(axios.get(`${backendUrl}/name/${payload.nameID}`)).pipe(
+      from(axios.post(`${backendUrl}/name2/${payload.nameID}`)).pipe(
         map(({ data }) => {
+          console.log(data);
           return fetchSingleNameSucceeded(data);
         }),
         catchError((error) =>
@@ -106,20 +130,42 @@ const fetchSingleNameEpic = (action$) =>
 //     )
 //   );
 
-const helper = (first, second) => {
-  axios.post(`${backendUrl}/bygenre`, {
-    qgenre: first,
-    minrating: payload.rating,
-    yrTo: "2024",
-    yrFrom: "1800",
-  });
-  axios.post(`${backendUrl}/bygenre`, {
-    qgenre: second,
-    minrating: payload.rating,
-    yrTo: "2024",
-    yrFrom: "1800",
-  });
+const helper = (first, second, payload) => {
+  return Promise.all([
+    axios.post(`${backendUrl}/bygenre`, {
+      qgenre: first,
+      minrating: payload.rating,
+      yrTo: "2024",
+      yrFrom: "1800",
+    }),
+    axios.post(`${backendUrl}/bygenre`, {
+      qgenre: second,
+      minrating: payload.rating,
+      yrTo: "2024",
+      yrFrom: "1800",
+    }),
+  ]);
 };
+
+function getGenreResults(payload) {
+  switch (payload.genre) {
+    case "Action":
+      return helper("action", "action & adventure", payload);
+    case "Adventure":
+      return helper("adventure", "action & adventure", payload);
+    case "Fantasy":
+      return helper("fantasy", "sci-fi & fantasy", payload);
+    case "Sci-Fi":
+      return helper("Science Fiction", "sci-fi & fantasy", payload);
+    default:
+      return axios.post(`${backendUrl}/bygenre`, {
+        qgenre: payload.genre,
+        minrating: payload.rating,
+        yrTo: "2024",
+        yrFrom: "1800",
+      });
+  }
+}
 
 const newFetchResultsEpic = (action$) =>
   action$.pipe(
@@ -131,45 +177,48 @@ const newFetchResultsEpic = (action$) =>
             ? axios.post(`${backendUrl}/searchtitle`, {
                 titlePart: payload.titlePart,
               })
-            : axios.post(`${backendUrl}/bygenre`, {
-                qgenre: payload.genre,
-                minrating: payload.rating,
-                yrTo: "2024",
-                yrFrom: "1800",
-              })
-          // : () => {
-          //     switch (payload.genre) {
-          //       case "Action":
-          //         helper("action", "action & adventure");
-          //         break;
-          //       case "Adventure":
-          //         helper("adventure", "action & adventure");
-          //         break;
-          //       case "Fantasy":
-          //         helper("fantasy", "sci-fi & fantasy");
-          //         break;
-          //       case "Sci-Fi":
-          //         helper("science fiction", "sci-fi & fantasy");
-          //         break;
-          //       default:
-          //         axios.post(`${backendUrl}/bygenre`, {
-          //           qgenre: payload.genre,
-          //           minrating: payload.rating,
-          //           yrTo: "2024",
-          //           yrFrom: "1800",
-          //         });
-          //     }
-          //   }
+            : getGenreResults(payload)
         ).pipe(
-          map(({ data }) =>
+          map((response) => {
+            if (response.data) {
+              return response.data;
+            }
+            return response.reduce(
+              (data, current) => [...data, ...current.data],
+              []
+            );
+          }),
+          map((data) =>
             data.filter((title) => {
-              console.log(payload, title);
               return (
                 (!payload.rating || title.rating.avRating >= payload.rating) &&
                 (!payload.genre ||
-                  title.genres.some(
-                    ({ genreTitle }) => genreTitle === payload.genre
-                  )) &&
+                  title.genres.some(({ genreTitle }) => {
+                    switch (payload.genre) {
+                      case "Action":
+                        return (
+                          genreTitle === payload.genre ||
+                          genreTitle === "Action & Adventure"
+                        );
+                      case "Adventure":
+                        return (
+                          genreTitle === payload.genre ||
+                          genreTitle === "Action & Adventure"
+                        );
+                      case "Fantasy":
+                        return (
+                          genreTitle === payload.genre ||
+                          genreTitle === "Sci-Fi & Fantasy"
+                        );
+                      case "Sci-Fi":
+                        return (
+                          genreTitle === "Science Fiction" ||
+                          genreTitle === "Sci-Fi & Fantasy"
+                        );
+                      default:
+                        return genreTitle === payload.genre;
+                    }
+                  })) &&
                 (payload.titlePart !== "" ||
                   title.originalTitle.includes(payload.titlePart))
               );
@@ -177,23 +226,21 @@ const newFetchResultsEpic = (action$) =>
           )
         ),
         names: from(
-          axios.post(`${backendUrl}/searchname`, {
-            namePart: payload.titlePart,
-          })
+          axios.get(`${backendUrl}/searchname/${payload.titlePart}`)
         ).pipe(map(({ data }) => data)),
       }).pipe(
         map(({ titles, names }) => fetchResultsSucceeded({ titles, names })),
         catchError((error) => {
-          of(fetchResultsFailed(error.message));
+          of(popularMoviesSlice.actions.fetchPopularMoviesFailed(error));
         })
       )
     )
   );
 export const rootEpic = combineEpics(
   fetchPopularMoviesEpic,
-  //fetchResultsEpic,
   fetchSingleNameEpic,
   fetchSingleTvEpic,
   fetchSingleMovieEpic,
+  fetchSimilarMoviesEpic,
   newFetchResultsEpic
 );

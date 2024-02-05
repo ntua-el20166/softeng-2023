@@ -24,6 +24,7 @@ const {
   getSearchNameResult,
   getName,
   getSearchNameResult2,
+  getName2,
 } = require("./names.js");
 
 const {
@@ -64,7 +65,11 @@ app.post("/ntuaflix_api/bygenre", byGenrePost);
 
 app.post("/ntuaflix_api/searchname", getSearchNameResult);
 
+app.post("/ntuaflix_api/similar_movies", getSimilarMovies);
+
 app.post("/ntuaflix_api/title2/:titleID", getTitle2);
+
+app.post("/ntuaflix_api/name2/:nameID", getName2);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

@@ -14,14 +14,14 @@ const CustomCarousel = ({ items }) => {
 
   const handleItemClick = (item) => {
     if (item.type === "movie") {
-      dispatch(setSingleTitle(item));
-      router.push(`title/movie/${item.titleID}`);
+      //dispatch(setSingleTitle(item));
+      router.push(`/title/movie/${item.titleID}`);
     } else if (item.type === "tv") {
-      dispatch(setSingleTitle(item));
+      //dispatch(setSingleTitle(item));
       router.push(`/title/tv/${item.titleID}`);
     } else {
-      dispatch(setSingleName(item));
-      router.push(`name/${item.nameID}`);
+      //dispatch(setSingleName(item));
+      router.push(`/name/${item.nameID}`);
     }
   };
 
