@@ -5,7 +5,6 @@
   "main": "test.js",
   "scripts": {
     "start": "concurrently \"cd backend/script_files && node server.js\" \"cd frontend && npm run dev\"",
-    "cli": "node backend/cli/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -37,6 +36,6 @@
     "prettier": "3.2.4"
   },
   "bin": {
-    "se2349": "./backend/cli/se2349"
+    "se2349": "./backend/cli/cli.js"
   }
 }
