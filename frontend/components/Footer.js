@@ -23,7 +23,7 @@ const Footer = () => {
         </a>
       </div>
       <div style={{ fontSize: "18px", marginTop: "10px" }}>
-        © 2023-2024 by leo2002, gk, christos, philmard
+        © 2023-2024 by leo2002, gk, christos, philmard, chatgpt
       </div>
     </Box>
   );
