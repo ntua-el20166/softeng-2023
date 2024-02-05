@@ -182,7 +182,8 @@ async function getPersonInfo2(nameID) {
     var one = cast.map((person) => {
       return {
         titleID: person.id,
-        poster: person.poster_path,
+        type: person.media_type,
+        titlePoster: person.poster_path,
         category: "Actor",
         character: person.character,
       };
@@ -191,7 +192,8 @@ async function getPersonInfo2(nameID) {
     var two = crew.map((person) => {
       return {
         titleID: person.id,
-        poster: person.poster_path,
+        type: person.media_type,
+        titlePoster: person.poster_path,
         category: "crew",
         character: person.job,
       };

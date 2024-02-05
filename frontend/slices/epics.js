@@ -94,8 +94,9 @@ const fetchSingleNameEpic = (action$) =>
   action$.pipe(
     ofType("singleName/fetchSingleName"),
     mergeMap(({ payload }) =>
-      from(axios.get(`${backendUrl}/name/${payload.nameID}`)).pipe(
+      from(axios.post(`${backendUrl}/name2/${payload.nameID}`)).pipe(
         map(({ data }) => {
+          console.log(data);
           return fetchSingleNameSucceeded(data);
         }),
         catchError((error) =>
@@ -200,9 +201,7 @@ const newFetchResultsEpic = (action$) =>
           )
         ),
         names: from(
-          axios.post(`${backendUrl}/searchname`, {
-            namePart: payload.titlePart,
-          })
+          axios.get(`${backendUrl}/searchname/${payload.titlePart}`)
         ).pipe(map(({ data }) => data)),
       }).pipe(
         map(({ titles, names }) => fetchResultsSucceeded({ titles, names })),

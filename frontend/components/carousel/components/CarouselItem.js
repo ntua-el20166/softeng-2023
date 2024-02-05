@@ -1,7 +1,7 @@
 import { Typography, Box } from "@mui/material";
 
 const CarouselItem = ({ item }) => {
-  const poster = item.titlePoster ?? item.namePoster;
+  const poster = item.titlePoster ?? item.profile;
   const title = item.originalTitle ?? item.name;
   return (
     <Box
@@ -50,6 +50,7 @@ const CarouselItem = ({ item }) => {
         }}
       >
         {title}
+        {item.character ? ` as ${item.character}` : null}
       </Typography>
     </Box>
   );
