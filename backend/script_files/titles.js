@@ -1,4 +1,5 @@
 const { getMovieInfo, getTvInfo } = require("./helpers.js");
+const { getMovieInfo2, getTvInfo2 } = require("./helpers2.js");
 const { fetchData } = require("./apiService.js");
 
 async function getPopularMovies(req, res) {
@@ -57,13 +58,12 @@ async function getTitle2(req, res) {
   try {
     let response;
     let ret;
-
     if (req.body.type == "tv") {
       response = await fetchData(`/tv/${req.params.titleID}`);
-      ret = await getTvInfo(response);
+      ret = await getTvInfo2(response);
     } else {
       response = await fetchData(`/movie/${req.params.titleID}`);
-      ret = await getMovieInfo(response);
+      ret = await getMovieInfo2(response);
     }
 
     res.send(ret);
