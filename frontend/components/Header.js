@@ -63,13 +63,20 @@ const Header = () => {
   };
 
   const handleSearch = () => {
-    if (searchInput !== lastSearchInput) {
-      dispatch(
-        fetchResults({ titlePart: searchInput, rating: Number(rating), genre })
-      );
+    if (genre === "" && searchInput === "") {
+      return;
+    }
+    const searchParams = {
+      titlePart: searchInput,
+      rating: Number(rating),
+      genre,
+    };
+    if (searchParams !== lastSearchInput.titlePart) {
+      dispatch(fetchResults({ ...searchParams, searchParams }));
     }
     if (searchInput !== "" || rating || genre) {
-      router.replace(`/search-results/${searchInput ?? "search-results/"}`);
+      const searchURL = `/search-results?searchInput=${encodeURIComponent(searchInput)}&rating=${encodeURIComponent(rating)}&genre=${encodeURIComponent(genre)}`;
+      router.replace(searchURL);
     }
     setSearchInput("");
   };
@@ -213,6 +220,17 @@ const Header = () => {
               },
             }}
           >
+            <IconButton
+              type="button"
+              aria-label="search"
+              onClick={() => {
+                setRating("");
+                setGenre("");
+                setSearchInput("");
+              }}
+            >
+              x
+            </IconButton>
             <InputBase
               name="search_input" // bc of console message
               sx={{ ml: 1, flex: 1 }}
