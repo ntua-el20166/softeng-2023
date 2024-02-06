@@ -17,22 +17,23 @@ const {
   getPopularMovies,
   getSimilarTitles,
   getTitle,
-  getTitlePost,
-} = require("./titles.js");
+} = require("./get/titles.js");
+
+const { getTitlePost } = require("./post/titles_Post.js");
+
+const { getSearchNameResult, getName } = require("./get/names.js");
 
 const {
-  getSearchNameResult,
-  getName,
-  getSearchNameResult2,
+  getSearchNameResultPost,
   getNamePost,
-} = require("./names.js");
+} = require("./post/names_Post.js");
 
-const { searchTitle, byGenre } = require("./title search and filters.js");
+const { searchTitle, byGenre } = require("./get/title_search_and_filters.js");
 
 const {
   searchTitlePost,
   byGenrePost,
-} = require("./post/title_search_and_filters.js");
+} = require("./post/title_search_and_filters_Post.js");
 
 app.get("/ntuaflix_api/popular_movies", getPopularMovies);
 
@@ -50,7 +51,7 @@ app.get("/ntuaflix_api/admin/healthcheck", getHealthCheck);
 
 app.post("/ntuaflix_api/searchtitle", searchTitlePost);
 
-app.post("/ntuaflix_api/searchname2", getSearchNameResult2);
+app.post("/ntuaflix_api/searchname2", getSearchNameResultPost);
 
 app.post("/ntuaflix_api/bygenre", byGenrePost);
 

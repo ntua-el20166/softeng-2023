@@ -1,6 +1,6 @@
 const axios = require("axios");
-const { apiBaseUrl } = require("../../config");
-const { writeCsv, printJson } = require("../../utils/csvWriter");
+const { apiBaseUrl } = require("../config");
+const { writeCsv, printJson } = require("../utils/csvWriter");
 
 async function fetchName(options) {
   try {

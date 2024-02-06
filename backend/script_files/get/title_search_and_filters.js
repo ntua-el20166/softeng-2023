@@ -1,12 +1,10 @@
 const {
   getMovieInfo,
-  titleObject,
-  gqueryObject,
   normalizeString,
   searchTitleHelp,
   getTvInfo,
 } = require("./helpers.js");
-const { fetchData } = require("./apiService.js");
+const { fetchData } = require("../apiService.js");
 
 async function getFilterSearchResults(req, res) {
   // let date_to = gqueryObject.yrTo + "-12-31";

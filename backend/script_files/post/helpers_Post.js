@@ -49,7 +49,7 @@ class titleObjectPost {
   }
 }
 
-async function getMovieInfo2(jsonObject) {
+async function getMovieInfoPost(jsonObject) {
   var movie_id = jsonObject.id;
   var genres;
   var alternative_titles;
@@ -94,7 +94,7 @@ async function getMovieInfo2(jsonObject) {
     });
     principals = one.concat(two);
   });
-  return new titleObject2(
+  return new titleObjectPost(
     jsonObject.id,
     "movie",
     jsonObject.original_title,
@@ -109,7 +109,7 @@ async function getMovieInfo2(jsonObject) {
   );
 }
 
-async function getTvInfo2(jsonObject) {
+async function getTvInfoPost(jsonObject) {
   var series_id = jsonObject.id;
   var genres;
   var alternative_titles;
@@ -158,7 +158,7 @@ async function getTvInfo2(jsonObject) {
     });
     principals = one.concat(two);
   });
-  return new titleObject2(
+  return new titleObjectPost(
     jsonObject.id,
     "tv",
     jsonObject.original_name,
@@ -173,7 +173,7 @@ async function getTvInfo2(jsonObject) {
   );
 }
 
-async function getPersonInfo2(nameID) {
+async function getPersonInfoPost(nameID) {
   let nameTitles;
   let response = await fetchData(`/person/${nameID}/combined_credits`);
 

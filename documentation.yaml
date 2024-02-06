@@ -1,0 +1,242 @@
+openapi: 3.0.0
+info:
+  title: Ntuaflix API
+  version: 1.0.0
+servers:
+  - url: https://localhost:9876/ntuaflix_api
+
+paths:
+  /name/:nameID:
+    get:
+      summary: Get info about a person
+      parameters:
+        - in: path
+          name: nameID
+          required: true
+          schema:
+            type: string 
+          description: The ID of the person to retrieve
+      responses:
+        "200":
+          description: A single nameObject with the nameID specified
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nameObject"
+        '204':
+          description: No data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  
+  /title/:title:
+    get:
+      summary: Get info about a movie/series
+      parameters:
+        - in: path
+          name: titleID
+          required: true
+          schema:
+            type: string 
+          description: The ID of the title to retrieve
+      responses:
+        "200":
+          description: A single titleObject with the titleID specified
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/titleObject"
+        '204':
+          description: No data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  
+  /searchname:
+    get:
+      summary: Perform a namePart based search 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/nqueryObject'
+      
+      responses:
+        "200":
+          description: A list of nameObjects that match the namePart
+           content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/nameObject' 
+        '204':
+          description: No data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+    /bygenre:
+    get:
+      summary: Find movies/series that have the desired genre and rating (and optionally start and end year) 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gqueryObject'
+      
+      responses:
+        "200":
+          description: A list of movieObjects that meet the criteria
+           content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/titleObject' 
+        '204':
+          description: No data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+
+  /searchtitle:
+    get:
+      summary: Perform a titlePart based search 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tqueryObject'
+      
+      responses:
+        "200":
+          description: A list of movieObjects that match the titlePart
+           content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/titleObject' 
+        '204':
+          description: No data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    nameObject:
+      type: object
+      properties:
+        nameID:
+          type: string
+        name:
+          type: string
+        namePoster:
+          type: string
+        birthYr:
+          type: string
+        deathYr:
+          type: string
+        profession:
+          type: string
+        nameTitles:
+          type: array
+          items:
+            type: object
+            properties:
+              titleID:
+                type: string
+              category:
+                type: string
+    
+    nqueryObject:
+      type: object
+      properties:
+        namePart:
+          type: string
+
+
+    tqueryObject:
+      type: object
+      properties:
+        titlePart:
+          type: string
+    
+
+    gqueryObject:
+      type: object
+      properties:
+        qgenre:
+          type: string
+        minrating:
+          type: string
+        yrFrom:
+          type: string
+        yrTo:
+          type: string
+      required: 
+        -qgenre
+        -minrating
+
+    titleObject:
+      type: object
+      properties:
+        titleID:
+          type: string
+        type:
+          type: string
+        originalTitle:
+          type: string
+        titlePoster:
+          type: string
+        startYear:
+          type: string
+        endYear:
+          type: string
+          nullable: true
+        genres:
+          type: array
+          items:
+            type: object
+            properties:
+              genreTitle:
+                type: string
+        titleAkas:
+          type: array
+          items:
+            type: object
+            properties:
+              akaTitle:
+                type: string
+              regionAbbrev:
+                type: string
+        principals:
+          type: array
+          items:
+            type: object
+            properties:
+              nameID:
+                type: string
+              name:
+                type: string
+              category:
+                type: string
+
+        rating:
+          type: object
+            properties:
+              avRating:
+                type: string
+              nVotes:
+                type: string

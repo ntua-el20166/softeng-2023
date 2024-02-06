@@ -3,7 +3,7 @@ const {
   titleObject,
   normalizeString,
   getTvInfo,
-} = require("../helpers.js");
+} = require("../get/helpers.js");
 const { fetchData } = require("../apiService.js");
 
 async function searchTitlePost(req, res) {
