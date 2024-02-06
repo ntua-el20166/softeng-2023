@@ -79,8 +79,8 @@ async function getMovieInfo(jsonObject) {
     alternative_titles =
       response.titles?.map((title) => {
         return {
-          AkaTitle: title.title,
-          regionAbbr: title.iso_3166_1,
+          akaTitle: title.title,
+          regionAbbrev: title.iso_3166_1,
         };
       }) || [];
   });
@@ -88,7 +88,7 @@ async function getMovieInfo(jsonObject) {
     const cast = response.cast;
     var one = cast.map((person) => {
       return {
-        nameID: person.id,
+        nameID: `${person.id}`,
         name: person.name,
         category: "actor",
       };
@@ -96,7 +96,7 @@ async function getMovieInfo(jsonObject) {
     const crew = response.crew;
     var two = crew.map((person) => {
       return {
-        nameID: person.id,
+        nameID: `${person.id}`,
         name: person.name,
         category: person.job,
       };
@@ -104,16 +104,16 @@ async function getMovieInfo(jsonObject) {
     principals = one.concat(two);
   });
   return new titleObject(
-    jsonObject.id,
+    `${jsonObject.id}`,
     "movie",
     jsonObject.original_title,
-    jsonObject.poster_path,
+    jsonObject.poster_path ?? "",
     jsonObject.release_date.substring(0, 4),
-    null,
+    "",
     genres,
     alternative_titles,
     principals,
-    { avRating: rating, nVotes: votes }
+    { avRating: `${rating}`, nVotes: `${votes}` }
   );
 }
 
@@ -132,14 +132,14 @@ async function getTvInfo(jsonObject) {
       return { genreTitle: genre.name };
     });
     start_year = response.first_air_date.substring(0, 4);
-    last_year = response.last_air_date.substring(0, 4);
+    last_year = response.last_air_date?.substring(0, 4) ?? "";
   });
   await fetchData(`/tv/${series_id}/alternative_titles`).then((response) => {
     alternative_titles =
       response.titles?.map((title) => {
         return {
-          AkaTitle: title.title,
-          regionAbbr: title.iso_3166_1,
+          akaTitle: title.title,
+          regionAbbrev: title.iso_3166_1,
         };
       }) || [];
   });
@@ -147,7 +147,7 @@ async function getTvInfo(jsonObject) {
     const cast = response.cast;
     var one = cast.map((person) => {
       return {
-        nameID: person.id,
+        nameID: `${person.id}`,
         name: person.name,
         category: person.known_for_department,
       };
@@ -155,7 +155,7 @@ async function getTvInfo(jsonObject) {
     const crew = response.crew;
     var two = crew.map((person) => {
       return {
-        nameID: person.id,
+        nameID: `${person.id}`,
         name: person.name,
         category: person.known_for_department,
       };
@@ -163,7 +163,7 @@ async function getTvInfo(jsonObject) {
     principals = one.concat(two);
   });
   return new titleObject(
-    jsonObject.id,
+    `${jsonObject.id}`,
     "tv",
     jsonObject.original_name,
     jsonObject.poster_path,
@@ -172,7 +172,7 @@ async function getTvInfo(jsonObject) {
     genres,
     alternative_titles,
     principals,
-    { avRating: rating, nVotes: votes }
+    { avRating: `${rating}`, nVotes: `${votes}` }
   );
 }
 
@@ -184,14 +184,14 @@ async function getPersonInfo(nameID) {
     const cast = response.cast;
     var one = cast.map((person) => {
       return {
-        titleID: person.id,
+        titleID: `${person.id}`,
         category: "Actor",
       };
     });
     const crew = response.crew;
     var two = crew.map((person) => {
       return {
-        titleID: person.id,
+        titleID: `${person.id}`,
         category: person.job,
       };
     });
@@ -243,8 +243,8 @@ async function searchTitleHelp(titlePart) {
                 alternative_titles =
                   response.titles?.map((title) => {
                     return {
-                      AkaTitle: title.title,
-                      regionAbbr: title.iso_3166_1,
+                      akaTitle: title.title,
+                      regionAbbrev: title.iso_3166_1,
                     };
                   }) || [];
               }
@@ -253,7 +253,7 @@ async function searchTitleHelp(titlePart) {
               const cast = response.cast;
               var one = cast.map((person) => {
                 return {
-                  nameID: person.id,
+                  nameID: `${person.id}`,
                   name: person.name,
                   category: person.known_for_department,
                 };
@@ -261,7 +261,7 @@ async function searchTitleHelp(titlePart) {
               const crew = response.crew;
               var two = crew.map((person) => {
                 return {
-                  nameID: person.id,
+                  nameID: `${person.id}`,
                   name: person.name,
                   category: person.known_for_department,
                 };
@@ -269,16 +269,16 @@ async function searchTitleHelp(titlePart) {
               principals = one.concat(two);
             });
             return new titleObject(
-              jsonObject.id,
+              `${jsonObject.id}`,
               jsonObject.media_type,
               jsonObject.original_name,
-              jsonObject.poster_path,
-              start_year,
-              last_year,
+              jsonObject.poster_path ?? "",
+              start_year ?? "",
+              last_year ?? "",
               genres,
               alternative_titles,
               principals,
-              { avRating: rating, nVotes: votes }
+              { avRating: `${rating}`, nVotes: `${votes}` }
             );
           }
           if (jsonObject.media_type == "movie") {
@@ -298,8 +298,8 @@ async function searchTitleHelp(titlePart) {
                 alternative_titles =
                   response.titles?.map((title) => {
                     return {
-                      AkaTitle: title.title,
-                      regionAbbr: title.iso_3166_1,
+                      akaTitle: title.title,
+                      regionAbbrev: title.iso_3166_1,
                     };
                   }) || [];
               }
@@ -308,7 +308,7 @@ async function searchTitleHelp(titlePart) {
               const cast = response.cast;
               var one = cast.map((person) => {
                 return {
-                  nameID: person.id,
+                  nameID: `${person.id}`,
                   name: person.name,
                   category: "actor",
                 };
@@ -316,7 +316,7 @@ async function searchTitleHelp(titlePart) {
               const crew = response.crew;
               var two = crew.map((person) => {
                 return {
-                  nameID: person.id,
+                  nameID: `${person.id}`,
                   name: person.name,
                   category: person.job,
                 };
@@ -324,16 +324,16 @@ async function searchTitleHelp(titlePart) {
               principals = one.concat(two);
             });
             return new titleObject(
-              jsonObject.id,
+              `${jsonObject.id}`,
               jsonObject.media_type,
               jsonObject.original_title,
-              jsonObject.poster_path,
+              jsonObject.poster_path ?? "",
               jsonObject.release_date.substring(0, 4),
-              null,
+              "",
               genres,
               alternative_titles,
               principals,
-              { avRating: rating, nVotes: votes }
+              { avRating: `${rating}`, nVotes: `${votes}` }
             );
           }
         })

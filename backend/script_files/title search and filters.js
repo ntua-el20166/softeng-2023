@@ -100,8 +100,8 @@ async function searchTitle(req, res) {
 
 async function byGenre(req, res) {
   const gqueryObject = req.body;
-  let date_to = gqueryObject.yrTo + "-12-31";
-  let date_from = gqueryObject.yrFrom + "-01-01";
+  let date_to = gqueryObject.yrTo + "2024-12-31";
+  let date_from = gqueryObject.yrFrom + "2010-01-01";
   let genre = normalizeString(gqueryObject.qgenre);
 
   const genreList_response = await fetchData(`/genre/movie/list`);

@@ -3,13 +3,17 @@ import { Typography, Box } from "@mui/material";
 const CarouselItem = ({ item }) => {
   const poster = item.titlePoster ?? item.profile;
   const title = item.originalTitle ?? item.name;
+  const posterPath = poster
+    ? `https://image.tmdb.org/t/p/w780${poster}`
+    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTv2rNkxu82jwemyb3lSLkmbyLCqflQDMJPA&usqp=CAU";
+
   return (
     <Box
       sx={{
         width: 400,
         height: 550,
         position: "relative",
-        backgroundImage: `url(https://image.tmdb.org/t/p/w780${poster})`,
+        backgroundImage: `url(${posterPath})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         borderRadius: "8px",

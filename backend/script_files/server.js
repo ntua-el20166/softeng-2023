@@ -71,11 +71,12 @@ app.post("/ntuaflix_api/title2/:titleID", getTitle2);
 
 app.post("/ntuaflix_api/name2/:nameID", getName2);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.use((req, res, next) => {
+  res.status(404).send("Not Available");
 });
-//const stringSimilarity = require("string-similarity");
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
+app.listen(port, () => {
+  console.log(`App listening at http://localhost:${port}`);
+});
+
+module.exports = app;

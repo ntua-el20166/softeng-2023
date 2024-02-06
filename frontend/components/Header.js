@@ -219,6 +219,7 @@ const Header = () => {
             <IconButton
               type="button"
               aria-label="search"
+              sx={{ bottom: 1.5 }}
               onClick={() => {
                 setRating("");
                 setGenre("");

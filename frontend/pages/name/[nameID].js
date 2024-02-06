@@ -4,13 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { Typography, Box } from "@mui/material";
 import { Carousel } from "../../components";
 import { fetchSingleName } from "../../slices";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const singleName = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const nameID = router.query.nameID;
   const singleName = useSelector((state) => state.singleName.singleName);
-  console.log(singleName);
   useEffect(() => {
     if (nameID !== singleName?.nameID && nameID) {
       dispatch(fetchSingleName({ nameID: nameID }));
@@ -19,6 +20,11 @@ const singleName = () => {
   const singleNameLoading = useSelector(
     (state) => state.singleName.singleNameLoading
   );
+
+  const poster = singleName?.namePoster
+    ? `https://image.tmdb.org/t/p/w780${singleName?.namePoster}`
+    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTv2rNkxu82jwemyb3lSLkmbyLCqflQDMJPA&usqp=CAU";
+
   return (
     <div>
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -27,7 +33,7 @@ const singleName = () => {
         </Typography>
 
         <Box
-          width={1500} // Set the width to 100% for full-screen width
+          width={"90%"} // Set the width to 100% for full-screen width
           height={800} // Set the height
           border={0} // Set the border
           padding={2} // Set the padding
@@ -45,39 +51,60 @@ const singleName = () => {
             bgcolor={"#979797"}
             borderRadius={3}
             style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/w780${singleName?.namePoster})`, // Replace with your image URL
+              backgroundImage: `url(${poster})`, // Replace with your image URL
               backgroundSize: "contain",
               backgroundPosition: "center",
             }}
-          >
-            {/* Content of the inner box */}
-          </Box>
+          ></Box>
         </Box>
         <Box height={60} />
       </div>
-      <Typography variant="h5" gutterBottom marginLeft={10}>
-        Biography
-      </Typography>
-      <Box
-        width={1500} // Set the width of the inner box
-        bgcolor={"#F4DDD6"}
-        borderRadius={3}
-        marginLeft={5}
-        margin={"auto"}
-      >
-        <Typography variant="h6" gutterBottom padding={2}>
-          {singleNameLoading ? "loading" : singleName?.bio}
-        </Typography>
-      </Box>
+      {singleName?.bio && (
+        <>
+          <Typography variant="h5" gutterBottom marginLeft={10}>
+            Biography
+          </Typography>
+          <Box
+            width={"92%"} // Set the width of the inner box
+            bgcolor={"#F4DDD6"}
+            borderRadius={3}
+            marginLeft={5}
+            margin={"auto"}
+          >
+            <Typography variant="h6" gutterBottom padding={2}>
+              {singleNameLoading ? <Skeleton height={30} /> : singleName?.bio}
+            </Typography>
+          </Box>
+        </>
+      )}
       <Box height={50} />
       <Typography variant="h5" gutterBottom marginLeft={10}>
-        Movies he participated in
+        Movies they participated in
       </Typography>
 
       <Box height={50} />
-      {singleNameLoading
-        ? "loading movies/tv shows that participated in"
-        : singleName && <Carousel items={singleName?.nameTitles} />}
+      {singleNameLoading ? (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignSelf: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
+          </Box>
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
+          </Box>
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
+          </Box>
+        </Box>
+      ) : (
+        singleName && <Carousel items={singleName?.nameTitles} />
+      )}
       <Box height={50} />
     </div>
   );

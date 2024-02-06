@@ -9,7 +9,7 @@ const Footer = () => {
         fontSize: "30px",
         textAlign: "center",
         padding: "40px",
-        margin: "0px",
+        margin: "-5px",
       }}
     >
       <div style={{ fontSize: "20px", marginTop: "10px" }}>

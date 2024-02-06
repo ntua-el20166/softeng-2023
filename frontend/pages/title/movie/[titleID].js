@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { Typography, Box } from "@mui/material";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import { Carousel } from "../../../components";
 
@@ -28,16 +30,30 @@ const singleTitle = () => {
   const similarMovies = useSelector(
     (state) => state.similarMovies.similarMovies
   );
+  const poster = singleTitle?.titlePoster
+    ? `https://image.tmdb.org/t/p/w780${singleTitle?.titlePoster}`
+    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTv2rNkxu82jwemyb3lSLkmbyLCqflQDMJPA&usqp=CAU";
 
   return (
     <div>
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      <div
+        style={{
+          textAlign: "center",
+          marginBottom: "20px",
+        }}
+      >
         <Typography variant="h5" gutterBottom>
-          {singleTitleLoading ? "loading" : singleTitle?.originalTitle}
+          {singleTitleLoading ? (
+            <Box width={200} sx={{ mx: "auto" }}>
+              <Skeleton height={30} />
+            </Box>
+          ) : (
+            singleTitle?.originalTitle
+          )}
         </Typography>
 
         <Box
-          width={1500} // Set the width to 100% for full-screen width
+          width={"90%"} // Set the width to 100% for full-screen width
           height={800} // Set the height
           border={0} // Set the border
           padding={2} // Set the padding
@@ -55,47 +71,91 @@ const singleTitle = () => {
             bgcolor={"#979797"}
             borderRadius={3}
             style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/w780${singleTitle?.titlePoster})`, // Replace with your image URL
+              backgroundImage: `url(${poster})`, // Replace with your image URL
               backgroundSize: "contain",
               backgroundPosition: "center",
             }}
-          >
-            {/* Content of the inner box */}
-          </Box>
+          ></Box>
         </Box>
         <Box height={60} />
       </div>
-      <Typography variant="h5" gutterBottom marginLeft={10}>
-        Description
-      </Typography>
-      <Box
-        width={1500} // Set the width of the inner box
-        bgcolor={"#F4DDD6"}
-        borderRadius={3}
-        marginLeft={5}
-        margin={"auto"}
-      >
-        <Typography variant="h6" gutterBottom padding={2}>
-          {singleTitleLoading ? "loading" : singleTitle?.description}
-        </Typography>
-      </Box>
+      {singleTitle?.description !== "" && (
+        <>
+          <Typography variant="h5" gutterBottom marginLeft={10}>
+            Description
+          </Typography>
+          <Box
+            width={"92%"} // Set the width of the inner box
+            bgcolor={"#F4DDD6"}
+            borderRadius={3}
+            marginLeft={5}
+            margin={"auto"}
+          >
+            <Typography variant="h6" gutterBottom padding={2}>
+              {singleTitleLoading ? "loading" : singleTitle?.description}
+            </Typography>
+          </Box>
+        </>
+      )}
       <Box height={50} />
       <Typography variant="h5" gutterBottom marginLeft={10}>
         Actors and Crew
       </Typography>
       <Box height={50} />
-      {singleTitleLoading
-        ? "loading actors and crew"
-        : singleTitle && <Carousel items={singleTitle?.principals} />}
+      {singleTitleLoading ? (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignSelf: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
+          </Box>
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
+          </Box>
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
+          </Box>
+        </Box>
+      ) : (
+        singleTitle && <Carousel items={singleTitle?.principals} />
+      )}
       <Box height={50} />
       <Box height={50} />
       <Typography variant="h5" gutterBottom marginLeft={10}>
         Similar Movies
       </Typography>
       <Box height={50} />
-      {similarMoviesLoading
-        ? "loading similar movies"
-        : similarMovies && <Carousel items={similarMovies} />}
+      {similarMoviesLoading ? (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignSelf: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
+          </Box>
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
+          </Box>
+          <Box sx={{ width: 400, height: 500, padding: 2 }}>
+            <Skeleton height={500} />
+          </Box>
+        </Box>
+      ) : similarMovies.length > 0 ? (
+        <Carousel items={similarMovies} />
+      ) : (
+        <Typography variant="h6" gutterBottom marginLeft={10}>
+          No Similar Titles
+        </Typography>
+      )}
       <Box height={50} />
     </div>
   );
