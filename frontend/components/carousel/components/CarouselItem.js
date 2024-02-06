@@ -10,8 +10,8 @@ const CarouselItem = ({ item }) => {
   return (
     <Box
       sx={{
-        width: 400,
-        height: 550,
+        width: 350,
+        height: 525,
         position: "relative",
         backgroundImage: `url(${posterPath})`,
         backgroundSize: "cover",

@@ -22,7 +22,6 @@ const SearchResults = () => {
         rating: Number(rating),
         genre,
       };
-      console.log(searchParams);
       dispatch(fetchResults({ ...searchParams, searchParams }));
     }
   }, [searchInput, rating, genre]);

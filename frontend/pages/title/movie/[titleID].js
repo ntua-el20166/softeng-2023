@@ -79,7 +79,7 @@ const singleTitle = () => {
         </Typography>
 
         <Box
-          width={"90%"} // Set the width to 100% for full-screen width
+          width={"80%"} // Set the width to 100% for full-screen width
           height={800} // Set the height
           border={0} // Set the border
           padding={2} // Set the padding
@@ -90,18 +90,106 @@ const singleTitle = () => {
           borderRadius={3}
           bgcolor="#F4DDD6"
         >
+          {singleTitleLoading ? (
+            <Box width={500} height={750}>
+              {" "}
+              <Skeleton height={750} />
+            </Box>
+          ) : (
+            <Box
+              width={800} // Set the width of the inner box
+              height={750} // Set the height of the inner box
+              bgcolor="#979797"
+              borderRadius={3}
+              position="relative" // Position relative for absolute positioning of image
+              overflow="hidden" // Hide overflowing content
+            >
+              <img
+                src={poster}
+                alt={singleTitle?.originalTitle}
+                style={{
+                  width: "100%", // Set width to 100% to cover the container
+                  height: "100%", // Set height to 100% to cover the container
+                  objectFit: "cover", // Prevent distortion, maintain aspect ratio
+                  position: "absolute", // Position absolute for proper positioning
+                  top: 0,
+                  left: 0,
+                }}
+              />
+            </Box>
+          )}
           <Box
-            width={500} // Set the width of the inner box
-            height={750} // Set the height of the inner box
-            marginLeft={5}
-            bgcolor="#979797"
-            borderRadius={3}
-            style={{
-              backgroundImage: `url(${poster})`, // Replace with your image URL
-              backgroundSize: "contain",
-              backgroundPosition: "center",
-            }}
-          ></Box>
+            display="flex"
+            flexDirection="column"
+            justifyContent="flex-start" // Aligns children to the top
+            marginLeft={10} // Add some space from the previous box
+            paddingBottom={5}
+            width={"70%"}
+            paddingTop={5}
+          >
+            <Typography
+              variant="h5"
+              gutterBottom
+              style={{
+                marginBottom: 100,
+                textAlign: "left",
+                fontWeight: "bold",
+              }}
+            >
+              Directors: {directorsString}
+            </Typography>
+            <Typography
+              variant="h5"
+              gutterBottom
+              style={{
+                marginBottom: 100,
+                textAlign: "left",
+                fontWeight: "bold",
+              }}
+            >
+              {writersString && `Writers: ${writersString}`}
+            </Typography>
+            <Typography
+              variant="h5"
+              gutterBottom
+              style={{
+                marginBottom: 100,
+                textAlign: "left",
+                fontWeight: "bold",
+              }}
+            >
+              Stars: {actorsString}
+            </Typography>
+            <Typography
+              variant="h5"
+              gutterBottom
+              style={{
+                marginBottom: 100,
+                textAlign: "left",
+                fontWeight: "bold",
+              }}
+            >
+              Producers: {producersString}
+            </Typography>
+            <Typography
+              variant="h5"
+              gutterBottom
+              style={{
+                marginBottom: 100,
+                textAlign: "left",
+                fontWeight: "bold",
+              }}
+            >
+              {"Genres: "}
+              {singleTitle?.genres.map(({ genreTitle }, i) => {
+                if (i !== singleTitle.genres.length - 1) {
+                  return `${genreTitle}, `;
+                } else {
+                  return `${genreTitle}`;
+                }
+              })}
+            </Typography>
+          </Box>
         </Box>
 
         <Box height={60} />

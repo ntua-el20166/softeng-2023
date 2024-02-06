@@ -39,7 +39,7 @@ const Home = () => {
             color="inherit"
             sx={{
               fontWeight: "600",
-              fontSize: "150px",
+              fontSize: "130px",
               letterSpacing: "25px",
               color: "#730000",
               WebkitTextStroke: "1px #000000",
