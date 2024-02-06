@@ -1,4 +1,4 @@
-const { fetchData } = require("./apiService");
+const { fetchData } = require("../apiService");
 
 class nameObject {
   constructor(

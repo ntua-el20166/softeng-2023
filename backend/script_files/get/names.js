@@ -1,6 +1,6 @@
 const { getPersonInfo, nameObject } = require("./helpers.js");
-const { fetchData } = require("./apiService.js");
-const { errorHandler, checkResultEmpty } = require("./errorHandler.js");
+const { fetchData } = require("../apiService.js");
+const { errorHandler, checkResultEmpty } = require("../errorHandler.js");
 
 async function getSearchNameResult(req, res) {
   const { namePart } = req.body;
@@ -66,7 +66,5 @@ async function getName(req, res) {
 
 module.exports = {
   getSearchNameResult,
-  getSearchNameResult2,
   getName,
-  getName2,
 };

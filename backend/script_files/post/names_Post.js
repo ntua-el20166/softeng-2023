@@ -1,12 +1,16 @@
-async function getName2(req, res) {
+const { getPersonInfoPost, nameObjectPost } = require("./helpers_Post.js");
+const { fetchData } = require("../apiService.js");
+const { errorHandler, checkResultEmpty } = require("../errorHandler.js");
+
+async function getNamePost(req, res) {
   try {
     const { nameID } = req.params;
     const response = await fetchData(`/person/${nameID}`);
     const data = response;
     const birthYear = data.birthday ? data.birthday.substring(0, 4) : null;
     const deathYear = data.deathday ? data.deathday.substring(0, 4) : null;
-    const data2 = await getPersonInfo2(data.id);
-    const nameObject1 = new nameObject2(
+    const data2 = await getPersonInfoPost(data.id);
+    const nameObject1 = new nameObjectPost(
       data.id.toString(),
       data.name,
       data.profile_path,
@@ -23,7 +27,7 @@ async function getName2(req, res) {
   }
 }
 
-async function getSearchNameResult2(req, res) {
+async function getSearchNameResultPost(req, res) {
   const { namePart } = req.body;
   if (!namePart) {
     res.status(204).send([]);
@@ -38,8 +42,8 @@ async function getSearchNameResult2(req, res) {
       const data = response2;
       const birthYear = data.birthday ? data.birthday.substring(0, 4) : null;
       const deathYear = data.deathday ? data.deathday.substring(0, 4) : null;
-      const data2 = await getPersonInfo2(object.id);
-      const nameObject1 = new nameObject2(
+      const data2 = await getPersonInfoPost(object.id);
+      const nameObject1 = new nameObjectPost(
         object.id.toString(),
         object.name,
         object.profile_path,
@@ -57,3 +61,8 @@ async function getSearchNameResult2(req, res) {
     errorHandler(error, res);
   }
 }
+
+module.exports = {
+  getSearchNameResultPost,
+  getNamePost,
+};

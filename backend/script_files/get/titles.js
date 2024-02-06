@@ -1,5 +1,4 @@
 const { getMovieInfo, getTvInfo } = require("./helpers.js");
-const { getMovieInfo2, getTvInfo2 } = require("./post/helpers_Post.js");
 const { fetchData } = require("./apiService.js");
 const { errorHandler, checkResultEmpty } = require("./errorHandler.js");
 
@@ -65,26 +64,8 @@ async function getTitle(req, res) {
   res.send(ret);
 }
 
-async function getTitlePost(req, res) {
-  try {
-    let response;
-    let ret;
-    if (req.body.type == "tv") {
-      response = await fetchData(`/tv/${req.params.titleID}`);
-      ret = await getTvInfo2(response);
-    } else {
-      response = await fetchData(`/movie/${req.params.titleID}`);
-      ret = await getMovieInfo2(response);
-    }
-    res.send(ret);
-  } catch (error) {
-    errorHandler(error, res);
-  }
-}
-
 module.exports = {
   getPopularMovies,
   getSimilarTitles,
   getTitle,
-  getTitlePost,
 };
