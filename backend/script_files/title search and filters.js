@@ -75,25 +75,6 @@ async function getFilterSearchResults(req, res) {
   res.send({ result: final_to_send });
 }
 
-async function getFilterSearchResults2(req, res) {
-  const titlePart = normalizeString(req.body.titlePart);
-
-  const resTitles = await searchTitleHelp(req.body.titlePart);
-
-  const final_to_send = resTitles.filter((item) => {
-    return (
-      item.rating.avRating >= req.body.minrating &&
-      (req.body.genre == null ||
-        (item.genres.length > 0 &&
-          item.genres.some(
-            (g) => normalizeString(g.genreTitle) == req.body.genre
-          )))
-    );
-  });
-
-  res.send({ result: final_to_send });
-}
-
 async function searchTitle(req, res) {
   res.send(await searchTitleHelp(req.body.titlePart));
 }
@@ -158,5 +139,4 @@ module.exports = {
   searchTitle,
   byGenre,
   getFilterSearchResults,
-  getFilterSearchResults2,
 };

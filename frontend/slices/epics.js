@@ -129,43 +129,19 @@ const fetchSingleNameEpic = (action$) =>
     )
   );
 
-// const fetchResultsEpic = (action$) =>
-//   action$.pipe(
-//     ofType("results/fetchResults"),
-//     mergeMap(({ payload }) =>
-//       forkJoin({
-//         titles: from(
-//           axios.post(`${backendUrl}/searchtitle`, {
-//             titlePart: payload.titlePart,
-//           })
-//         ).pipe(map(({ data }) => data)),
-//         names: from(
-//           axios.post(`${backendUrl}/searchname`, {
-//             namePart: payload.titlePart,
-//           })
-//         ).pipe(map(({ data }) => data)),
-//       }).pipe(
-//         map(({ titles, names }) => fetchResultsSucceeded({ titles, names })),
-//         catchError((error) => {
-//           of(fetchResultsFailed(error.message));
-//         })
-//       )
-//     )
-//   );
-
 const helper = (first, second, payload) => {
   return Promise.all([
     axios.post(`${backendUrl}/bygenre`, {
       qgenre: first,
       minrating: payload.rating,
       yrTo: "2024",
-      yrFrom: "1800",
+      yrFrom: "2010",
     }),
     axios.post(`${backendUrl}/bygenre`, {
       qgenre: second,
       minrating: payload.rating,
       yrTo: "2024",
-      yrFrom: "1800",
+      yrFrom: "2010",
     }),
   ]);
 };
@@ -185,7 +161,7 @@ function getGenreResults(payload) {
         qgenre: payload.genre,
         minrating: payload.rating,
         yrTo: "2024",
-        yrFrom: "1800",
+        yrFrom: "2010",
       });
   }
 }
@@ -203,6 +179,7 @@ const newFetchResultsEpic = (action$) =>
             : getGenreResults(payload)
         ).pipe(
           map((response) => {
+            console.log(response);
             if (response.data) {
               return response.data;
             }
@@ -249,7 +226,7 @@ const newFetchResultsEpic = (action$) =>
           )
         ),
         names: from(
-          axios.get(`${backendUrl}/searchname/${payload.titlePart}`)
+          axios.get(`${backendUrl}/searchname2/${payload.titlePart}`)
         ).pipe(map(({ data }) => data)),
       }).pipe(
         map(({ titles, names }) => fetchResultsSucceeded({ titles, names })),

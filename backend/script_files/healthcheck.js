@@ -15,11 +15,8 @@ async function getHealthCheck(req, res) {
   const apiInfo = getApiInfo();
 
   const responseData = {
-    api: {
-      status: apiStatus,
-      url: apiInfo.baseUrl,
-      key: apiInfo.apiKey,
-    },
+    status: apiStatus,
+    dataconnection: { url: apiInfo.baseUrl, key: apiInfo.apiKey },
   };
 
   res.json(responseData);

@@ -72,10 +72,8 @@ const Header = () => {
       rating: Number(rating),
       genre,
     };
-    if (searchInput !== lastSearchInput) {
-      dispatch(
-        fetchResults({ titlePart: searchInput, rating: Number(rating), genre })
-      );
+    if (searchParams !== lastSearchInput) {
+      dispatch(fetchResults({ ...searchParams, searchParams }));
     }
     if (searchInput !== "" || rating || genre) {
       const searchURL = `/search-results?searchInput=${encodeURIComponent(searchInput)}&rating=${encodeURIComponent(rating)}&genre=${encodeURIComponent(genre)}`;

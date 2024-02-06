@@ -27,12 +27,7 @@ const {
   getName2,
 } = require("./names.js");
 
-const {
-  searchTitle,
-  byGenre,
-  getFilterSearchResults,
-  getFilterSearchResults2,
-} = require("./title search and filters.js");
+const { searchTitle, byGenre } = require("./title search and filters.js");
 
 const {
   searchTitlePost,
@@ -41,19 +36,17 @@ const {
 
 app.get("/ntuaflix_api/popular_movies", getPopularMovies);
 
-app.get("/ntuaflix_api/similar_movies", getSimilarMovies);
-
 app.get("/ntuaflix_api/searchtitle", searchTitle);
 
 app.get("/ntuaflix_api/bygenre", byGenre);
 
 app.get("/ntuaflix_api/title/:titleID", getTitle);
 
-app.get("/ntuaflix_api/filtersearch", getFilterSearchResults2);
-
 app.get("/ntuaflix_api/searchname", getSearchNameResult);
 
-app.get("/ntuaflix_api/searchname/:namePart", getSearchNameResult2);
+app.get("/ntuaflix_api/searchname2", getSearchNameResult2);
+
+app.get("/ntuaflix_api/searchname2/:namePart", getSearchNameResult2);
 
 app.get("/ntuaflix_api/name/:nameID", getName);
 
@@ -62,8 +55,6 @@ app.get("/ntuaflix_api/admin/healthcheck", getHealthCheck);
 app.post("/ntuaflix_api/searchtitle", searchTitlePost);
 
 app.post("/ntuaflix_api/bygenre", byGenrePost);
-
-app.post("/ntuaflix_api/searchname", getSearchNameResult);
 
 app.post("/ntuaflix_api/similar_movies", getSimilarMovies);
 

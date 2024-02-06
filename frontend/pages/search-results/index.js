@@ -16,7 +16,7 @@ const SearchResults = () => {
 
   const { searchInput, rating, genre } = router.query;
   useEffect(() => {
-    if ((searchInput || rating || genre) && titleResults) {
+    if ((searchInput || rating || genre) && !titleResults) {
       const searchParams = {
         titlePart: searchInput ?? "",
         rating: Number(rating),
@@ -31,10 +31,10 @@ const SearchResults = () => {
 
   const handleItemClick = (item) => {
     if (item.type === "movie") {
-      dispatch(setSingleTitle(item));
+      //dispatch(setSingleTitle(item));
       router.replace(`/title/movie/${item.titleID}`);
     } else if (item.type === "tv") {
-      dispatch(setSingleTitle(item));
+      //dispatch(setSingleTitle(item));
       router.replace(`/title/tv/${item.titleID}`);
     } else {
       dispatch(setSingleName(item));

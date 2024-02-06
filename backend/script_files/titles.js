@@ -56,8 +56,7 @@ async function getTitle(req, res) {
         ret = await getTvInfo(response);
       } catch (error) {
         if (error.response.data.status_code == 34) {
-          console.log("No data");
-          res.status(204).end();
+          res.status(400).send("Bad request");
         }
       }
     }
