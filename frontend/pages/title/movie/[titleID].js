@@ -34,6 +34,32 @@ const singleTitle = () => {
     ? `https://image.tmdb.org/t/p/w780${singleTitle?.titlePoster}`
     : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTv2rNkxu82jwemyb3lSLkmbyLCqflQDMJPA&usqp=CAU";
 
+  // Filter directors, writers, actors, and producers
+  const directors = singleTitle?.principals?.filter(
+    (item) => item.category === "crew" && item.character === "Director"
+  );
+  const writers = singleTitle?.principals?.filter(
+    (item) => item.category === "crew" && item.character.includes("Writer")
+  );
+  const actors = singleTitle?.principals?.filter(
+    (item) => item.category === "actor"
+  );
+  const producers = singleTitle?.principals?.filter(
+    (item) => item.category === "crew" && item.character.includes("Producer")
+  );
+
+  // Get the names of directors, writers, actors, and producers
+  const directorNames = directors?.map((director) => director.name);
+  const writerNames = writers?.map((writer) => writer.name);
+  const actorNames = actors?.slice(0, 5).map((actor) => actor.name);
+  const producerNames = producers?.slice(0, 5).map((producer) => producer.name);
+
+  // Create the strings with comma-separated names
+  const directorsString = directorNames?.join(", ");
+  const writersString = writerNames?.join(", ");
+  const actorsString = actorNames?.join(", ");
+  const producersString = producerNames?.join(", ");
+
   return (
     <div>
       <div
@@ -57,18 +83,18 @@ const singleTitle = () => {
           height={800} // Set the height
           border={0} // Set the border
           padding={2} // Set the padding
-          display="flex" // Use flex display
-          alignItems="center" // Align items vertically (center)
-          justifyContent="flex-start"
-          margin={"auto"}
+          display="flex" // Use flex display to keep the row direction
+          alignItems="center" // Align items vertically in the center
+          justifyContent="flex-start" // Align items to the start of the main-axis (horizontally)
+          margin="auto"
           borderRadius={3}
-          bgcolor={"#F4DDD6"}
+          bgcolor="#F4DDD6"
         >
           <Box
             width={500} // Set the width of the inner box
             height={750} // Set the height of the inner box
             marginLeft={5}
-            bgcolor={"#979797"}
+            bgcolor="#979797"
             borderRadius={3}
             style={{
               backgroundImage: `url(${poster})`, // Replace with your image URL
@@ -77,6 +103,7 @@ const singleTitle = () => {
             }}
           ></Box>
         </Box>
+
         <Box height={60} />
       </div>
       {singleTitle?.description !== "" && (
@@ -98,7 +125,7 @@ const singleTitle = () => {
         </>
       )}
       <Box height={50} />
-      <Typography variant="h5" gutterBottom marginLeft={10}>
+      <Typography variant="h5" gutterBottom marginLeft={10} fontWeight="bold">
         Actors and Crew
       </Typography>
       <Box height={50} />
@@ -126,7 +153,7 @@ const singleTitle = () => {
       )}
       <Box height={50} />
       <Box height={50} />
-      <Typography variant="h5" gutterBottom marginLeft={10}>
+      <Typography variant="h5" gutterBottom marginLeft={10} fontWeight="bold">
         Similar Movies
       </Typography>
       <Box height={50} />

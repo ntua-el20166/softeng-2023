@@ -14,14 +14,26 @@ async function getPopularMovies(req, res) {
 }
 async function getSimilarMovies(req, res) {
   try {
-    let response = await fetchData(`/movie/${req.body.movie_id}/similar`);
-    const movies = response.results;
+    let response, ret, to_send;
 
-    let to_send = await Promise.all(
-      movies?.map(async (obj) => {
-        return await getMovieInfo(obj);
-      }) ?? []
-    );
+    if (req.body.type == "tv") {
+      response = await fetchData(`/tv/${req.body.movie_id}/similar`);
+      ret = response.results;
+      to_send = await Promise.all(
+        ret?.map(async (obj) => {
+          return await getTvInfo(obj);
+        }) ?? []
+      );
+    } else {
+      response = await fetchData(`/movie/${req.body.movie_id}/similar`);
+      ret = response.results;
+      to_send = await Promise.all(
+        ret?.map(async (obj) => {
+          return await getMovieInfo(obj);
+        }) ?? []
+      );
+    }
+
     res.send({ result: to_send });
   } catch (error) {
     if (error.response.data.status_code == 34) {
