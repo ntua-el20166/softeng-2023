@@ -6,6 +6,7 @@ import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
@@ -216,17 +217,6 @@ const Header = () => {
               },
             }}
           >
-            <IconButton
-              type="button"
-              aria-label="search"
-              onClick={() => {
-                setRating("");
-                setGenre("");
-                setSearchInput("");
-              }}
-            >
-              x
-            </IconButton>
             <InputBase
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search titles, people"
@@ -247,6 +237,34 @@ const Header = () => {
               <SearchIcon />
             </IconButton>
           </Paper>
+        </Grid>
+        <Grid item>
+          <Button
+            type="button"
+            aria-label="clear-filters"
+            onClick={() => {
+              setRating("");
+              setGenre("");
+              setSearchInput("");
+            }}
+            endIcon={<DeleteOutlineIcon />} // Add the DeleteIcon as the startIcon
+            sx={{
+              minWidth: 50,
+              flex: 0.3,
+              backgroundColor: "#FFFFFF",
+              color: "#000000",
+              "&:hover": {
+                backgroundColor: "#F4DDD6",
+              },
+              borderRadius: "5px",
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+              padding: "8px",
+              fontSize: "0.9rem",
+              textTransform: "none",
+            }}
+          >
+            Clear Filters
+          </Button>
         </Grid>
       </Grid>
     </Box>

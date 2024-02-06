@@ -62,6 +62,14 @@ const NameCard = ({ name, birthYr, deathYr, poster, profession, loading }) => {
                     return "Actor";
                   case "Directing":
                     return "Director";
+                  case "Editing":
+                    return "Editor";
+                  case "Production":
+                    return "Producer";
+                  case "Art":
+                    return "Artist";
+                  case "Camera":
+                    return "Cinematographer";
                   default:
                     return "";
                 }

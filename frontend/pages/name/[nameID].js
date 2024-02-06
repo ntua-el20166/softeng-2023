@@ -19,10 +19,38 @@ const singleName = () => {
   const singleNameLoading = useSelector(
     (state) => state.singleName.singleNameLoading
   );
+  // Helper function to map professions
+  const getProfessionDisplayName = (profession) => {
+    switch (profession) {
+      case "Acting":
+        return "Actor";
+      case "Directing":
+        return "Director";
+      case "Writing":
+        return "Writer";
+      case "Editing":
+        return "Editor";
+      case "Production":
+        return "Producer";
+      case "Art":
+        return "Artist";
+      case "Camera":
+        return "Cinematographer";
+      default:
+        return "";
+    }
+  };
+
+  // Helper function to format years
+  const formatYears = (birthYr, deathYr) => {
+    const formattedBirthYear = birthYr || "unknown";
+    const formattedDeathYear = deathYr ? ` - ${deathYr}` : "";
+    return `${formattedBirthYear}${formattedDeathYear}`;
+  };
   return (
     <div>
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
           {singleNameLoading ? "loading" : singleName?.name}
         </Typography>
 
@@ -52,10 +80,51 @@ const singleName = () => {
           >
             {/* Content of the inner box */}
           </Box>
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="flex-start" // Aligns children to the top
+            marginLeft={10} // Add some space from the previous box
+            paddingBottom={5}
+            paddingTop={5}
+          >
+            <Typography
+              variant="h5"
+              gutterBottom
+              style={{
+                marginBottom: 100,
+                textAlign: "left",
+                fontWeight: "bold",
+              }}
+            >
+              Profession:{" "}
+              {singleNameLoading
+                ? "loading"
+                : getProfessionDisplayName(singleName?.profession)}
+            </Typography>
+            <Typography
+              variant="h5"
+              gutterBottom
+              style={{
+                marginBottom: 100,
+                textAlign: "left",
+                fontWeight: "bold",
+              }}
+            >
+              {singleNameLoading
+                ? "loading"
+                : formatYears(singleName?.birthYr, singleName?.deathYr)}
+            </Typography>
+          </Box>
         </Box>
         <Box height={60} />
       </div>
-      <Typography variant="h5" gutterBottom marginLeft={10}>
+      <Typography
+        variant="h5"
+        gutterBottom
+        marginLeft={10}
+        style={{ fontWeight: "bold" }}
+      >
         Biography
       </Typography>
       <Box
@@ -70,11 +139,14 @@ const singleName = () => {
         </Typography>
       </Box>
       <Box height={50} />
-      <Typography variant="h5" gutterBottom marginLeft={10}>
+      <Typography
+        variant="h5"
+        gutterBottom
+        marginLeft={10}
+        style={{ fontWeight: "bold" }}
+      >
         Movies he participated in
       </Typography>
-
-      <Box height={50} />
       {singleNameLoading
         ? "loading movies/tv shows that participated in"
         : singleName && <Carousel items={singleName?.nameTitles} />}
