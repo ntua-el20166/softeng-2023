@@ -79,6 +79,9 @@ async function getName(req, res) {
     switch (statusCode) {
       case 404:
         res.status(400).send("Bad request");
+        break;
+      default:
+        res.status(500).send("Internal server error");
     }
   }
 }

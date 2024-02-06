@@ -15,7 +15,10 @@ async function getPopularMovies(req, res) {
 async function getSimilarMovies(req, res) {
   try {
     let response, ret, to_send;
-
+    if (req.body.movie_id === undefined || isNaN(req.body.movie_id)) {
+      res.status(400).send("Bad request");
+      return;
+    }
     if (req.body.type == "tv") {
       response = await fetchData(`/tv/${req.body.movie_id}/similar`);
       ret = response.results;
@@ -24,7 +27,7 @@ async function getSimilarMovies(req, res) {
           return await getTvInfo(obj);
         }) ?? []
       );
-    } else {
+    } else if (req.body.type == "movie") {
       response = await fetchData(`/movie/${req.body.movie_id}/similar`);
       ret = response.results;
       to_send = await Promise.all(
@@ -32,12 +35,24 @@ async function getSimilarMovies(req, res) {
           return await getMovieInfo(obj);
         }) ?? []
       );
+    } else {
+      res.status(400).send("Bad request");
+      return;
     }
 
-    res.send({ result: to_send });
+    if (to_send.length === 0) {
+      res.status(204).send({ result: to_send });
+    } else {
+      res.status(200).send({ result: to_send });
+    }
   } catch (error) {
+    // if (error.response.data.status_code == 34) {
+    //   res.status(204).send({ result: [] }); //////// error codes+++
+    // }
     if (error.response.data.status_code == 34) {
-      res.send({ result: [] }); //////// error codes+++
+      res.status(400).send("Bad request");
+    } else {
+      res.status(500).send("Internal server error");
     }
   }
 }
