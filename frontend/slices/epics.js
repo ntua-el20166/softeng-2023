@@ -9,7 +9,6 @@ import { similarMoviesSlice } from "./reducers/similarMovies";
 import { similarTvsSlice } from "./reducers/similarTvs";
 import {
   fetchResultsSucceeded,
-  fetchResultsFailed,
   fetchSingleTitleSucceeded,
   fetchSingleNameSucceeded,
 } from "./reducers";
@@ -23,9 +22,7 @@ const fetchPopularMoviesEpic = (action$) =>
     mergeMap((action) =>
       from(axios.get(`${backendUrl}/popular_movies?duration=day`)).pipe(
         map(({ data }) => {
-          return popularMoviesSlice.actions.fetchPopularMoviesSucceeded(
-            data.result
-          );
+          return popularMoviesSlice.actions.fetchPopularMoviesSucceeded(data);
         }),
         catchError((error) =>
           of(popularMoviesSlice.actions.fetchPopularMoviesFailed(error))
@@ -45,9 +42,7 @@ const fetchSimilarMoviesEpic = (action$) =>
         })
       ).pipe(
         map(({ data }) => {
-          return similarMoviesSlice.actions.fetchSimilarMoviesSucceeded(
-            data.result
-          );
+          return similarMoviesSlice.actions.fetchSimilarMoviesSucceeded(data);
         }),
         catchError((error) =>
           of(similarMoviesSlice.actions.fetchSimilarMoviesFailed(error))
@@ -67,7 +62,7 @@ const fetchSimilarTvsEpic = (action$) =>
         })
       ).pipe(
         map(({ data }) => {
-          return similarTvsSlice.actions.fetchSimilarTvsSucceeded(data.result);
+          return similarTvsSlice.actions.fetchSimilarTvsSucceeded(data);
         }),
         catchError((error) =>
           of(similarTvsSlice.actions.fetchSimilarTvsFailed(error))
@@ -119,7 +114,6 @@ const fetchSingleNameEpic = (action$) =>
     mergeMap(({ payload }) =>
       from(axios.post(`${backendUrl}/name2/${payload.nameID}`)).pipe(
         map(({ data }) => {
-          console.log(data);
           return fetchSingleNameSucceeded(data);
         }),
         catchError((error) =>
@@ -226,7 +220,9 @@ const newFetchResultsEpic = (action$) =>
           )
         ),
         names: from(
-          axios.get(`${backendUrl}/searchname2/${payload.titlePart}`)
+          axios.post(`${backendUrl}/searchname2`, {
+            namePart: payload.titlePart,
+          })
         ).pipe(map(({ data }) => data)),
       }).pipe(
         map(({ titles, names }) => fetchResultsSucceeded({ titles, names })),
