@@ -32,7 +32,7 @@ const { searchTitle, byGenre } = require("./title search and filters.js");
 const {
   searchTitlePost,
   byGenrePost,
-} = require("./with_post_method/title_search_and_filters.js");
+} = require("./post/title_search_and_filters.js");
 
 app.get("/ntuaflix_api/popular_movies", getPopularMovies);
 

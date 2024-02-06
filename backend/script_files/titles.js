@@ -1,5 +1,5 @@
 const { getMovieInfo, getTvInfo } = require("./helpers.js");
-const { getMovieInfo2, getTvInfo2 } = require("./helpers2.js");
+const { getMovieInfo2, getTvInfo2 } = require("./post/helpers_Post.js");
 const { fetchData } = require("./apiService.js");
 const { errorHandler, checkResultEmpty } = require("./errorHandler.js");
 
