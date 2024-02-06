@@ -1,5 +1,8 @@
 const { getMovieInfo, getTvInfo } = require("./helpers.js");
-const { getMovieInfo2, getTvInfo2 } = require("./helpers2.js");
+const {
+  getMovieInfo2,
+  getTvInfo2,
+} = require("./with_post_method/helpers_Post.js");
 const { fetchData } = require("./apiService.js");
 
 async function getPopularMovies(req, res) {
