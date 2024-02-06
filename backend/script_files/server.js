@@ -49,7 +49,11 @@ app.get("/ntuaflix_api/name/:nameID", getName);
 
 app.get("/ntuaflix_api/admin/healthcheck", getHealthCheck);
 
-app.post("/ntuaflix_api/searchtitle", searchTitlePost);
+app.post("/ntuaflix_api/searchtitle", searchTitle);
+
+app.post("/ntuaflix_api/searchtitle2", searchTitlePost);
+
+app.post("/ntuaflix_api/searchname", getSearchNameResult);
 
 app.post("/ntuaflix_api/searchname2", getSearchNameResultPost);
 

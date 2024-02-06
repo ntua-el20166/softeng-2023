@@ -5,10 +5,10 @@ const { writeCsv, printJson } = require("../utils/csvWriter");
 async function byGenre(options) {
   try {
     const queryParams = {
-      genre: options.genre,
+      qgenre: options.genre,
       minrating: options.min,
-      yrFrom: options.from,
-      yrTo: options.to,
+      yrFrom: options.from ?? 2010,
+      yrTo: options.to ?? 2024,
     };
     const response = await axios.post(`${apiBaseUrl}/bygenre`, queryParams);
     const titles = response.data;

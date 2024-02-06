@@ -4,9 +4,9 @@ const { writeCsv, printJson } = require("../utils/csvWriter");
 
 async function searchName(options) {
   try {
-    const response = await axios.get(
-      `${apiBaseUrl}/searchname/${options.name}`
-    );
+    const response = await axios.post(`${apiBaseUrl}/searchname`, {
+      namePart: options.name,
+    });
     const names = response.data;
 
     if (options.format === "csv") {

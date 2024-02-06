@@ -173,13 +173,12 @@ const newFetchResultsEpic = (action$) =>
       forkJoin({
         titles: from(
           payload.titlePart !== ""
-            ? axios.post(`${backendUrl}/searchtitle`, {
+            ? axios.post(`${backendUrl}/searchtitle2`, {
                 titlePart: payload.titlePart,
               })
             : getGenreResults(payload)
         ).pipe(
           map((response) => {
-            console.log(response);
             if (response.data) {
               return response.data;
             }
