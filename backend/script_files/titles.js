@@ -1,44 +1,44 @@
 const { getMovieInfo, getTvInfo } = require("./helpers.js");
 const { getMovieInfo2, getTvInfo2 } = require("./helpers2.js");
 const { fetchData } = require("./apiService.js");
+const { errorHandler, checkResultEmpty } = require("./errorHandler.js");
 
 async function getPopularMovies(req, res) {
-  let response = await fetchData(`/trending/movie/day`);
-  const movies = response.results;
-  let to_send = await Promise.all(
-    movies.map(async (obj) => {
-      return await getMovieInfo(obj);
-    })
-  );
-  res.send({ result: to_send });
+  try {
+    const response = await fetchData(`/trending/movie/day`);
+    const movies = response.results;
+    let to_send = await Promise.all(
+      movies.map(async (obj) => {
+        return await getMovieInfo(obj);
+      })
+    );
+    checkResultEmpty(to_send);
+    res.send(to_send);
+  } catch (error) {
+    errorHandler(error, res);
+  }
 }
-async function getSimilarMovies(req, res) {
+async function getSimilarTitles(req, res) {
   try {
     let response, ret, to_send;
 
-    if (req.body.type == "tv") {
-      response = await fetchData(`/tv/${req.body.movie_id}/similar`);
-      ret = response.results;
-      to_send = await Promise.all(
-        ret?.map(async (obj) => {
+    response = await fetchData(
+      `/${req.body.type}/${req.body.movie_id}/similar`
+    );
+    ret = response.results;
+    to_send = await Promise.all(
+      ret?.map(async (obj) => {
+        if (req.body.type == "tv") {
           return await getTvInfo(obj);
-        }) ?? []
-      );
-    } else {
-      response = await fetchData(`/movie/${req.body.movie_id}/similar`);
-      ret = response.results;
-      to_send = await Promise.all(
-        ret?.map(async (obj) => {
+        } else {
           return await getMovieInfo(obj);
-        }) ?? []
-      );
-    }
-
-    res.send({ result: to_send });
+        }
+      }) ?? []
+    );
+    checkResultEmpty(to_send);
+    res.send(to_send);
   } catch (error) {
-    if (error.response.data.status_code == 34) {
-      res.send({ result: [] }); //////// error codes+++
-    }
+    catchError(error, res);
   }
 }
 
@@ -65,7 +65,7 @@ async function getTitle(req, res) {
   res.send(ret);
 }
 
-async function getTitle2(req, res) {
+async function getTitlePost(req, res) {
   try {
     let response;
     let ret;
@@ -76,32 +76,15 @@ async function getTitle2(req, res) {
       response = await fetchData(`/movie/${req.params.titleID}`);
       ret = await getMovieInfo2(response);
     }
-
     res.send(ret);
   } catch (error) {
-    if (error.response) {
-      const statusCode = error.response.status;
-
-      if (statusCode === 400) {
-        res.status(400).send("Bad request"); // 400 Bad request
-      } else if (statusCode === 404) {
-        res.status(404).send("Not available"); // 404 Not available
-      } else {
-        res.status(500).send("Internal server error"); // Other status codes
-      }
-    } else if (error.request) {
-      console.error("No response received from server");
-      res.status(500).send("Internal Server Error"); // 500 Internal server error
-    } else {
-      console.error("Error setting up the request:", error.message);
-      res.status(500).send("Internal Server Error"); // 500 Internal server error
-    }
+    errorHandler(error, res);
   }
 }
 
 module.exports = {
   getPopularMovies,
-  getSimilarMovies,
+  getSimilarTitles,
   getTitle,
-  getTitle2,
+  getTitlePost,
 };
