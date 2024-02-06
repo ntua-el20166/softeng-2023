@@ -256,7 +256,7 @@ const singleTitle = () => {
             <Skeleton height={500} />
           </Box>
         </Box>
-      ) : similarTvs.length > 0 ? (
+      ) : similarTvs?.length > 0 ? (
         <Carousel items={similarTvs} />
       ) : (
         <Typography variant="h6" gutterBottom marginLeft={10}>
