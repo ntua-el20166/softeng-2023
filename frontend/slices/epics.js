@@ -5,6 +5,8 @@ import { mergeMap, catchError, map, filter } from "rxjs/operators";
 import { popularMoviesSlice } from "./reducers/popularMovies";
 
 import { similarMoviesSlice } from "./reducers/similarMovies";
+
+import { similarTvsSlice } from "./reducers/similarTvs";
 import {
   fetchResultsSucceeded,
   fetchResultsFailed,
@@ -39,6 +41,7 @@ const fetchSimilarMoviesEpic = (action$) =>
       from(
         axios.post(`${backendUrl}/similar_movies`, {
           movie_id: payload.movie_id,
+          type: "movie",
         })
       ).pipe(
         map(({ data }) => {
@@ -48,6 +51,26 @@ const fetchSimilarMoviesEpic = (action$) =>
         }),
         catchError((error) =>
           of(similarMoviesSlice.actions.fetchSimilarMoviesFailed(error))
+        )
+      )
+    )
+  );
+
+const fetchSimilarTvsEpic = (action$) =>
+  action$.pipe(
+    ofType("similarTvs/fetchSimilarTvs"),
+    mergeMap(({ payload }) =>
+      from(
+        axios.post(`${backendUrl}/similar_movies`, {
+          movie_id: payload.tv_id,
+          type: "tv",
+        })
+      ).pipe(
+        map(({ data }) => {
+          return similarTvsSlice.actions.fetchSimilarTvsSucceeded(data.result);
+        }),
+        catchError((error) =>
+          of(similarTvsSlice.actions.fetchSimilarTvsFailed(error))
         )
       )
     )
@@ -241,6 +264,7 @@ export const rootEpic = combineEpics(
   fetchSingleNameEpic,
   fetchSingleTvEpic,
   fetchSingleMovieEpic,
+  fetchSimilarTvsEpic,
   fetchSimilarMoviesEpic,
   newFetchResultsEpic
 );

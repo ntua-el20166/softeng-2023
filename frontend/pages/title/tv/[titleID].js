@@ -5,7 +5,7 @@ import { Typography, Box } from "@mui/material";
 
 import { Carousel } from "../../../components";
 
-import { fetchSingleTv, fetchSimilarMovies } from "../../../slices";
+import { fetchSingleTv, fetchSimilarTvs } from "../../../slices";
 
 const singleTitle = () => {
   const router = useRouter();
@@ -16,18 +16,16 @@ const singleTitle = () => {
     if (titleID !== singleTitle?.titleID && titleID) {
       dispatch(fetchSingleTv({ titleID: titleID }));
 
-      dispatch(fetchSimilarMovies({ movie_id: titleID }));
+      dispatch(fetchSimilarTvs({ tv_id: titleID }));
     }
   }, [titleID]);
   const singleTitleLoading = useSelector(
     (state) => state.singleTitle.singleTitleLoading
   );
-  const similarMoviesLoading = useSelector(
-    (state) => state.similarMovies.similarMoviesLoading
+  const similarTvsLoading = useSelector(
+    (state) => state.similarTvs.similarTvsLoading
   );
-  const similarMovies = useSelector(
-    (state) => state.similarMovies.similarMovies
-  );
+  const similarTvs = useSelector((state) => state.similarTvs.similarTvs);
 
   // Filter directors, writers, actors, and producers
   const directors = singleTitle?.principals?.filter(
@@ -176,12 +174,12 @@ const singleTitle = () => {
       <Box height={50} />
       <Box height={50} />
       <Typography variant="h5" gutterBottom marginLeft={10} fontWeight="bold">
-        Similar Movies
+        Similar Series
       </Typography>
       <Box height={50} />
-      {similarMoviesLoading
-        ? "loading similar movies"
-        : similarMovies && <Carousel items={similarMovies} />}
+      {similarTvsLoading
+        ? "loading similar tvs"
+        : similarTvs && <Carousel items={similarTvs} />}
       <Box height={50} />
     </div>
   );
