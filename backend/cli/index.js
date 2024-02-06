@@ -5,7 +5,7 @@ const setupHealthcheckCommand = require("./src/commands/healthcheck");
 const setupTitleCommand = require("./src/commands/title");
 const setupSearchTitleCommand = require("./src/commands/searchtitle");
 const setupByGenreCommand = require("./src/commands/bygenre");
-const setupNameCommand = require("./src/commands/name/name");
+const setupNameCommand = require("./src/commands/name");
 const setupSearchNameCommand = require("./src/commands/searchname");
 
 // Set CLI metadata

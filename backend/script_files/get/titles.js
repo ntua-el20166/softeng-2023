@@ -1,6 +1,6 @@
 const { getMovieInfo, getTvInfo } = require("./helpers.js");
-const { fetchData } = require("./apiService.js");
-const { errorHandler, checkResultEmpty } = require("./errorHandler.js");
+const { fetchData } = require("../apiService.js");
+const { errorHandler, checkResultEmpty } = require("../errorHandler.js");
 
 async function getPopularMovies(req, res) {
   try {
