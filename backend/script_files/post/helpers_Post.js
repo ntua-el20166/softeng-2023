@@ -1,6 +1,6 @@
-const { fetchData } = require("./apiService");
+const { fetchData } = require("../apiService");
 
-class nameObject2 {
+class nameObjectPost {
   constructor(
     nameID,
     name,
@@ -21,7 +21,7 @@ class nameObject2 {
     this.nameTitles = nameTitles;
   }
 }
-class titleObject2 {
+class titleObjectPost {
   constructor(
     titleID,
     type,
@@ -175,46 +175,39 @@ async function getTvInfo2(jsonObject) {
 
 async function getPersonInfo2(nameID) {
   let nameTitles;
-  try {
-    let response = await fetchData(`/person/${nameID}/combined_credits`);
+  let response = await fetchData(`/person/${nameID}/combined_credits`);
 
-    const cast = response.cast;
-    var one = cast.map((person) => {
-      return {
-        titleID: person.id,
-        type: person.media_type,
-        titlePoster: person.poster_path,
-        category: "Actor",
-        character: person.character,
-      };
-    });
-    const crew = response.crew;
-    var two = crew.map((person) => {
-      return {
-        titleID: person.id,
-        type: person.media_type,
-        titlePoster: person.poster_path,
-        category: "crew",
-        character: person.job,
-      };
-    });
-    nameTitles = one.concat(two);
+  const cast = response.cast;
+  var one = cast.map((person) => {
+    return {
+      titleID: person.id,
+      type: person.media_type,
+      titlePoster: person.poster_path,
+      category: "Actor",
+      character: person.character,
+    };
+  });
+  const crew = response.crew;
+  var two = crew.map((person) => {
+    return {
+      titleID: person.id,
+      type: person.media_type,
+      titlePoster: person.poster_path,
+      category: "crew",
+      character: person.job,
+    };
+  });
+  nameTitles = one.concat(two);
 
-    return {
-      nameTitles,
-    };
-  } catch (error) {
-    console.error("Error:", error.message);
-    return {
-      nameTitles: [],
-    };
-  }
+  return {
+    nameTitles,
+  };
 }
 
 module.exports = {
-  getMovieInfo2,
-  getTvInfo2,
-  getPersonInfo2,
-  nameObject2,
-  titleObject2,
+  getMovieInfoPost,
+  getTvInfoPost,
+  getPersonInfoPost,
+  nameObjectPost,
+  titleObjectPost,
 };

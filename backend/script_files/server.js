@@ -15,16 +15,16 @@ const { getHealthCheck } = require("./healthcheck.js");
 
 const {
   getPopularMovies,
-  getSimilarMovies,
+  getSimilarTitles,
   getTitle,
-  getTitle2,
+  getTitlePost,
 } = require("./titles.js");
 
 const {
   getSearchNameResult,
   getName,
   getSearchNameResult2,
-  getName2,
+  getNamePost,
 } = require("./names.js");
 
 const { searchTitle, byGenre } = require("./title search and filters.js");
@@ -32,7 +32,7 @@ const { searchTitle, byGenre } = require("./title search and filters.js");
 const {
   searchTitlePost,
   byGenrePost,
-} = require("./with_post_method/title_search_and_filters.js");
+} = require("./post/title_search_and_filters.js");
 
 app.get("/ntuaflix_api/popular_movies", getPopularMovies);
 
@@ -44,23 +44,21 @@ app.get("/ntuaflix_api/title/:titleID", getTitle);
 
 app.get("/ntuaflix_api/searchname", getSearchNameResult);
 
-app.get("/ntuaflix_api/searchname2", getSearchNameResult2);
-
-app.get("/ntuaflix_api/searchname2/:namePart", getSearchNameResult2);
-
 app.get("/ntuaflix_api/name/:nameID", getName);
 
 app.get("/ntuaflix_api/admin/healthcheck", getHealthCheck);
 
 app.post("/ntuaflix_api/searchtitle", searchTitlePost);
 
+app.post("/ntuaflix_api/searchname2", getSearchNameResult2);
+
 app.post("/ntuaflix_api/bygenre", byGenrePost);
 
-app.post("/ntuaflix_api/similar_movies", getSimilarMovies);
+app.post("/ntuaflix_api/similar_movies", getSimilarTitles);
 
-app.post("/ntuaflix_api/title2/:titleID", getTitle2);
+app.post("/ntuaflix_api/title2/:titleID", getTitlePost);
 
-app.post("/ntuaflix_api/name2/:nameID", getName2);
+app.post("/ntuaflix_api/name2/:nameID", getNamePost);
 
 app.use((req, res, next) => {
   res.status(404).send("Not Available");

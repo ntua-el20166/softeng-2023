@@ -178,34 +178,27 @@ async function getTvInfo(jsonObject) {
 
 async function getPersonInfo(nameID) {
   let nameTitles;
-  try {
-    let response = await fetchData(`/person/${nameID}/combined_credits`);
+  let response = await fetchData(`/person/${nameID}/combined_credits`);
 
-    const cast = response.cast;
-    var one = cast.map((person) => {
-      return {
-        titleID: `${person.id}`,
-        category: "Actor",
-      };
-    });
-    const crew = response.crew;
-    var two = crew.map((person) => {
-      return {
-        titleID: `${person.id}`,
-        category: person.job,
-      };
-    });
-    nameTitles = one.concat(two);
+  const cast = response.cast;
+  var one = cast.map((person) => {
+    return {
+      titleID: `${person.id}`,
+      category: "Actor",
+    };
+  });
+  const crew = response.crew;
+  var two = crew.map((person) => {
+    return {
+      titleID: `${person.id}`,
+      category: person.job,
+    };
+  });
+  nameTitles = one.concat(two);
 
-    return {
-      nameTitles,
-    };
-  } catch (error) {
-    console.error("Error:", error.message);
-    return {
-      nameTitles: [],
-    };
-  }
+  return {
+    nameTitles,
+  };
 }
 function normalizeString(str) {
   return str.trim().toLowerCase().replace(/&/g, "and");
