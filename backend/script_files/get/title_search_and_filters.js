@@ -5,6 +5,7 @@ const {
   getTvInfo,
 } = require("./helpers.js");
 const { fetchData } = require("../apiService.js");
+const { errorHandler } = require("../errorHandler.js");
 
 async function getFilterSearchResults(req, res) {
   // let date_to = gqueryObject.yrTo + "-12-31";
@@ -74,7 +75,11 @@ async function getFilterSearchResults(req, res) {
 }
 
 async function searchTitle(req, res) {
-  res.send(await searchTitleHelp(req.body.titlePart));
+  try {
+    res.send(await searchTitleHelp(req.body.titlePart));
+  } catch (error) {
+    errorHandler(error, res);
+  }
 }
 
 async function byGenre(req, res) {

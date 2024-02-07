@@ -1,4 +1,5 @@
 const { fetchData } = require("../apiService");
+const { checkResultEmpty } = require("../errorHandler");
 
 class nameObject {
   constructor(
@@ -331,10 +332,10 @@ async function searchTitleHelp(titlePart) {
           }
         })
       );
-
       return to_send;
     }
   );
+  checkResultEmpty(reply);
   return reply;
 }
 
