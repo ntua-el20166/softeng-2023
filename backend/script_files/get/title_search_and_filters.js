@@ -10,6 +10,7 @@ const { errorHandler, checkResultEmpty } = require("../errorHandler.js");
 async function getFilterSearchResults(req, res) {
   // let date_to = gqueryObject.yrTo + "-12-31";
   // let date_from = gqueryObject.yrFrom + "-01-01";
+
   let genre = normalizeString(req.body.genre);
   const titlePart = normalizeString(req.body.titlePart);
 
@@ -91,8 +92,23 @@ async function searchTitle(req, res) {
 async function byGenre(req, res) {
   try {
     const gqueryObject = req.body;
-    let date_to = gqueryObject.yrTo + "-12-31";
-    let date_from = gqueryObject.yrFrom + "-01-01";
+    const requiredKeys = ["qgenre", "minrating"];
+    const optionalKeys = ["qgenre", "minrating", "yrFrom", "yrTo"];
+
+    const keys = Object.keys(gqueryObject);
+
+    if (keys !== requiredKeys && keys !== optionalKeys) {
+      const error = new Error("namePart is required");
+      error.response = { status: 400 };
+      throw error;
+    }
+
+    let date_to = gqueryObject.yrTo
+      ? gqueryObject.yrTo + "-12-31"
+      : "2024-12-31";
+    let date_from = gqueryObject.yrTo
+      ? gqueryObject.yrFrom + "-01-01"
+      : "1816-01-01";
     let genre = normalizeString(gqueryObject.qgenre);
 
     const genreList_response = await fetchData(`/genre/movie/list`);
