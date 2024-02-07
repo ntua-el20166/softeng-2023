@@ -48,16 +48,11 @@ async function getTitle(req, res) {
     response = await fetchData(`/movie/${req.params.titleID}`);
     ret = await getMovieInfo(response);
   } catch (error) {
-    if (error.response.data.status_code == 34) {
-      console.log("No movie");
-      try {
-        response = await fetchData(`/tv/${req.params.titleID}`);
-        ret = await getTvInfo(response);
-      } catch (error) {
-        if (error.response.data.status_code == 34) {
-          res.status(400).send("Bad request");
-        }
-      }
+    try {
+      response = await fetchData(`/tv/${req.params.titleID}`);
+      ret = await getTvInfo(response);
+    } catch (error) {
+      res.status(400).send("Bad request");
     }
   }
 
