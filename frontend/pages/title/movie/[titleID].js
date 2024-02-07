@@ -68,7 +68,7 @@ const singleTitle = () => {
           marginBottom: "20px",
         }}
       >
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
           {singleTitleLoading ? (
             <Box width={200} sx={{ mx: "auto" }}>
               <Skeleton height={30} />
@@ -127,50 +127,58 @@ const singleTitle = () => {
             width={"70%"}
             paddingTop={5}
           >
-            <Typography
-              variant="h5"
-              gutterBottom
-              style={{
-                marginBottom: 100,
-                textAlign: "left",
-                fontWeight: "bold",
-              }}
-            >
-              Directors: {directorsString}
-            </Typography>
-            <Typography
-              variant="h5"
-              gutterBottom
-              style={{
-                marginBottom: 100,
-                textAlign: "left",
-                fontWeight: "bold",
-              }}
-            >
-              {writersString && `Writers: ${writersString}`}
-            </Typography>
-            <Typography
-              variant="h5"
-              gutterBottom
-              style={{
-                marginBottom: 100,
-                textAlign: "left",
-                fontWeight: "bold",
-              }}
-            >
-              Stars: {actorsString}
-            </Typography>
-            <Typography
-              variant="h5"
-              gutterBottom
-              style={{
-                marginBottom: 100,
-                textAlign: "left",
-                fontWeight: "bold",
-              }}
-            >
-              Producers: {producersString}
-            </Typography>
+            {directorsString && (
+              <Typography
+                variant="h5"
+                gutterBottom
+                style={{
+                  marginBottom: 100,
+                  textAlign: "left",
+                  fontWeight: "bold",
+                }}
+              >
+                Directors: {directorsString}
+              </Typography>
+            )}
+            {writersString && (
+              <Typography
+                variant="h5"
+                gutterBottom
+                style={{
+                  marginBottom: 100,
+                  textAlign: "left",
+                  fontWeight: "bold",
+                }}
+              >
+                Writers: {writersString}
+              </Typography>
+            )}
+            {actorsString && (
+              <Typography
+                variant="h5"
+                gutterBottom
+                style={{
+                  marginBottom: 100,
+                  textAlign: "left",
+                  fontWeight: "bold",
+                }}
+              >
+                Stars: {actorsString}
+              </Typography>
+            )}
+            {producersString && (
+              <Typography
+                variant="h5"
+                gutterBottom
+                style={{
+                  marginBottom: 100,
+                  textAlign: "left",
+                  fontWeight: "bold",
+                }}
+              >
+                Producers: {producersString}
+              </Typography>
+            )}
             <Typography
               variant="h5"
               gutterBottom
@@ -196,7 +204,12 @@ const singleTitle = () => {
       </div>
       {singleTitle?.description !== "" && (
         <>
-          <Typography variant="h5" gutterBottom marginLeft={10}>
+          <Typography
+            variant="h5"
+            gutterBottom
+            marginLeft={10}
+            style={{ fontWeight: "bold" }}
+          >
             Description
           </Typography>
           <Box
