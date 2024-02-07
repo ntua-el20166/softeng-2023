@@ -34,7 +34,6 @@ const singleTitleSlice = createSlice({
       state.singleTitleLoading = true;
     },
     fetchSingleTitleSucceeded: (state, { payload }) => {
-      console.log(payload);
       state.singleTitle = payload;
       state.singleTitleLoading = false;
     },
