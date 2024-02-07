@@ -75,7 +75,13 @@ async function getFilterSearchResults(req, res) {
 }
 
 async function searchTitle(req, res) {
+  const { titlePart } = req.body;
   try {
+    if (!titlePart) {
+      const error = new Error("titlePart is required");
+      error.response = { status: 400 };
+      throw error;
+    }
     res.send(await searchTitleHelp(req.body.titlePart));
   } catch (error) {
     errorHandler(error, res);
