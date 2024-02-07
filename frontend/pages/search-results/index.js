@@ -91,7 +91,7 @@ const SearchResults = () => {
           </Box>
         ) : titleResults.length > 0 ? (
           titleResults
-            .filter((title) => (title.titlePoster ? true : false))
+            .filter((title) => (title?.titlePoster ? true : false))
             .slice(0, loadedTitles)
             .map((title, i) => (
               <Box key={i} onClick={() => handleItemClick(title)}>
