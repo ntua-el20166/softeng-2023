@@ -205,7 +205,7 @@ function normalizeString(str) {
 }
 
 async function searchTitleHelp(titlePart) {
-  const reply = await fetchData(`/search/multi?query=${titlePart}`).then(
+  const reply = await fetchData(`/search/multi?query="${titlePart}"`).then(
     async (response) => {
       const results = response.results;
       const to_send = await Promise.all(

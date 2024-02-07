@@ -129,13 +129,13 @@ const helper = (first, second, payload) => {
       qgenre: first,
       minrating: payload.rating,
       yrTo: "2024",
-      yrFrom: "2010",
+      yrFrom: "1950",
     }),
     axios.post(`${backendUrl}/bygenre`, {
       qgenre: second,
       minrating: payload.rating,
       yrTo: "2024",
-      yrFrom: "2010",
+      yrFrom: "1950",
     }),
   ]);
 };
@@ -155,7 +155,7 @@ function getGenreResults(payload) {
         qgenre: payload.genre,
         minrating: payload.rating,
         yrTo: "2024",
-        yrFrom: "2010",
+        yrFrom: "1950",
       });
   }
 }
@@ -183,6 +183,7 @@ const newFetchResultsEpic = (action$) =>
           }),
           map((data) =>
             data.filter((title) => {
+              console.log(title, payload.titlePart);
               return (
                 (!payload.rating || title.rating.avRating >= payload.rating) &&
                 (!payload.genre ||
@@ -213,7 +214,9 @@ const newFetchResultsEpic = (action$) =>
                     }
                   })) &&
                 (payload.titlePart !== "" ||
-                  title.originalTitle.includes(payload.titlePart))
+                  title.originalTitle
+                    .toLowerCase()
+                    .includes(payload.titlePart.toLowerCase()))
               );
             })
           )

@@ -7,7 +7,7 @@ const {
 const { fetchData } = require("../apiService.js");
 
 async function searchTitlePost(req, res) {
-  fetchData(`/search/multi?query=${req.body.titlePart}`).then((response) => {
+  fetchData(`/search/multi?query="${req.body.titlePart}"`).then((response) => {
     const results = response.results;
     const to_send = Promise.all(
       results.map(async (jsonObject) => {
@@ -133,7 +133,7 @@ async function searchTitlePost(req, res) {
       })
     );
     to_send.then((data) => {
-      res.send(data.filter(Boolean));
+      res.send(data);
     });
   });
 }

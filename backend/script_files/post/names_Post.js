@@ -31,6 +31,7 @@ async function getSearchNameResultPost(req, res) {
   const { namePart } = req.body;
   if (!namePart) {
     res.status(204).send([]);
+    return;
   }
   try {
     const response = await fetchData(`/search/person?query=${namePart}`);
