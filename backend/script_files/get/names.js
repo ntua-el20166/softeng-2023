@@ -1,10 +1,14 @@
 const { getPersonInfo, nameObject } = require("./helpers.js");
 const { fetchData } = require("../apiService.js");
+const path = require("path");
 const { errorHandler, checkResultEmpty } = require("../errorHandler.js");
+const fs = require("fs");
+const { papa } = require("papaparse");
+const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 
 async function getSearchNameResult(req, res) {
   const { namePart } = req.body;
-
+  const { format } = req.query ?? "json";
   try {
     if (!namePart) {
       const error = new Error("namePart is required");
@@ -34,7 +38,10 @@ async function getSearchNameResult(req, res) {
     }
     const statusCode = listOfNameObjects.length === 0 ? 204 : 200;
     checkResultEmpty(listOfNameObjects);
-    res.status(statusCode).json(listOfNameObjects);
+    if (format === "csv") {
+    } else {
+      res.status(statusCode).json(listOfNameObjects);
+    }
   } catch (error) {
     errorHandler(error, res);
   }
@@ -43,6 +50,7 @@ async function getSearchNameResult(req, res) {
 async function getName(req, res) {
   try {
     const { nameID } = req.params;
+    const { format } = req.query ?? "json";
     const response = await fetchData(`/person/${nameID}`);
     const data = response;
     const birthYear = data.birthday ? data.birthday.substring(0, 4) : "";
@@ -58,7 +66,59 @@ async function getName(req, res) {
       data2.nameTitles
     );
     checkResultEmpty(nameObject1);
-    res.status(200).json(nameObject1);
+    if (format === "csv") {
+      const csvDirectory = path.join(__dirname, "../../output/");
+      const csvFilePath = path.join(csvDirectory, "output.csv");
+
+      var items = JSON.stringify(nameObject1);
+      var replacer = function (key, value) {
+        return value === null ? "" : value;
+      };
+
+      // Parse the JSON string to get an object
+      var parsedItems = JSON.parse(items);
+
+      const header = Object.keys(parsedItems);
+      const csvContent = [
+        header.join(","), // Header row
+        header
+          .map((fieldName) => JSON.stringify(parsedItems[fieldName], replacer))
+          .join(","),
+      ].join("\r\n");
+
+      fs.writeFile(csvFilePath, csvContent, "utf8", (err) => {
+        if (err) {
+          console.error("Error writing CSV file:", err);
+          errorHandler(err, res); // Handle the error appropriately
+        } else {
+          console.log(`CSV file written to: ${csvFilePath}`);
+
+          // Send the CSV file as a response
+          res.setHeader("Content-Type", "text/csv");
+          res.attachment("name.csv");
+
+          const cleanupCsvFile = () => {
+            fs.unlink(csvFilePath, (error) => {
+              if (error) {
+                console.error("Error deleting CSV file:", error);
+              } else {
+                console.log("CSV file deleted:", csvFilePath);
+              }
+            });
+          };
+
+          res.status(200).sendFile(csvFilePath, {}, (err) => {
+            if (err) {
+              errorHandler(err, res);
+            } else {
+              cleanupCsvFile();
+            }
+          });
+        }
+      });
+    } else {
+      res.status(200).json(nameObject1);
+    }
   } catch (error) {
     errorHandler(error, res);
   }

@@ -200,6 +200,7 @@ async function getPersonInfo(nameID) {
     nameTitles,
   };
 }
+
 function normalizeString(str) {
   return str.trim().toLowerCase().replace(/&/g, "and");
 }

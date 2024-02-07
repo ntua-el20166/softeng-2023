@@ -29,6 +29,8 @@
     "csv-writer": "^1.6.0",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
+    "on-finished": "^2.4.1",
+    "papaparse": "^5.4.1",
     "react-multi-carousel": "^2.8.4",
     "react-redux": "^9.1.0",
     "redux-observable": "^3.0.0-rc.2",
