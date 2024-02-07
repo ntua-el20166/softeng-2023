@@ -157,7 +157,6 @@ async function byGenrePost(req, res) {
     (obj) => normalizeString(obj.name) == genre
   )?.id;
   if (!(genre_id || genre_id2)) {
-    console.log("Invalid genre name");
     res.status(400).send("Invalid genre name");
     return;
   }

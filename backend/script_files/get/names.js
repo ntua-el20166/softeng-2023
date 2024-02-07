@@ -43,22 +43,33 @@ async function getSearchNameResult(req, res) {
 async function getName(req, res) {
   try {
     const { nameID } = req.params;
-    const response = await fetchData(`/person/${nameID}`);
-    const data = response;
-    const birthYear = data.birthday ? data.birthday.substring(0, 4) : "";
-    const deathYear = data.deathday ? data.deathday.substring(0, 4) : "";
-    const data2 = await getPersonInfo(data.id);
-    const nameObject1 = new nameObject(
-      data.id.toString(),
-      data.name,
-      data.profile_path,
-      birthYear,
-      deathYear,
-      data.known_for_department,
-      data2.nameTitles
-    );
-    checkResultEmpty(nameObject1);
-    res.status(200).json(nameObject1);
+    try {
+      const response = await fetchData(`/person/${nameID}`);
+
+      const data = response;
+      const birthYear = data.birthday ? data.birthday.substring(0, 4) : "";
+      const deathYear = data.deathday ? data.deathday.substring(0, 4) : "";
+      const data2 = await getPersonInfo(data.id);
+      const nameObject1 = new nameObject(
+        data.id.toString(),
+        data.name,
+        data.profile_path,
+        birthYear,
+        deathYear,
+        data.known_for_department,
+        data2.nameTitles
+      );
+      if (!nameObject1) {
+        const error = new Error();
+        error.response = { status: 400 };
+        throw error;
+      }
+      res.status(200).json(nameObject1);
+    } catch (e) {
+      const error = new Error();
+      error.response = { status: 400 };
+      throw error;
+    }
   } catch (error) {
     errorHandler(error, res);
   }

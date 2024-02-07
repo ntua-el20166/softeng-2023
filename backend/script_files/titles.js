@@ -1,6 +1,7 @@
 const { getMovieInfo, getTvInfo } = require("./helpers.js");
-const { fetchData } = require("../apiService.js");
-const { errorHandler, checkResultEmpty } = require("../errorHandler.js");
+const { getMovieInfo2, getTvInfo2 } = require("./post/helpers_Post.js");
+const { fetchData } = require("./apiService.js");
+const { errorHandler, checkResultEmpty } = require("./errorHandler.js");
 
 async function getPopularMovies(req, res) {
   try {
@@ -48,18 +49,41 @@ async function getTitle(req, res) {
     response = await fetchData(`/movie/${req.params.titleID}`);
     ret = await getMovieInfo(response);
   } catch (error) {
-    try {
-      response = await fetchData(`/tv/${req.params.titleID}`);
-      ret = await getTvInfo(response);
-    } catch (error) {
-      res.status(400).send("Bad request");
+    if (error.response.data.status_code == 34) {
+      try {
+        response = await fetchData(`/tv/${req.params.titleID}`);
+        ret = await getTvInfo(response);
+      } catch (error) {
+        if (error.response.data.status_code == 34) {
+          res.status(400).send("Bad request");
+        }
+      }
     }
   }
+
   res.send(ret);
+}
+
+async function getTitlePost(req, res) {
+  try {
+    let response;
+    let ret;
+    if (req.body.type == "tv") {
+      response = await fetchData(`/tv/${req.params.titleID}`);
+      ret = await getTvInfo2(response);
+    } else {
+      response = await fetchData(`/movie/${req.params.titleID}`);
+      ret = await getMovieInfo2(response);
+    }
+    res.send(ret);
+  } catch (error) {
+    errorHandler(error, res);
+  }
 }
 
 module.exports = {
   getPopularMovies,
   getSimilarTitles,
   getTitle,
+  getTitlePost,
 };

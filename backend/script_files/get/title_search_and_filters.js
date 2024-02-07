@@ -27,7 +27,6 @@ async function getFilterSearchResults(req, res) {
     (obj) => normalizeString(obj.name) == genre
   )?.id;
   if (!(genre_id || genre_id2)) {
-    console.log("Invalid genre name"); /// na mpei error
     res.status(400).send("Invalid genre name");
     return;
   }
@@ -97,7 +96,10 @@ async function byGenre(req, res) {
 
     const keys = Object.keys(gqueryObject);
 
-    if (keys !== requiredKeys && keys !== optionalKeys) {
+    if (
+      JSON.stringify(keys) != JSON.stringify(requiredKeys) &&
+      JSON.stringify(keys) != JSON.stringify(optionalKeys)
+    ) {
       const error = new Error("namePart is required");
       error.response = { status: 400 };
       throw error;

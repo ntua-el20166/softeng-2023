@@ -183,7 +183,6 @@ const newFetchResultsEpic = (action$) =>
           }),
           map((data) =>
             data.filter((title) => {
-              console.log(title, payload.titlePart);
               return (
                 (!payload.rating || title.rating.avRating >= payload.rating) &&
                 (!payload.genre ||
