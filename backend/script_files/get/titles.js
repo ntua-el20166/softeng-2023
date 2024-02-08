@@ -1,6 +1,7 @@
 const { getMovieInfo, getTvInfo } = require("./helpers.js");
 const { fetchData } = require("../apiService.js");
 const { errorHandler, checkResultEmpty } = require("../errorHandler.js");
+const { csvformat } = require("../csvformat.js");
 
 async function getPopularMovies(req, res) {
   try {
@@ -44,6 +45,7 @@ async function getSimilarTitles(req, res) {
 async function getTitle(req, res) {
   let response;
   let ret;
+  const { format } = req.query ?? "json";
   try {
     response = await fetchData(`/movie/${req.params.titleID}`);
     ret = await getMovieInfo(response);
@@ -55,7 +57,11 @@ async function getTitle(req, res) {
       res.status(400).send("Bad request");
     }
   }
-  res.send(ret);
+  if (format === "csv") {
+    csvformat(ret, res);
+  } else {
+    res.status(200).json(ret);
+  }
 }
 
 module.exports = {

@@ -6,6 +6,7 @@ const {
 } = require("./helpers.js");
 const { fetchData } = require("../apiService.js");
 const { errorHandler, checkResultEmpty } = require("../errorHandler.js");
+const { csvformat } = require("../csvformat.js");
 
 async function getFilterSearchResults(req, res) {
   // let date_to = gqueryObject.yrTo + "-12-31";
@@ -76,13 +77,19 @@ async function getFilterSearchResults(req, res) {
 
 async function searchTitle(req, res) {
   const { titlePart } = req.body;
+  const { format } = req.query ?? "json";
   try {
     if (!titlePart) {
       const error = new Error("titlePart is required");
       error.response = { status: 400 };
       throw error;
     }
-    res.send(await searchTitleHelp(req.body.titlePart));
+    ret = await searchTitleHelp(req.body.titlePart);
+    if (format === "csv") {
+      csvformat(ret, res);
+    } else {
+      res.status(200).json(ret);
+    }
   } catch (error) {
     errorHandler(error, res);
   }
@@ -91,6 +98,7 @@ async function searchTitle(req, res) {
 async function byGenre(req, res) {
   try {
     const gqueryObject = req.body;
+    const { format } = req.query ?? "json";
     const requiredKeys = ["qgenre", "minrating"];
     const optionalKeys = ["qgenre", "minrating", "yrFrom", "yrTo"];
 
@@ -160,7 +168,11 @@ async function byGenre(req, res) {
       })
     );
     checkResultEmpty(to_send);
-    res.send(to_send);
+    if (format === "csv") {
+      csvformat(to_send, res);
+    } else {
+      res.status(200).json(to_send);
+    }
   } catch (error) {
     errorHandler(error, res);
   }

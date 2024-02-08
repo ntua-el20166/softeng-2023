@@ -1,10 +1,7 @@
 const { getPersonInfo, nameObject } = require("./helpers.js");
 const { fetchData } = require("../apiService.js");
-const path = require("path");
 const { errorHandler, checkResultEmpty } = require("../errorHandler.js");
-const fs = require("fs");
-const { papa } = require("papaparse");
-const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+const { csvformat } = require("../csvformat.js");
 
 async function getSearchNameResult(req, res) {
   const { namePart } = req.body;
@@ -39,6 +36,7 @@ async function getSearchNameResult(req, res) {
     const statusCode = listOfNameObjects.length === 0 ? 204 : 200;
     checkResultEmpty(listOfNameObjects);
     if (format === "csv") {
+      csvformat(listOfNameObjects, res);
     } else {
       res.status(statusCode).json(listOfNameObjects);
     }
@@ -73,57 +71,7 @@ async function getName(req, res) {
         throw error;
       }
       if (format === "csv") {
-        const csvDirectory = path.join(__dirname, "../../output/");
-        const csvFilePath = path.join(csvDirectory, "output.csv");
-
-        var items = JSON.stringify(nameObject1);
-        var replacer = function (key, value) {
-          return value === null ? "" : value;
-        };
-
-        // Parse the JSON string to get an object
-        var parsedItems = JSON.parse(items);
-
-        const header = Object.keys(parsedItems);
-        const csvContent = [
-          header.join(","), // Header row
-          header
-            .map((fieldName) =>
-              JSON.stringify(parsedItems[fieldName], replacer)
-            )
-            .join(","),
-        ].join("\r\n");
-
-        fs.writeFile(csvFilePath, csvContent, "utf8", (err) => {
-          if (err) {
-            console.error("Error writing CSV file:", err);
-            errorHandler(err, res); // Handle the error appropriately
-          } else {
-            console.log(`CSV file written to: ${csvFilePath}`);
-
-            // Send the CSV file as a response
-            res.setHeader("Content-Type", "text/csv");
-            res.attachment("name.csv");
-
-            const cleanupCsvFile = () => {
-              fs.unlink(csvFilePath, (error) => {
-                if (error) {
-                  console.error("Error deleting CSV file:", error);
-                } else {
-                  console.log("CSV file deleted:", csvFilePath);
-                }
-              });
-            };
-
-            res.status(200).sendFile(csvFilePath, {}, (err) => {
-              if (err) {
-                errorHandler(err, res);
-              } else {
-                cleanupCsvFile();
-              }
-            });
-          }
-        });
+        csvformat(nameObject1, res);
       } else {
         res.status(200).json(nameObject1);
       }
