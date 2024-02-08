@@ -1,4 +1,5 @@
 const { fetchData, getApiInfo } = require("./apiService.js");
+const { csvformat } = require("./csvformat.js");
 
 async function checkApiConnection() {
   try {
@@ -11,6 +12,7 @@ async function checkApiConnection() {
 }
 
 async function getHealthCheck(req, res) {
+  const { format } = req.query ?? "json";
   const apiStatus = (await checkApiConnection()) ? "OK" : "failed";
   const apiInfo = getApiInfo();
 
@@ -19,7 +21,11 @@ async function getHealthCheck(req, res) {
     dataconnection: { url: apiInfo.baseUrl, key: apiInfo.apiKey },
   };
 
-  res.json(responseData);
+  if (format === "csv") {
+    csvformat(responseData, res);
+  } else {
+    res.status(200).json(responseData);
+  }
 }
 
 module.exports = { getHealthCheck };

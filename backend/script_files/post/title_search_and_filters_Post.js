@@ -5,6 +5,7 @@ const {
   getTvInfo,
 } = require("../get/helpers.js");
 const { fetchData } = require("../apiService.js");
+const { csvformat } = require("../csvformat.js");
 
 async function searchTitlePost(req, res) {
   fetchData(`/search/multi?query="${req.body.titlePart}"`).then((response) => {
@@ -139,6 +140,7 @@ async function searchTitlePost(req, res) {
 }
 
 async function byGenrePost(req, res) {
+  const { format } = req.query ?? "json";
   const gqueryObject = req.body;
   let date_to = gqueryObject.yrTo + "-12-31";
   let date_from = gqueryObject.yrFrom + "-01-01";
@@ -190,7 +192,11 @@ async function byGenrePost(req, res) {
       }
     })
   );
-  res.send(to_send);
+  if (format === "csv") {
+    csvformat(to_send, res);
+  } else {
+    res.status(200).json(to_send);
+  }
 }
 
 module.exports = { searchTitlePost, byGenrePost };

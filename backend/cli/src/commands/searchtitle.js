@@ -1,27 +1,20 @@
 const axios = require("axios");
 const { apiBaseUrl } = require("../config");
-const { writeCsv, printJson } = require("../utils/csvWriter");
+const { csvPrint, printJson } = require("../utils/csvWriter");
 
 async function searchTitle(options) {
   try {
-    const response = await axios.post(`${apiBaseUrl}/searchtitle`, {
-      titlePart: options.titlepart,
-    });
+    format = options.format ?? "json";
+    const response = await axios.post(
+      `${apiBaseUrl}/searchtitle?format=${format}`,
+      {
+        titlePart: options.titlepart,
+      }
+    );
     const titles = response.data;
 
     if (options.format === "csv") {
-      writeCsv(titles, "searchtitle", [
-        { id: "titleID", title: "Title ID" },
-        { id: "type", title: "Type" },
-        { id: "originalTitle", title: "Original Title" },
-        { id: "titlePoster", title: "Title Poster" },
-        { id: "startYear", title: "Start Year" },
-        { id: "endYear", title: "End Year" },
-        { id: "genres", title: "Genres" },
-        { id: "titleAkas", title: "Title Akas" },
-        { id: "principals", title: "Principals" },
-        { id: "rating", title: "Rating" },
-      ]);
+      csvPrint(titles);
     } else {
       printJson(titles);
     }
