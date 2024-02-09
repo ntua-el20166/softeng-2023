@@ -212,6 +212,7 @@ const Header = () => {
               width: 300, // Set a fixed width for the search bar or adjust as needed
               "&:hover": {
                 backgroundColor: "#F4DDD6",
+                transition: "background-color 0.2s ease-in-out",
               },
             }}
           >
