@@ -1,18 +1,17 @@
 const axios = require("axios");
 const { apiBaseUrl } = require("../config");
-const { writeCsv, printJson } = require("../utils/csvWriter");
+const { csvPrint, printJson } = require("../utils/csvWriter");
 
 async function healthcheck(options) {
   try {
-    const response = await axios.get(`${apiBaseUrl}/admin/healthcheck`);
+    const format = options.format ?? "json";
+    const response = await axios.get(
+      `${apiBaseUrl}/admin/healthcheck?format=${format}`
+    );
     const data = response.data;
 
     if (options.format === "csv") {
-      writeCsv(data, "healthcheck", [
-        { id: "status", title: "status" },
-        { id: "url", title: "Url of the Api" },
-        { id: "key", title: "Key of the Api" },
-      ]);
+      csvPrint(data);
     } else {
       printJson(data);
     }

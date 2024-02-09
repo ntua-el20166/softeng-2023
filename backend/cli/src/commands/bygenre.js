@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { apiBaseUrl } = require("../config");
-const { writeCsv, printJson } = require("../utils/csvWriter");
+const { csvPrint, printJson } = require("../utils/csvWriter");
 
 async function byGenre(options) {
   try {
@@ -10,22 +10,15 @@ async function byGenre(options) {
       yrFrom: options.from ?? 2010,
       yrTo: options.to ?? 2024,
     };
-    const response = await axios.post(`${apiBaseUrl}/bygenre`, queryParams);
+    const format = options.format ?? "json";
+    const response = await axios.post(
+      `${apiBaseUrl}/bygenre?format=${format}`,
+      queryParams
+    );
     const titles = response.data;
 
     if (options.format === "csv") {
-      writeCsv(titles, "bygenre", [
-        { id: "titleID", title: "Title ID" },
-        { id: "type", title: "Type" },
-        { id: "originalTitle", title: "Original Title" },
-        { id: "titlePoster", title: "Title Poster" },
-        { id: "startYear", title: "Start Year" },
-        { id: "endYear", title: "End Year" },
-        { id: "genres", title: "Genres" },
-        { id: "titleAkas", title: "Title Akas" },
-        { id: "principals", title: "Principals" },
-        { id: "rating", title: "Rating" },
-      ]);
+      csvPrint(titles);
     } else {
       printJson(titles);
     }
