@@ -1,0 +1,7 @@
+{
+  "status": "OK",
+  "dataconnection": {
+    "url": "https://api.themoviedb.org/3",
+    "key": "f98bafc1f4c7d1e56519e6d382d1774f"
+  }
+}

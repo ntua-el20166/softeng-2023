@@ -1,0 +1,3313 @@
+[
+  {
+    "titleID": "79481",
+    "type": "tv",
+    "originalTitle": "斗破苍穹",
+    "titlePoster": "/a9bJPlezCXF6u0siDxf7cZaSXaJ.jpg",
+    "startYear": "2017",
+    "endYear": "2024",
+    "genres": [
+      {
+        "genreTitle": "Animation"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "2793092",
+        "name": "Liu Sanmu",
+        "category": "Acting"
+      },
+      {
+        "nameID": "3400506",
+        "name": "Pei Zhang",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2340094",
+        "name": "Yuxuan Liu",
+        "category": "Acting"
+      },
+      {
+        "nameID": "126526",
+        "name": "Su Wan",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1965298",
+        "name": "Zhu Jun",
+        "category": "Acting"
+      },
+      {
+        "nameID": "3056264",
+        "name": "Chen Yiwen",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1528979",
+        "name": "Yang Menglu",
+        "category": "Acting"
+      },
+      {
+        "nameID": "3635685",
+        "name": "Wen Xiaoyi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2156554",
+        "name": "Yan Meme",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2199338",
+        "name": "Xia Lei",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2472770",
+        "name": "Zongzhe Xu",
+        "category": "Acting"
+      }
+    ],
+    "rating": {
+      "avRating": "8.7",
+      "nVotes": "38"
+    }
+  },
+  {
+    "titleID": "89620",
+    "type": "tv",
+    "originalTitle": "极限挑战",
+    "titlePoster": "/nYsiHMplUCBFazdAOVr1gQaGy34.jpg",
+    "startYear": "2015",
+    "endYear": "2023",
+    "genres": [
+      {
+        "genreTitle": "Action & Adventure"
+      },
+      {
+        "genreTitle": "Reality"
+      },
+      {
+        "genreTitle": "Comedy"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "1048642",
+        "name": "Yunpeng Yue",
+        "category": "Acting"
+      },
+      {
+        "nameID": "109434",
+        "name": "Huang Xiaoming",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1435966",
+        "name": "Jia Nailiang",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1820070",
+        "name": "Gong Jun",
+        "category": "Acting"
+      },
+      {
+        "nameID": "4147561",
+        "name": "Yan Haoxiang",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2493548",
+        "name": "Wowkie Zhang",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1816461",
+        "name": "Johnny Huang",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2736843",
+        "name": "Minghao Huang",
+        "category": "Acting"
+      }
+    ],
+    "rating": {
+      "avRating": "8.571",
+      "nVotes": "7"
+    }
+  },
+  {
+    "titleID": "42705",
+    "type": "tv",
+    "originalTitle": "はじめの一歩",
+    "titlePoster": "/i3U3J2MWovIBZBnZYYiOLBXqNJZ.jpg",
+    "startYear": "2000",
+    "endYear": "2014",
+    "genres": [
+      {
+        "genreTitle": "Animation"
+      },
+      {
+        "genreTitle": "Comedy"
+      },
+      {
+        "genreTitle": "Drama"
+      },
+      {
+        "genreTitle": "Action & Adventure"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "1241660",
+        "name": "Kohei Kiyasu",
+        "category": "Writing"
+      },
+      {
+        "nameID": "237076",
+        "name": "Rikiya Koyama",
+        "category": "Acting"
+      },
+      {
+        "nameID": "112278",
+        "name": "Wataru Takagi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "9708",
+        "name": "Keiji Fujiwara",
+        "category": "Acting"
+      },
+      {
+        "nameID": "70098",
+        "name": "Jurota Kosugi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "225655",
+        "name": "Hidenobu Kiuchi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "122654",
+        "name": "Hisao Egawa",
+        "category": "Acting"
+      },
+      {
+        "nameID": "62318",
+        "name": "Shin-ichiro Miki",
+        "category": "Acting"
+      },
+      {
+        "nameID": "4396168",
+        "name": "George Morikawa",
+        "category": "Writing"
+      },
+      {
+        "nameID": "221758",
+        "name": "Tatsuhiko Urahata",
+        "category": "Writing"
+      }
+    ],
+    "rating": {
+      "avRating": "8.655",
+      "nVotes": "935"
+    }
+  },
+  {
+    "titleID": "64049",
+    "type": "tv",
+    "originalTitle": "がんばれ!キッカーズ",
+    "titlePoster": "/n4KLsqSXBLsR72gklIVDem1jvpD.jpg",
+    "startYear": "1986",
+    "endYear": "1987",
+    "genres": [
+      {
+        "genreTitle": "Animation"
+      },
+      {
+        "genreTitle": "Comedy"
+      },
+      {
+        "genreTitle": "Drama"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "235328",
+        "name": "Chie Koujiro",
+        "category": "Acting"
+      },
+      {
+        "nameID": "552600",
+        "name": "Yuko Kobayashi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "549566",
+        "name": "Eiko Yamada",
+        "category": "Acting"
+      },
+      {
+        "nameID": "25653",
+        "name": "YOU",
+        "category": "Acting"
+      },
+      {
+        "nameID": "73044",
+        "name": "Ikue Otani",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1254029",
+        "name": "Shino Kakinuma",
+        "category": "Acting"
+      },
+      {
+        "nameID": "144103",
+        "name": "Chieko Honda",
+        "category": "Acting"
+      },
+      {
+        "nameID": "85287",
+        "name": "Tomiko Suzuki",
+        "category": "Acting"
+      },
+      {
+        "nameID": "555104",
+        "name": "Urara Takano",
+        "category": "Acting"
+      },
+      {
+        "nameID": "100127",
+        "name": "TARAKO",
+        "category": "Acting"
+      },
+      {
+        "nameID": "121628",
+        "name": "Kazue Ikura",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1254239",
+        "name": "Ritsuko Ohwada",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1484349",
+        "name": "Mie Suzuki",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1247302",
+        "name": "Noriko Tsukase",
+        "category": "Acting"
+      },
+      {
+        "nameID": "550909",
+        "name": "Kyoko Tongu",
+        "category": "Acting"
+      },
+      {
+        "nameID": "57734",
+        "name": "Michie Tomizawa",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1065385",
+        "name": "Akira Shigino",
+        "category": "Directing"
+      },
+      {
+        "nameID": "76410",
+        "name": "Sukehiro Tomita",
+        "category": "Writing"
+      },
+      {
+        "nameID": "2811548",
+        "name": "Takeshi Nosaka",
+        "category": "Visual Effects"
+      },
+      {
+        "nameID": "2415841",
+        "name": "Naoko Asari",
+        "category": "Sound"
+      },
+      {
+        "nameID": "1630885",
+        "name": "Masaki Sakamoto",
+        "category": "Editing"
+      },
+      {
+        "nameID": "1353108",
+        "name": "Satoshi Miura",
+        "category": "Art"
+      },
+      {
+        "nameID": "1966179",
+        "name": "Masahiro Satou",
+        "category": "Art"
+      },
+      {
+        "nameID": "1353107",
+        "name": "Hitoshi Kaneko",
+        "category": "Camera"
+      },
+      {
+        "nameID": "2583172",
+        "name": "Yutaka Kaneko",
+        "category": "Writing"
+      },
+      {
+        "nameID": "1454437",
+        "name": "Isao Shizuya",
+        "category": "Writing"
+      },
+      {
+        "nameID": "76410",
+        "name": "Sukehiro Tomita",
+        "category": "Writing"
+      },
+      {
+        "nameID": "1295933",
+        "name": "Iwata Roku",
+        "category": "Directing"
+      },
+      {
+        "nameID": "1666270",
+        "name": "Yuu Kou",
+        "category": "Directing"
+      },
+      {
+        "nameID": "1549385",
+        "name": "Makoto Moriwaki",
+        "category": "Directing"
+      },
+      {
+        "nameID": "1065385",
+        "name": "Akira Shigino",
+        "category": "Directing"
+      },
+      {
+        "nameID": "2037572",
+        "name": "Minoru Shinbayashi",
+        "category": "Directing"
+      },
+      {
+        "nameID": "3390145",
+        "name": "Harumi Tamano",
+        "category": "Directing"
+      },
+      {
+        "nameID": "1028431",
+        "name": "Kazuyoshi Yokota",
+        "category": "Directing"
+      },
+      {
+        "nameID": "2811548",
+        "name": "Takeshi Nosaka",
+        "category": "Visual Effects"
+      }
+    ],
+    "rating": {
+      "avRating": "6.6",
+      "nVotes": "18"
+    }
+  },
+  {
+    "titleID": "69158",
+    "type": "tv",
+    "originalTitle": "The Good Fight",
+    "titlePoster": "/8qoOHOfbUbrCcHZnDVxGcwOWinV.jpg",
+    "startYear": "2017",
+    "endYear": "2022",
+    "genres": [
+      {
+        "genreTitle": "Drama"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "11870",
+        "name": "Christine Baranski",
+        "category": "Acting"
+      },
+      {
+        "nameID": "187565",
+        "name": "Audra McDonald",
+        "category": "Acting"
+      },
+      {
+        "nameID": "25908",
+        "name": "Sarah Steele",
+        "category": "Acting"
+      },
+      {
+        "nameID": "224168",
+        "name": "Nyambi Nyambi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "66101",
+        "name": "Michael Boatman",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1821134",
+        "name": "Charmaine Bingwa",
+        "category": "Acting"
+      },
+      {
+        "nameID": "6861",
+        "name": "Andre Braugher",
+        "category": "Acting"
+      },
+      {
+        "nameID": "21134",
+        "name": "John Slattery",
+        "category": "Acting"
+      }
+    ],
+    "rating": {
+      "avRating": "7.65",
+      "nVotes": "256"
+    }
+  },
+  {
+    "titleID": "153445",
+    "type": "tv",
+    "originalTitle": "ウルトラギャラクシーファイト 運命の衝突",
+    "titlePoster": "/wftGQsJBe4Ljle5rBBJN06gvuKf.jpg",
+    "startYear": "2022",
+    "endYear": "2022",
+    "genres": [
+      {
+        "genreTitle": "Action & Adventure"
+      },
+      {
+        "genreTitle": "Drama"
+      },
+      {
+        "genreTitle": "Sci-Fi & Fantasy"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "3660418",
+        "name": "Yō Murakami",
+        "category": "Acting"
+      },
+      {
+        "nameID": "93803",
+        "name": "Mamoru Miyano",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2020490",
+        "name": "Wataru Komada",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2369258",
+        "name": "Shugo Nakamura",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1563016",
+        "name": "Shunsuke Takeuchi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "9705",
+        "name": "Takahiro Sakurai",
+        "category": "Acting"
+      },
+      {
+        "nameID": "89832",
+        "name": "Hiroki Touchi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "62318",
+        "name": "Shin-ichiro Miki",
+        "category": "Acting"
+      },
+      {
+        "nameID": "90567",
+        "name": "Tomokazu Seki",
+        "category": "Acting"
+      },
+      {
+        "nameID": "9714",
+        "name": "Showtaro Morikubo",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1253008",
+        "name": "Yoshimasa Hosoya",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1241466",
+        "name": "Takahiro Mizushima",
+        "category": "Acting"
+      },
+      {
+        "nameID": "131563",
+        "name": "Jun Fukuyama",
+        "category": "Acting"
+      },
+      {
+        "nameID": "237075",
+        "name": "Keiichi Nanba",
+        "category": "Acting"
+      },
+      {
+        "nameID": "40327",
+        "name": "Toru Furuya",
+        "category": "Acting"
+      },
+      {
+        "nameID": "219659",
+        "name": "Masaki Terasoma",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1254672",
+        "name": "Asami Seto",
+        "category": "Acting"
+      },
+      {
+        "nameID": "107113",
+        "name": "Taiyo Sugiura",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1164931",
+        "name": "Megumi Han",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1452027",
+        "name": "Kenta Matsumoto",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2019929",
+        "name": "Ryota Iwasaki",
+        "category": "Acting"
+      },
+      {
+        "nameID": "229504",
+        "name": "Hatsunori Hasegawa",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1248340",
+        "name": "Haruka Tomatsu",
+        "category": "Acting"
+      },
+      {
+        "nameID": "222388",
+        "name": "Hajime Iijima",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1498127",
+        "name": "Suzuko Mimori",
+        "category": "Acting"
+      },
+      {
+        "nameID": "235921",
+        "name": "Hiroshi Miyasaka",
+        "category": "Acting"
+      },
+      {
+        "nameID": "90137",
+        "name": "Nobuyuki Hiyama",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1497414",
+        "name": "Takuya Negishi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1178883",
+        "name": "Uji Kiyotaka",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1658221",
+        "name": "Kensuke Takahashi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1008384",
+        "name": "Hideo Ishiguro",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1034362",
+        "name": "Tatsuomi Hamada",
+        "category": "Acting"
+      },
+      {
+        "nameID": "145066",
+        "name": "Koichi Sakamoto",
+        "category": "Directing"
+      },
+      {
+        "nameID": "2263586",
+        "name": "Junichiro Ashiki",
+        "category": "Writing"
+      }
+    ],
+    "rating": {
+      "avRating": "8.4",
+      "nVotes": "5"
+    }
+  },
+  {
+    "titleID": "204032",
+    "type": "tv",
+    "originalTitle": "使徒行者3",
+    "titlePoster": "/zUa23Qd6tyTRpnrRkDTTbk77Rmt.jpg",
+    "startYear": "2020",
+    "endYear": "2020",
+    "genres": [],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "89409",
+        "name": "Raymond Lam",
+        "category": "Acting"
+      },
+      {
+        "nameID": "236075",
+        "name": "Michael Miu",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1232198",
+        "name": "Ma Kwok-Ming",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1615007",
+        "name": "Benjamin Yuen Wai-Ho",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1255464",
+        "name": "Mandy Wong",
+        "category": "Acting"
+      },
+      {
+        "nameID": "227741",
+        "name": "Priscilla Wong",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1545561",
+        "name": "Sisley Choi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1613713",
+        "name": "Owen Cheung",
+        "category": "Acting"
+      },
+      {
+        "nameID": "63582",
+        "name": "Hui Shiu-Hung",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2214358",
+        "name": "Tony Hung",
+        "category": "Acting"
+      },
+      {
+        "nameID": "590921",
+        "name": "Shiga Lin",
+        "category": "Acting"
+      }
+    ],
+    "rating": {
+      "avRating": "0",
+      "nVotes": "0"
+    }
+  },
+  {
+    "titleID": "153752",
+    "type": "tv",
+    "originalTitle": "ファイトソング",
+    "titlePoster": "/qISl4UZEoH18XtfHybMKLPpsXuG.jpg",
+    "startYear": "2022",
+    "endYear": "2022",
+    "genres": [
+      {
+        "genreTitle": "Drama"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "1671407",
+        "name": "Kaya Kiyohara",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1565630",
+        "name": "Shotaro Mamiya",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1564446",
+        "name": "Fuma Kikuchi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2538",
+        "name": "Chiaki Kuriyama",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1015727",
+        "name": "Jun Hashimoto",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1251804",
+        "name": "Shigeyuki Totsugi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "96475",
+        "name": "Izumi Inamori",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2236806",
+        "name": "Keisuke Higashi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2151369",
+        "name": "Sakura Fujiwara",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2144023",
+        "name": "Jiei Wakabayashi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2392464",
+        "name": "Airu Kubozuka",
+        "category": "Acting"
+      },
+      {
+        "nameID": "3060622",
+        "name": "Riko",
+        "category": "Acting"
+      },
+      {
+        "nameID": "130648",
+        "name": "Yoshikazu Okada",
+        "category": "Writing"
+      },
+      {
+        "nameID": "1653832",
+        "name": "Yuka Kashino",
+        "category": "Acting"
+      }
+    ],
+    "rating": {
+      "avRating": "6",
+      "nVotes": "5"
+    }
+  },
+  {
+    "titleID": "108061",
+    "type": "tv",
+    "originalTitle": "後生可畏",
+    "titlePoster": "/xakgZZH2VHO4s0R6x32rDtLtrg2.jpg",
+    "startYear": "1985",
+    "endYear": "1985",
+    "genres": [],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "71655",
+        "name": "Felix Wong",
+        "category": "Acting"
+      },
+      {
+        "nameID": "88495",
+        "name": "Sandra Ng Kwun-Yu",
+        "category": "Acting"
+      },
+      {
+        "nameID": "12672",
+        "name": "Carina Lau",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1254216",
+        "name": "Kent Tong",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2063704",
+        "name": "Susanna Kwan",
+        "category": "Acting"
+      },
+      {
+        "nameID": "3510529",
+        "name": "叶振棠",
+        "category": "Acting"
+      },
+      {
+        "nameID": "65971",
+        "name": "Sek Kin",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1178817",
+        "name": "Teresa Ha Ping",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1710517",
+        "name": "Lam Tin",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1180159",
+        "name": "Tsang Choh-Lam",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1407527",
+        "name": "Law Kwok-Wai",
+        "category": "Acting"
+      },
+      {
+        "nameID": "3432044",
+        "name": "Leung Shan",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1418121",
+        "name": "Cheung Ying-Tsoi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1265953",
+        "name": "So Hang-Suen",
+        "category": "Acting"
+      },
+      {
+        "nameID": "3445716",
+        "name": "Mak Chi-Wan",
+        "category": "Acting"
+      },
+      {
+        "nameID": "548053",
+        "name": "Helena Law Lan",
+        "category": "Acting"
+      },
+      {
+        "nameID": "3821617",
+        "name": "Cho Chai",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1959079",
+        "name": "Andy Tai Chi-Wai",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2593751",
+        "name": "Ting-Wai Chan",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1359893",
+        "name": "Ng Ha-Ping",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1358804",
+        "name": "Yu Miu-Lin",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1195555",
+        "name": "Mak Hiu-Wai",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1015037",
+        "name": "Chan Yau-Hau",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1269703",
+        "name": "Pak Man-Biu",
+        "category": "Acting"
+      }
+    ],
+    "rating": {
+      "avRating": "0",
+      "nVotes": "0"
+    }
+  },
+  {
+    "titleID": "550",
+    "type": "movie",
+    "originalTitle": "Fight Club",
+    "titlePoster": "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
+    "startYear": "1999",
+    "endYear": "",
+    "genres": [
+      {
+        "genreTitle": "Drama"
+      }
+    ],
+    "titleAkas": [
+      {
+        "akaTitle": "Mo'adon Krav",
+        "regionAbbrev": "IL"
+      },
+      {
+        "akaTitle": "Borilački klub",
+        "regionAbbrev": "RS"
+      },
+      {
+        "akaTitle": "Boytsovskiy klub",
+        "regionAbbrev": "RU"
+      },
+      {
+        "akaTitle": "Boen klub",
+        "regionAbbrev": "BG"
+      },
+      {
+        "akaTitle": "Kláb máchis",
+        "regionAbbrev": "GR"
+      },
+      {
+        "akaTitle": "Biytsivsʹkyy klub",
+        "regionAbbrev": "UA"
+      },
+      {
+        "akaTitle": "Dövüş Klubü",
+        "regionAbbrev": "TR"
+      },
+      {
+        "akaTitle": "El Club de la Pelea",
+        "regionAbbrev": "MX"
+      },
+      {
+        "akaTitle": "파이트 클럽",
+        "regionAbbrev": "KR"
+      },
+      {
+        "akaTitle": "Cīņas klubs",
+        "regionAbbrev": "LV"
+      },
+      {
+        "akaTitle": "باشگاه مشت زنی",
+        "regionAbbrev": "IR"
+      },
+      {
+        "akaTitle": "Podziemny krąg",
+        "regionAbbrev": "PL"
+      },
+      {
+        "akaTitle": "Clube da Luta",
+        "regionAbbrev": "BR"
+      },
+      {
+        "akaTitle": "Clube de Combate",
+        "regionAbbrev": "PT"
+      },
+      {
+        "akaTitle": "ファイト・クラブ：1999",
+        "regionAbbrev": "JP"
+      },
+      {
+        "akaTitle": "El club de la lucha",
+        "regionAbbrev": "ES"
+      },
+      {
+        "akaTitle": "鬥陣俱樂部",
+        "regionAbbrev": "TW"
+      },
+      {
+        "akaTitle": "Döyüş Klubu",
+        "regionAbbrev": "AZ"
+      }
+    ],
+    "principals": [
+      {
+        "nameID": "819",
+        "name": "Edward Norton",
+        "category": "actor"
+      },
+      {
+        "nameID": "287",
+        "name": "Brad Pitt",
+        "category": "actor"
+      },
+      {
+        "nameID": "1283",
+        "name": "Helena Bonham Carter",
+        "category": "actor"
+      },
+      {
+        "nameID": "7470",
+        "name": "Meat Loaf",
+        "category": "actor"
+      },
+      {
+        "nameID": "7499",
+        "name": "Jared Leto",
+        "category": "actor"
+      },
+      {
+        "nameID": "7471",
+        "name": "Zach Grenier",
+        "category": "actor"
+      },
+      {
+        "nameID": "7497",
+        "name": "Holt McCallany",
+        "category": "actor"
+      },
+      {
+        "nameID": "7498",
+        "name": "Eion Bailey",
+        "category": "actor"
+      },
+      {
+        "nameID": "7472",
+        "name": "Richmond Arquette",
+        "category": "actor"
+      },
+      {
+        "nameID": "7219",
+        "name": "David Andrews",
+        "category": "actor"
+      },
+      {
+        "nameID": "1129738",
+        "name": "George Maguire",
+        "category": "actor"
+      },
+      {
+        "nameID": "1317693",
+        "name": "Eugenie Bondurant",
+        "category": "actor"
+      },
+      {
+        "nameID": "68277",
+        "name": "Christina Cabot",
+        "category": "actor"
+      },
+      {
+        "nameID": "202080",
+        "name": "Sydney 'Big Dawg' Colston",
+        "category": "actor"
+      },
+      {
+        "nameID": "7473",
+        "name": "Rachel Singer",
+        "category": "actor"
+      },
+      {
+        "nameID": "1172435",
+        "name": "Christie Cronenweth",
+        "category": "actor"
+      },
+      {
+        "nameID": "956719",
+        "name": "Tim DeZarn",
+        "category": "actor"
+      },
+      {
+        "nameID": "59285",
+        "name": "Ezra Buzzington",
+        "category": "actor"
+      },
+      {
+        "nameID": "1705289",
+        "name": "Dierdre Downing-Jackson",
+        "category": "actor"
+      },
+      {
+        "nameID": "17449",
+        "name": "Bob Stephenson",
+        "category": "actor"
+      },
+      {
+        "nameID": "62846",
+        "name": "Charlie Dell",
+        "category": "actor"
+      },
+      {
+        "nameID": "530040",
+        "name": "Rob Lanza",
+        "category": "actor"
+      },
+      {
+        "nameID": "56112",
+        "name": "David Lee Smith",
+        "category": "actor"
+      },
+      {
+        "nameID": "137425",
+        "name": "Joel Bissonnette",
+        "category": "actor"
+      },
+      {
+        "nameID": "175120",
+        "name": "Evan Mirand",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744132",
+        "name": "Robby Robinson",
+        "category": "actor"
+      },
+      {
+        "nameID": "168924",
+        "name": "Lou Beatty Jr.",
+        "category": "actor"
+      },
+      {
+        "nameID": "1219497",
+        "name": "Thom Gossom Jr.",
+        "category": "actor"
+      },
+      {
+        "nameID": "157938",
+        "name": "Valerie Bickford",
+        "category": "actor"
+      },
+      {
+        "nameID": "7500",
+        "name": "Peter Iacangelo",
+        "category": "actor"
+      },
+      {
+        "nameID": "42824",
+        "name": "Carl Ciarfalio",
+        "category": "actor"
+      },
+      {
+        "nameID": "40277",
+        "name": "Stuart Blumberg",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744135",
+        "name": "Todd Peirce",
+        "category": "actor"
+      },
+      {
+        "nameID": "122805",
+        "name": "Mark Fite",
+        "category": "actor"
+      },
+      {
+        "nameID": "35521",
+        "name": "Matt Winston",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744137",
+        "name": "Joon Kim",
+        "category": "actor"
+      },
+      {
+        "nameID": "1636371",
+        "name": "Bennie Moore",
+        "category": "actor"
+      },
+      {
+        "nameID": "1224996",
+        "name": "Lauren Sánchez",
+        "category": "actor"
+      },
+      {
+        "nameID": "1174793",
+        "name": "Pat McNamara",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744138",
+        "name": "Tyrone R. Livingston",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744139",
+        "name": "Owen Masterson",
+        "category": "actor"
+      },
+      {
+        "nameID": "109100",
+        "name": "David Jean Thomas",
+        "category": "actor"
+      },
+      {
+        "nameID": "1221838",
+        "name": "Paul Carafotes",
+        "category": "actor"
+      },
+      {
+        "nameID": "145531",
+        "name": "Christopher John Fields",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744140",
+        "name": "Anderson Bourell",
+        "category": "actor"
+      },
+      {
+        "nameID": "63537",
+        "name": "Scotch Ellis Loring",
+        "category": "actor"
+      },
+      {
+        "nameID": "9291",
+        "name": "Michael Shamus Wiles",
+        "category": "actor"
+      },
+      {
+        "nameID": "170315",
+        "name": "Andi Carnick",
+        "category": "actor"
+      },
+      {
+        "nameID": "95532",
+        "name": "Ed Kowalczyk",
+        "category": "actor"
+      },
+      {
+        "nameID": "7140",
+        "name": "Leonard Termo",
+        "category": "actor"
+      },
+      {
+        "nameID": "41352",
+        "name": "Van Quattro",
+        "category": "actor"
+      },
+      {
+        "nameID": "1226835",
+        "name": "Markus Redmond",
+        "category": "actor"
+      },
+      {
+        "nameID": "177175",
+        "name": "Michael Girardin",
+        "category": "actor"
+      },
+      {
+        "nameID": "74507",
+        "name": "Michael Arturo",
+        "category": "actor"
+      },
+      {
+        "nameID": "1383838",
+        "name": "Greg Bronson",
+        "category": "actor"
+      },
+      {
+        "nameID": "1194120",
+        "name": "Matt Cinquanta",
+        "category": "actor"
+      },
+      {
+        "nameID": "13925",
+        "name": "Paul Dillon",
+        "category": "actor"
+      },
+      {
+        "nameID": "552271",
+        "name": "Eddie Hargitay",
+        "category": "actor"
+      },
+      {
+        "nameID": "94561",
+        "name": "Phil Hawn",
+        "category": "actor"
+      },
+      {
+        "nameID": "1223916",
+        "name": "Bruce Holman",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744143",
+        "name": "Jawara",
+        "category": "actor"
+      },
+      {
+        "nameID": "1525014",
+        "name": "Baron Jay",
+        "category": "actor"
+      },
+      {
+        "nameID": "1577360",
+        "name": "Jim Jenkins",
+        "category": "actor"
+      },
+      {
+        "nameID": "1403525",
+        "name": "Kevin Scott Mack",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744144",
+        "name": "Trey Ore",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744145",
+        "name": "Louis Ortiz",
+        "category": "actor"
+      },
+      {
+        "nameID": "1386468",
+        "name": "Hugh Peddy",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744146",
+        "name": "J.T. Pontino",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744147",
+        "name": "Chad Randau",
+        "category": "actor"
+      },
+      {
+        "nameID": "133153",
+        "name": "Marcio Rosario",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744148",
+        "name": "Gregory Silva",
+        "category": "actor"
+      },
+      {
+        "nameID": "16060",
+        "name": "Brian Tochi",
+        "category": "actor"
+      },
+      {
+        "nameID": "1744150",
+        "name": "Michael Zagst",
+        "category": "actor"
+      },
+      {
+        "nameID": "1152377",
+        "name": "Marc Cinquanta",
+        "category": "actor"
+      },
+      {
+        "nameID": "1657018",
+        "name": "Summer Moore",
+        "category": "actor"
+      },
+      {
+        "nameID": "376",
+        "name": "Arnon Milchan",
+        "category": "Executive Producer"
+      },
+      {
+        "nameID": "605",
+        "name": "Michael Kaplan",
+        "category": "Costume Design"
+      },
+      {
+        "nameID": "1254",
+        "name": "Art Linson",
+        "category": "Producer"
+      },
+      {
+        "nameID": "1303",
+        "name": "Alex McDowell",
+        "category": "Production Design"
+      },
+      {
+        "nameID": "7237",
+        "name": "Jay Hart",
+        "category": "Set Decoration"
+      },
+      {
+        "nameID": "5339",
+        "name": "David Boulton",
+        "category": "ADR Mixer"
+      },
+      {
+        "nameID": "5714",
+        "name": "Carlos Saldanha",
+        "category": "Animation Supervisor"
+      },
+      {
+        "nameID": "5935",
+        "name": "Sean Hood",
+        "category": "Swing"
+      },
+      {
+        "nameID": "7467",
+        "name": "David Fincher",
+        "category": "Director"
+      },
+      {
+        "nameID": "6904",
+        "name": "Rhona Meyers",
+        "category": "Key Costumer"
+      },
+      {
+        "nameID": "7537",
+        "name": "Steve Boeddeker",
+        "category": "Sound Effects Editor"
+      },
+      {
+        "nameID": "7468",
+        "name": "Chuck Palahniuk",
+        "category": "Novel"
+      },
+      {
+        "nameID": "7469",
+        "name": "Jim Uhls",
+        "category": "Screenplay"
+      },
+      {
+        "nameID": "7474",
+        "name": "Ross Grayson Bell",
+        "category": "Producer"
+      },
+      {
+        "nameID": "7475",
+        "name": "Ceán Chaffin",
+        "category": "Producer"
+      },
+      {
+        "nameID": "7477",
+        "name": "John King",
+        "category": "Original Music Composer"
+      },
+      {
+        "nameID": "7478",
+        "name": "Michael Simpson",
+        "category": "Original Music Composer"
+      },
+      {
+        "nameID": "7479",
+        "name": "Jeff Cronenweth",
+        "category": "Director of Photography"
+      },
+      {
+        "nameID": "7480",
+        "name": "James Haygood",
+        "category": "Editor"
+      },
+      {
+        "nameID": "7481",
+        "name": "Laray Mayfield",
+        "category": "Casting"
+      },
+      {
+        "nameID": "7763",
+        "name": "Ren Klyce",
+        "category": "Sound Designer"
+      },
+      {
+        "nameID": "7763",
+        "name": "Ren Klyce",
+        "category": "Sound Editor"
+      },
+      {
+        "nameID": "7764",
+        "name": "Richard Hymns",
+        "category": "Sound Editor"
+      },
+      {
+        "nameID": "7764",
+        "name": "Richard Hymns",
+        "category": "Sound Supervisor"
+      },
+      {
+        "nameID": "8157",
+        "name": "Doc Kane",
+        "category": "ADR Mixer"
+      },
+      {
+        "nameID": "8850",
+        "name": "Helen Pollak",
+        "category": "Unit Production Manager"
+      },
+      {
+        "nameID": "40684",
+        "name": "David Leitch",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "12371",
+        "name": "Richard Cetrone",
+        "category": "Utility Stunts"
+      },
+      {
+        "nameID": "12639",
+        "name": "Hugo Santiago",
+        "category": "Set Designer"
+      },
+      {
+        "nameID": "16522",
+        "name": "Jimmy Nickerson",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "17217",
+        "name": "Mike Topoozian",
+        "category": "First Assistant Director"
+      },
+      {
+        "nameID": "10855",
+        "name": "Chris Gorak",
+        "category": "Art Direction"
+      },
+      {
+        "nameID": "34528",
+        "name": "Julie M. Anderson",
+        "category": "Production Supervisor"
+      },
+      {
+        "nameID": "37925",
+        "name": "Conrad W. Hall",
+        "category": "Camera Operator"
+      },
+      {
+        "nameID": "46592",
+        "name": "Domenic Silvestri",
+        "category": "Set Designer"
+      },
+      {
+        "nameID": "51333",
+        "name": "Claudio Miranda",
+        "category": "Gaffer"
+      },
+      {
+        "nameID": "113013",
+        "name": "David McKimmie",
+        "category": "Assistant Production Coordinator"
+      },
+      {
+        "nameID": "113067",
+        "name": "David Lucarelli",
+        "category": "ADR Recordist"
+      },
+      {
+        "nameID": "113088",
+        "name": "Charleen Richards",
+        "category": "ADR Mixer"
+      },
+      {
+        "nameID": "60937",
+        "name": "Seth Reed",
+        "category": "Assistant Art Director"
+      },
+      {
+        "nameID": "92493",
+        "name": "Hiro Koda",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "84493",
+        "name": "Mickie McGowan",
+        "category": "ADR Voice Casting"
+      },
+      {
+        "nameID": "83072",
+        "name": "P. Scott Bailey",
+        "category": "Leadman"
+      },
+      {
+        "nameID": "83093",
+        "name": "Jimmy N. Roberts",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "91161",
+        "name": "Joe Hartwick Jr.",
+        "category": "First Assistant Accountant"
+      },
+      {
+        "nameID": "42824",
+        "name": "Carl Ciarfalio",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "101608",
+        "name": "Rob Bottin",
+        "category": "Makeup Effects"
+      },
+      {
+        "nameID": "109129",
+        "name": "Myke Michaels",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "132616",
+        "name": "Richard Schuler",
+        "category": "Location Manager"
+      },
+      {
+        "nameID": "151007",
+        "name": "Peter Ramsey",
+        "category": "Storyboard Artist"
+      },
+      {
+        "nameID": "159112",
+        "name": "David Orr",
+        "category": "Color Timer"
+      },
+      {
+        "nameID": "159264",
+        "name": "Denney Pierce",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "169628",
+        "name": "Jeff Imada",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "180576",
+        "name": "Rich Thorne",
+        "category": "Production Executive"
+      },
+      {
+        "nameID": "423640",
+        "name": "Michael Matzdorff",
+        "category": "First Assistant Editor"
+      },
+      {
+        "nameID": "554001",
+        "name": "Johann Benét",
+        "category": "Thanks"
+      },
+      {
+        "nameID": "562696",
+        "name": "Dianne Chadwick",
+        "category": "Art Department Assistant"
+      },
+      {
+        "nameID": "572622",
+        "name": "Tom Bellfort",
+        "category": "ADR Editor"
+      },
+      {
+        "nameID": "578767",
+        "name": "Don Coufal",
+        "category": "Boom Operator"
+      },
+      {
+        "nameID": "957928",
+        "name": "Todd Boekelheide",
+        "category": "Sound Re-Recording Mixer"
+      },
+      {
+        "nameID": "993165",
+        "name": "Mary Works",
+        "category": "Assistant Dialogue Editor"
+      },
+      {
+        "nameID": "1002652",
+        "name": "Dennis Berardi",
+        "category": "Visual Effects Supervisor"
+      },
+      {
+        "nameID": "1031820",
+        "name": "Wendy J. Greiner",
+        "category": "Key Costumer"
+      },
+      {
+        "nameID": "1116937",
+        "name": "John Roesch",
+        "category": "Foley Artist"
+      },
+      {
+        "nameID": "1172443",
+        "name": "Merrick Morton",
+        "category": "Still Photographer"
+      },
+      {
+        "nameID": "1181128",
+        "name": "P.J. Hanke",
+        "category": "Additional Music"
+      },
+      {
+        "nameID": "1279727",
+        "name": "Debbie Evans",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "1281471",
+        "name": "Lisa Guerriero",
+        "category": "Second Assistant Camera"
+      },
+      {
+        "nameID": "1300663",
+        "name": "Margaret Prentice",
+        "category": "Makeup Artist"
+      },
+      {
+        "nameID": "1314463",
+        "name": "Randy Westgate",
+        "category": "Makeup Artist"
+      },
+      {
+        "nameID": "1325234",
+        "name": "Jean Ann Black",
+        "category": "Makeup Artist"
+      },
+      {
+        "nameID": "1325655",
+        "name": "Elinor Bardach",
+        "category": "Costume Supervisor"
+      },
+      {
+        "nameID": "1327146",
+        "name": "Wendy M. Craig",
+        "category": "Set Costumer"
+      },
+      {
+        "nameID": "1341851",
+        "name": "Jeff Passanante",
+        "category": "Construction Coordinator"
+      },
+      {
+        "nameID": "1341856",
+        "name": "Hilda Hodges",
+        "category": "Foley Artist"
+      },
+      {
+        "nameID": "1342072",
+        "name": "Cliff Wenger",
+        "category": "Special Effects Coordinator"
+      },
+      {
+        "nameID": "1342601",
+        "name": "Nicholas Brooks",
+        "category": "Digital Compositors"
+      },
+      {
+        "nameID": "1352424",
+        "name": "Brandon Proctor",
+        "category": "Sound Mix Technician"
+      },
+      {
+        "nameID": "1357044",
+        "name": "Richard K. Buoen",
+        "category": "Production Illustrator"
+      },
+      {
+        "nameID": "1357063",
+        "name": "Darrin Prescott",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "1368878",
+        "name": "Damon Caro",
+        "category": "Fight Choreographer"
+      },
+      {
+        "nameID": "1368878",
+        "name": "Damon Caro",
+        "category": "Stunt Double"
+      },
+      {
+        "nameID": "1376902",
+        "name": "Gwendolyn Yates Whittle",
+        "category": "ADR Supervisor"
+      },
+      {
+        "nameID": "1378726",
+        "name": "Francie Brown",
+        "category": "Dialect Coach"
+      },
+      {
+        "nameID": "1378828",
+        "name": "Michael Semanick",
+        "category": "Sound Re-Recording Mixer"
+      },
+      {
+        "nameID": "1380919",
+        "name": "David Wald",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "1387252",
+        "name": "Chris O'Hara",
+        "category": "Utility Stunts"
+      },
+      {
+        "nameID": "1389534",
+        "name": "Richard Quinn",
+        "category": "Dialogue Editor"
+      },
+      {
+        "nameID": "1390518",
+        "name": "Luis G. Hoyos",
+        "category": "Set Designer"
+      },
+      {
+        "nameID": "1390528",
+        "name": "Wayne Burnes",
+        "category": "Special Effects Technician"
+      },
+      {
+        "nameID": "1391566",
+        "name": "Julia K. Levine",
+        "category": "Set Designer"
+      },
+      {
+        "nameID": "1392117",
+        "name": "Eric Rosenberg",
+        "category": "Graphic Designer"
+      },
+      {
+        "nameID": "1397810",
+        "name": "Kenneth Garrett",
+        "category": "Sculptor"
+      },
+      {
+        "nameID": "1398980",
+        "name": "Dave Robling",
+        "category": "Transportation Coordinator"
+      },
+      {
+        "nameID": "1399117",
+        "name": "David C. Hughes",
+        "category": "Sound Effects Editor"
+      },
+      {
+        "nameID": "1400371",
+        "name": "James M. Halty",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "1400905",
+        "name": "Ewa Sztompke",
+        "category": "Dialogue Editor"
+      },
+      {
+        "nameID": "1401109",
+        "name": "Chris Haarhoff",
+        "category": "Steadicam Operator"
+      },
+      {
+        "nameID": "1403191",
+        "name": "Andrea D'Amico",
+        "category": "Visual Effects Producer"
+      },
+      {
+        "nameID": "1403525",
+        "name": "Kevin Scott Mack",
+        "category": "Visual Effects Supervisor"
+      },
+      {
+        "nameID": "1404546",
+        "name": "Brian Richards",
+        "category": "Music Editor"
+      },
+      {
+        "nameID": "1406614",
+        "name": "David Parker",
+        "category": "Sound Re-Recording Mixer"
+      },
+      {
+        "nameID": "1407900",
+        "name": "Joëlle Taar",
+        "category": "Assistant Editor"
+      },
+      {
+        "nameID": "1408290",
+        "name": "Patricia Miller",
+        "category": "Hairstylist"
+      },
+      {
+        "nameID": "1409273",
+        "name": "Kevin Tod Haug",
+        "category": "Visual Effects Supervisor"
+      },
+      {
+        "nameID": "1413224",
+        "name": "Fríða Aradóttir",
+        "category": "Key Hair Stylist"
+      },
+      {
+        "nameID": "1419264",
+        "name": "Fiona Campbell Westgate",
+        "category": "Rotoscoping Artist"
+      },
+      {
+        "nameID": "1422059",
+        "name": "Craig B. Ayers Sr.",
+        "category": "Greensman"
+      },
+      {
+        "nameID": "1424126",
+        "name": "Carolyn Tapp",
+        "category": "Foley Recordist"
+      },
+      {
+        "nameID": "1432596",
+        "name": "Derek Casari",
+        "category": "ADR Engineer"
+      },
+      {
+        "nameID": "1440848",
+        "name": "Joshua I. Kolden",
+        "category": "Visual Effects"
+      },
+      {
+        "nameID": "1447557",
+        "name": "Rachel Wyn Dunn",
+        "category": "Compositors"
+      },
+      {
+        "nameID": "1461371",
+        "name": "Mary Jo Lang",
+        "category": "Foley Mixer"
+      },
+      {
+        "nameID": "1463313",
+        "name": "Collin Grant",
+        "category": "Storyboard Artist"
+      },
+      {
+        "nameID": "1463325",
+        "name": "Tim R. Lafferty",
+        "category": "Construction Foreman"
+      },
+      {
+        "nameID": "1474687",
+        "name": "John S. Dorsey",
+        "category": "Associate Producer"
+      },
+      {
+        "nameID": "1486851",
+        "name": "Alex Olivares",
+        "category": "First Assistant Editor"
+      },
+      {
+        "nameID": "1492646",
+        "name": "Sande Alessi",
+        "category": "Extras Casting"
+      },
+      {
+        "nameID": "1493771",
+        "name": "John T. Connor",
+        "category": "First Assistant Camera"
+      },
+      {
+        "nameID": "1500921",
+        "name": "Lane Leavitt",
+        "category": "Stunts"
+      },
+      {
+        "nameID": "1511710",
+        "name": "Jeff Wexler",
+        "category": "Sound Mixer"
+      },
+      {
+        "nameID": "1521769",
+        "name": "Dina Waxman",
+        "category": "Script Supervisor"
+      },
+      {
+        "nameID": "1530086",
+        "name": "Karen Meisels",
+        "category": "Casting Associate"
+      },
+      {
+        "nameID": "1532597",
+        "name": "Terry Anderson",
+        "category": "Set Costumer"
+      },
+      {
+        "nameID": "1533533",
+        "name": "Josue Clotaire Fleurimond",
+        "category": "Conceptual Design"
+      },
+      {
+        "nameID": "1534969",
+        "name": "Allen Kupetsky",
+        "category": "Second Second Assistant Director"
+      },
+      {
+        "nameID": "1535124",
+        "name": "Michael Runyard",
+        "category": "Stunt Coordinator"
+      },
+      {
+        "nameID": "1536630",
+        "name": "Robb Earnest",
+        "category": "Production Coordinator"
+      },
+      {
+        "nameID": "1548670",
+        "name": "Bill 'Kauhane' Hoyt",
+        "category": "Standby Painter"
+      },
+      {
+        "nameID": "1552215",
+        "name": "Martin Bosworth",
+        "category": "Rigging Gaffer"
+      },
+      {
+        "nameID": "1552998",
+        "name": "Raymond Bulinski",
+        "category": "Craft Service"
+      },
+      {
+        "nameID": "1554372",
+        "name": "Carey Ann Strelecki",
+        "category": "Researcher"
+      },
+      {
+        "nameID": "1559615",
+        "name": "Manny Demello",
+        "category": "Driver"
+      },
+      {
+        "nameID": "1585177",
+        "name": "Michael Herron",
+        "category": "Set Production Assistant"
+      },
+      {
+        "nameID": "1586924",
+        "name": "Jim Alfonso",
+        "category": "Transportation Captain"
+      },
+      {
+        "nameID": "1586926",
+        "name": "Steve Wolfe",
+        "category": "Assistant Camera"
+      },
+      {
+        "nameID": "1586932",
+        "name": "Frank Roughan",
+        "category": "Transportation Captain"
+      },
+      {
+        "nameID": "1599632",
+        "name": "Peter Mavromates",
+        "category": "Post Production Supervisor"
+      },
+      {
+        "nameID": "1614187",
+        "name": "Kevin Brown",
+        "category": "Lighting Technician"
+      },
+      {
+        "nameID": "1621223",
+        "name": "Tani Kunitake",
+        "category": "Production Illustrator"
+      },
+      {
+        "nameID": "1622111",
+        "name": "Michael Arvanitis",
+        "category": "Best Boy Electric"
+      },
+      {
+        "nameID": "1646055",
+        "name": "Robert Mehnert",
+        "category": "Aerial Camera"
+      },
+      {
+        "nameID": "1691197",
+        "name": "Michael J. Coo",
+        "category": "Key Grip"
+      },
+      {
+        "nameID": "1693424",
+        "name": "Mirela Rupic",
+        "category": "Assistant Costume Designer"
+      },
+      {
+        "nameID": "1708007",
+        "name": "Charles W. Belisle",
+        "category": "Set Dressing Artist"
+      },
+      {
+        "nameID": "1728281",
+        "name": "Tammy DeRuiter",
+        "category": "Painter"
+      },
+      {
+        "nameID": "1735467",
+        "name": "Kieran Woo",
+        "category": "Production Controller"
+      },
+      {
+        "nameID": "1735477",
+        "name": "Wayne Tidwell",
+        "category": "Video Assist Operator"
+      },
+      {
+        "nameID": "1741114",
+        "name": "Bryan Duff",
+        "category": "Assistant Property Master"
+      },
+      {
+        "nameID": "1749891",
+        "name": "S. Quinn",
+        "category": "Art Department Coordinator"
+      },
+      {
+        "nameID": "1749892",
+        "name": "Jack Robinson",
+        "category": "Location Scout"
+      },
+      {
+        "nameID": "1749896",
+        "name": "Greg Solomon",
+        "category": "Prosthetic Makeup Artist"
+      },
+      {
+        "nameID": "1749897",
+        "name": "Yann Blondel",
+        "category": "CG Supervisor"
+      },
+      {
+        "nameID": "1749899",
+        "name": "Gary Kanner",
+        "category": "Camera Loader"
+      },
+      {
+        "nameID": "1749901",
+        "name": "Karman Graham",
+        "category": "Post Production Assistant"
+      },
+      {
+        "nameID": "1749902",
+        "name": "Carrie Shaw",
+        "category": "Production Office Assistant"
+      },
+      {
+        "nameID": "1749904",
+        "name": "David B. Brenner",
+        "category": "Propmaker"
+      },
+      {
+        "nameID": "1749906",
+        "name": "Roy 'Bucky' Moore",
+        "category": "Property Master"
+      },
+      {
+        "nameID": "1749907",
+        "name": "Katherine Jones",
+        "category": "Set Medic"
+      },
+      {
+        "nameID": "1749908",
+        "name": "Lucio I. Flores",
+        "category": "Software Engineer"
+      },
+      {
+        "nameID": "1749910",
+        "name": "Chad Keller",
+        "category": "Stand In"
+      },
+      {
+        "nameID": "1749916",
+        "name": "Leon Xiao",
+        "category": "Systems Administrators & Support"
+      },
+      {
+        "nameID": "1749920",
+        "name": "Ronald A. Miller",
+        "category": "Rigging Grip"
+      },
+      {
+        "nameID": "1749921",
+        "name": "Flint Maloney",
+        "category": "Location Manager"
+      },
+      {
+        "nameID": "1749922",
+        "name": "Jim Davidson",
+        "category": "Production Accountant"
+      },
+      {
+        "nameID": "1749923",
+        "name": "Jessica Bellfort",
+        "category": "Assistant Sound Editor"
+      },
+      {
+        "nameID": "1749924",
+        "name": "Jim Rutherford",
+        "category": "3D Animator"
+      },
+      {
+        "nameID": "1749925",
+        "name": "Lauren A. Littleton",
+        "category": "Visual Effects Coordinator"
+      },
+      {
+        "nameID": "1749926",
+        "name": "Misa Kageyama",
+        "category": "Assistant Sound Designer"
+      },
+      {
+        "nameID": "1758614",
+        "name": "Bob Wagner",
+        "category": "Second Assistant Director"
+      },
+      {
+        "nameID": "1758616",
+        "name": "Julie L. Pearce",
+        "category": "Key Makeup Artist"
+      },
+      {
+        "nameID": "1758622",
+        "name": "Christie Cean George",
+        "category": "Casting Assistant"
+      },
+      {
+        "nameID": "1787833",
+        "name": "Ryan Laney",
+        "category": "Visual Effects Technical Director"
+      },
+      {
+        "nameID": "1854468",
+        "name": "Michael Brennan",
+        "category": "Dolly Grip"
+      },
+      {
+        "nameID": "1855155",
+        "name": "Peter J. Kelly",
+        "category": "Set Designer"
+      },
+      {
+        "nameID": "1859748",
+        "name": "Ron Frankel",
+        "category": "Pre-Visualization Supervisor"
+      },
+      {
+        "nameID": "2220072",
+        "name": "Scott Ross",
+        "category": "General Manager"
+      },
+      {
+        "nameID": "2223905",
+        "name": "Craig Kohtala",
+        "category": "Best Boy Grip"
+      },
+      {
+        "nameID": "2237171",
+        "name": "Eileen M. Dennis",
+        "category": "Second Assistant Accountant"
+      },
+      {
+        "nameID": "2254345",
+        "name": "Danielle Simpson",
+        "category": "Set Dressing Buyer"
+      },
+      {
+        "nameID": "2254357",
+        "name": "Chris Gutierrez",
+        "category": "Assistant Location Manager"
+      },
+      {
+        "nameID": "2254358",
+        "name": "Raymond Bongiovanni",
+        "category": "In Memory Of"
+      },
+      {
+        "nameID": "2254359",
+        "name": "David Bailey",
+        "category": "Matte Painter"
+      },
+      {
+        "nameID": "2254360",
+        "name": "Cindy Nevins",
+        "category": "Payroll Accountant"
+      },
+      {
+        "nameID": "2254362",
+        "name": "Tanya Doyle",
+        "category": "Production Assistant"
+      },
+      {
+        "nameID": "2254363",
+        "name": "Shaun Ryan",
+        "category": "Production Driver"
+      },
+      {
+        "nameID": "2355555",
+        "name": "Ryan Christopher Keys",
+        "category": "Stunts"
+      }
+    ],
+    "rating": {
+      "avRating": "8.44",
+      "nVotes": "28017"
+    }
+  },
+  {
+    "titleID": "112126",
+    "type": "tv",
+    "originalTitle": "闘え!ドラゴン",
+    "titlePoster": "/efCu79UXyQjMIfffRAZd9bDfVvt.jpg",
+    "startYear": "1974",
+    "endYear": "1974",
+    "genres": [
+      {
+        "genreTitle": "Action & Adventure"
+      },
+      {
+        "genreTitle": "Drama"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "26756",
+        "name": "Yasuaki Kurata",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1200334",
+        "name": "Makoto Akatsuka",
+        "category": "Acting"
+      },
+      {
+        "nameID": "138451",
+        "name": "Shunsuke Kikuchi",
+        "category": "Sound"
+      },
+      {
+        "nameID": "564950",
+        "name": "Masaru Igami",
+        "category": "Writing"
+      }
+    ],
+    "rating": {
+      "avRating": "4",
+      "nVotes": "1"
+    }
+  },
+  {
+    "titleID": "84097",
+    "type": "tv",
+    "originalTitle": "ファイト",
+    "titlePoster": "/uNes3o9xQqg9faVlZhNFjNVjwwX.jpg",
+    "startYear": "2005",
+    "endYear": "2005",
+    "genres": [
+      {
+        "genreTitle": "Drama"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "1245926",
+        "name": "Yuika Motokariya",
+        "category": "Acting"
+      },
+      {
+        "nameID": "553939",
+        "name": "Naoto Ogata",
+        "category": "Acting"
+      },
+      {
+        "nameID": "133168",
+        "name": "Haruma Miura",
+        "category": "Acting"
+      },
+      {
+        "nameID": "58441",
+        "name": "Noriko Sakai",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1250086",
+        "name": "Yuki Saori",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1432269",
+        "name": "Atsuko Hashibe",
+        "category": "Writing"
+      }
+    ],
+    "rating": {
+      "avRating": "0",
+      "nVotes": "0"
+    }
+  },
+  {
+    "titleID": "97412",
+    "type": "tv",
+    "originalTitle": "戦え!!イクサー1",
+    "titlePoster": "/z7x2kFFW5LVX7S3dmBXWwNWk6zx.jpg",
+    "startYear": "1985",
+    "endYear": "1991",
+    "genres": [
+      {
+        "genreTitle": "Action & Adventure"
+      },
+      {
+        "genreTitle": "Sci-Fi & Fantasy"
+      },
+      {
+        "genreTitle": "Animation"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "1501419",
+        "name": "Cutie Suzuki",
+        "category": "Acting"
+      },
+      {
+        "nameID": "555550",
+        "name": "Yuri Shiratori",
+        "category": "Acting"
+      },
+      {
+        "nameID": "85284",
+        "name": "Yuriko Yamamoto",
+        "category": "Acting"
+      }
+    ],
+    "rating": {
+      "avRating": "5.333",
+      "nVotes": "6"
+    }
+  },
+  {
+    "titleID": "233968",
+    "type": "tv",
+    "originalTitle": "阿麦从军",
+    "titlePoster": "/cy5RrUOANg1o9MS2tcaUCiG6HaO.jpg",
+    "startYear": "2024",
+    "endYear": "2024",
+    "genres": [
+      {
+        "genreTitle": "Crime"
+      },
+      {
+        "genreTitle": "Drama"
+      },
+      {
+        "genreTitle": "Mystery"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "1599854",
+        "name": "Zhang Tian'ai",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2619965",
+        "name": "Zhang Haowei",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1973972",
+        "name": "Wang Ruichang",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2088240",
+        "name": "Yang Tongshu",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1737238",
+        "name": "Johnny Zhang",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2184053",
+        "name": "Sun Shao Long",
+        "category": "Acting"
+      }
+    ],
+    "rating": {
+      "avRating": "0",
+      "nVotes": "0"
+    }
+  },
+  {
+    "titleID": "70813",
+    "type": "tv",
+    "originalTitle": "쌈 마이웨이",
+    "titlePoster": "/55w33JzFKBkz1evjBjqeF0enDd1.jpg",
+    "startYear": "2017",
+    "endYear": "2017",
+    "genres": [
+      {
+        "genreTitle": "Comedy"
+      },
+      {
+        "genreTitle": "Drama"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "1347525",
+        "name": "Park Seo-jun",
+        "category": "Acting"
+      },
+      {
+        "nameID": "582130",
+        "name": "Kim Ji-won",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1164507",
+        "name": "Ahn Jae-hong",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1046862",
+        "name": "Song Ha-yoon",
+        "category": "Acting"
+      },
+      {
+        "nameID": "147505",
+        "name": "Kim Sung-oh",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1818072",
+        "name": "Pyo Ye-jin",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1860101",
+        "name": "Lee Elijah",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1765488",
+        "name": "Chae Dong-hyeon",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2042979",
+        "name": "Kim Gun-woo",
+        "category": "Acting"
+      },
+      {
+        "nameID": "62336",
+        "name": "Jin Hee-kyung",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1043191",
+        "name": "Kim Ye-ryeong",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1255881",
+        "name": "Choi Woo-shik",
+        "category": "Acting"
+      },
+      {
+        "nameID": "138521",
+        "name": "Kim Hee-chang",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1334541",
+        "name": "Kang Ki-doong",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2159391",
+        "name": "Lee Han-seo",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1770972",
+        "name": "Lee Na-jeong",
+        "category": "Directing"
+      },
+      {
+        "nameID": "2039962",
+        "name": "Im Sang-choon",
+        "category": "Writing"
+      },
+      {
+        "nameID": "1764493",
+        "name": "Kim Dong-hwi",
+        "category": "Directing"
+      },
+      {
+        "nameID": "3194117",
+        "name": "Park Seong",
+        "category": "Camera"
+      },
+      {
+        "nameID": "2890145",
+        "name": "Kim Hee-yeol",
+        "category": "Production"
+      }
+    ],
+    "rating": {
+      "avRating": "7.902",
+      "nVotes": "97"
+    }
+  },
+  {
+    "titleID": "46554",
+    "type": "tv",
+    "originalTitle": "맞짱",
+    "titlePoster": "/kgihHxCYDPrqf3KzQGGrxfv6G23.jpg",
+    "startYear": "2008",
+    "endYear": "2008",
+    "genres": [
+      {
+        "genreTitle": "Action & Adventure"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "1046709",
+        "name": "Yoo Gun",
+        "category": "Acting"
+      },
+      {
+        "nameID": "139498",
+        "name": "Lee Yeong-jin",
+        "category": "Acting"
+      },
+      {
+        "nameID": "138541",
+        "name": "Lee Jong-soo",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1299221",
+        "name": "Baek Do-bin",
+        "category": "Acting"
+      },
+      {
+        "nameID": "229755",
+        "name": "Hong Seung-jin",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1238415",
+        "name": "Uhm Tae-woong",
+        "category": "Acting"
+      },
+      {
+        "nameID": "80459",
+        "name": "Jang Hang-seon",
+        "category": "Acting"
+      },
+      {
+        "nameID": "992630",
+        "name": "Jung Suk-won",
+        "category": "Acting"
+      },
+      {
+        "nameID": "230362",
+        "name": "Jo Deok-hyeon",
+        "category": "Acting"
+      },
+      {
+        "nameID": "138531",
+        "name": "Kim Soo-ro",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1719943",
+        "name": "Park Jung-woo",
+        "category": "Writing"
+      },
+      {
+        "nameID": "1719943",
+        "name": "Park Jung-woo",
+        "category": "Writing"
+      }
+    ],
+    "rating": {
+      "avRating": "8",
+      "nVotes": "1"
+    }
+  },
+  {
+    "titleID": "107958",
+    "type": "tv",
+    "originalTitle": "ウルトラギャラクシーファイト 大いなる陰謀",
+    "titlePoster": "/5bJpJ3tosRkkr3DddYpjnyGC7iJ.jpg",
+    "startYear": "2020",
+    "endYear": "2021",
+    "genres": [
+      {
+        "genreTitle": "Action & Adventure"
+      },
+      {
+        "genreTitle": "Sci-Fi & Fantasy"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "93803",
+        "name": "Mamoru Miyano",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2020490",
+        "name": "Wataru Komada",
+        "category": "Acting"
+      },
+      {
+        "nameID": "222350",
+        "name": "Takuma Terashima",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1256915",
+        "name": "Tasuku Hatanaka",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1910234",
+        "name": "Arisa Sonohara",
+        "category": "Acting"
+      },
+      {
+        "nameID": "224413",
+        "name": "Satoshi Hino",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2319734",
+        "name": "Shota Hayama",
+        "category": "Acting"
+      },
+      {
+        "nameID": "84507",
+        "name": "Kazuya Nakai",
+        "category": "Acting"
+      },
+      {
+        "nameID": "131563",
+        "name": "Jun Fukuyama",
+        "category": "Acting"
+      },
+      {
+        "nameID": "237075",
+        "name": "Keiichi Nanba",
+        "category": "Acting"
+      },
+      {
+        "nameID": "9706",
+        "name": "Toshiyuki Morikawa",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1206317",
+        "name": "Yuki Ono",
+        "category": "Acting"
+      },
+      {
+        "nameID": "229504",
+        "name": "Hatsunori Hasegawa",
+        "category": "Acting"
+      },
+      {
+        "nameID": "145066",
+        "name": "Koichi Sakamoto",
+        "category": "Directing"
+      },
+      {
+        "nameID": "2263586",
+        "name": "Junichiro Ashiki",
+        "category": "Writing"
+      }
+    ],
+    "rating": {
+      "avRating": "6.8",
+      "nVotes": "6"
+    }
+  },
+  {
+    "titleID": "118043",
+    "type": "tv",
+    "originalTitle": "Amend: The Fight for America",
+    "titlePoster": "/a7i3jJe9rI7RSvlGoMB7aYI7XVt.jpg",
+    "startYear": "2021",
+    "endYear": "2021",
+    "genres": [
+      {
+        "genreTitle": "Documentary"
+      },
+      {
+        "genreTitle": "News"
+      },
+      {
+        "genreTitle": "War & Politics"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "2888",
+        "name": "Will Smith",
+        "category": "Acting"
+      },
+      {
+        "nameID": "932967",
+        "name": "Mahershala Ali",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1034197",
+        "name": "Samira Wiley",
+        "category": "Acting"
+      },
+      {
+        "nameID": "24047",
+        "name": "Courtney B. Vance",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2231",
+        "name": "Samuel L. Jackson",
+        "category": "Acting"
+      },
+      {
+        "nameID": "965219",
+        "name": "Bambadjan Bamba",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1059572",
+        "name": "Lena Waithe",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1225953",
+        "name": "Sterling K. Brown",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1010157",
+        "name": "Diane Guerrero",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1652371",
+        "name": "Daveed Diggs",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1120699",
+        "name": "Aja Naomi King",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1298360",
+        "name": "Laverne Cox",
+        "category": "Acting"
+      },
+      {
+        "nameID": "21127",
+        "name": "Bobby Cannavale",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1434819",
+        "name": "Hannah Gadsby",
+        "category": "Acting"
+      },
+      {
+        "nameID": "9994",
+        "name": "Helen Hunt",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1377458",
+        "name": "Algee Smith",
+        "category": "Acting"
+      },
+      {
+        "nameID": "79082",
+        "name": "Randall Park",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1407498",
+        "name": "Marsai Martin",
+        "category": "Acting"
+      },
+      {
+        "nameID": "61178",
+        "name": "Alia Shawkat",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1651994",
+        "name": "Jae Suh Park",
+        "category": "Acting"
+      },
+      {
+        "nameID": "111016",
+        "name": "Gabriel Luna",
+        "category": "Acting"
+      },
+      {
+        "nameID": "6804",
+        "name": "Graham Greene",
+        "category": "Acting"
+      },
+      {
+        "nameID": "66555",
+        "name": "Whitney Cummings",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2882",
+        "name": "Diane Lane",
+        "category": "Acting"
+      },
+      {
+        "nameID": "20212",
+        "name": "Dermot Mulroney",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1253360",
+        "name": "Pedro Pascal",
+        "category": "Acting"
+      },
+      {
+        "nameID": "49920",
+        "name": "Willow Smith",
+        "category": "Acting"
+      },
+      {
+        "nameID": "154091",
+        "name": "Larry Wilmore",
+        "category": "Acting"
+      },
+      {
+        "nameID": "929511",
+        "name": "Utkarsh Ambudkar",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1932179",
+        "name": "Rafael Casal",
+        "category": "Acting"
+      },
+      {
+        "nameID": "24045",
+        "name": "Joseph Gordon-Levitt",
+        "category": "Acting"
+      },
+      {
+        "nameID": "11866",
+        "name": "Joshua Jackson",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1310760",
+        "name": "Ki Hong Lee",
+        "category": "Acting"
+      },
+      {
+        "nameID": "220088",
+        "name": "Tig Notaro",
+        "category": "Acting"
+      },
+      {
+        "nameID": "118372",
+        "name": "Yara Shahidi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "196858",
+        "name": "Kenny Leon",
+        "category": "Directing"
+      },
+      {
+        "nameID": "2985309",
+        "name": "Robe Imbriano",
+        "category": "Writing"
+      },
+      {
+        "nameID": "2985311",
+        "name": "Sasha Stewart",
+        "category": "Writing"
+      },
+      {
+        "nameID": "1586221",
+        "name": "Tom Yellin",
+        "category": "Production"
+      },
+      {
+        "nameID": "1518115",
+        "name": "Osei Essed",
+        "category": "Sound"
+      },
+      {
+        "nameID": "1031598",
+        "name": "Eric Lin",
+        "category": "Camera"
+      },
+      {
+        "nameID": "3042161",
+        "name": "Doyle Esch",
+        "category": "Editing"
+      },
+      {
+        "nameID": "3042163",
+        "name": "Paige Ferrari",
+        "category": "Editing"
+      },
+      {
+        "nameID": "2370355",
+        "name": "Carlos Haynes",
+        "category": "Editing"
+      },
+      {
+        "nameID": "3042164",
+        "name": "Mark Imgrund",
+        "category": "Editing"
+      },
+      {
+        "nameID": "1409532",
+        "name": "Keith Fraase",
+        "category": "Editing"
+      },
+      {
+        "nameID": "2379290",
+        "name": "Frederick Shanahan",
+        "category": "Editing"
+      },
+      {
+        "nameID": "2139769",
+        "name": "Karen K. H. Sim",
+        "category": "Editing"
+      },
+      {
+        "nameID": "2888",
+        "name": "Will Smith",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1415665",
+        "name": "Reinaldo Marcus Green",
+        "category": "Directing"
+      }
+    ],
+    "rating": {
+      "avRating": "7.1",
+      "nVotes": "162"
+    }
+  },
+  {
+    "titleID": "91611",
+    "type": "tv",
+    "originalTitle": "ウルトラギャラクシーファイト ニュージェネレーションヒーローズ",
+    "titlePoster": "/sdqbELQtmfJMs13Xr97pzKKh0xg.jpg",
+    "startYear": "2019",
+    "endYear": "2019",
+    "genres": [
+      {
+        "genreTitle": "Action & Adventure"
+      },
+      {
+        "genreTitle": "Sci-Fi & Fantasy"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "1497414",
+        "name": "Takuya Negishi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1178883",
+        "name": "Uji Kiyotaka",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1658221",
+        "name": "Kensuke Takahashi",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1008384",
+        "name": "Hideo Ishiguro",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1034362",
+        "name": "Tatsuomi Hamada",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1762681",
+        "name": "Yuya Hirata",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2087227",
+        "name": "Ryosuke Koike",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1910234",
+        "name": "Arisa Sonohara",
+        "category": "Acting"
+      },
+      {
+        "nameID": "93803",
+        "name": "Mamoru Miyano",
+        "category": "Acting"
+      },
+      {
+        "nameID": "2020490",
+        "name": "Wataru Komada",
+        "category": "Acting"
+      },
+      {
+        "nameID": "554368",
+        "name": "Hiroya Ishimaru",
+        "category": "Acting"
+      },
+      {
+        "nameID": "144655",
+        "name": "Tomokazu Sugita",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1154452",
+        "name": "Tatsuhisa Suzuki",
+        "category": "Acting"
+      },
+      {
+        "nameID": "1492992",
+        "name": "Yuma Uchida",
+        "category": "Acting"
+      },
+      {
+        "nameID": "145066",
+        "name": "Koichi Sakamoto",
+        "category": "Directing"
+      },
+      {
+        "nameID": "2263586",
+        "name": "Junichiro Ashiki",
+        "category": "Writing"
+      }
+    ],
+    "rating": {
+      "avRating": "7.8",
+      "nVotes": "5"
+    }
+  },
+  {
+    "titleID": "1211483",
+    "type": "movie",
+    "originalTitle": "Skal - Fight for Survival",
+    "titlePoster": "/uQkiDKQyun13mqsOXv7I5MRKr0q.jpg",
+    "startYear": "2023",
+    "endYear": "",
+    "genres": [
+      {
+        "genreTitle": "Action"
+      },
+      {
+        "genreTitle": "Horror"
+      },
+      {
+        "genreTitle": "Comedy"
+      },
+      {
+        "genreTitle": "Thriller"
+      }
+    ],
+    "titleAkas": [],
+    "principals": [
+      {
+        "nameID": "1883593",
+        "name": "Evan Marsh",
+        "category": "actor"
+      },
+      {
+        "nameID": "2069639",
+        "name": "Chris Sandiford",
+        "category": "actor"
+      },
+      {
+        "nameID": "1122326",
+        "name": "Mariah Inger",
+        "category": "actor"
+      },
+      {
+        "nameID": "4403505",
+        "name": "Darren Eisenhauer",
+        "category": "actor"
+      },
+      {
+        "nameID": "1228363",
+        "name": "Olivia Scriven",
+        "category": "actor"
+      },
+      {
+        "nameID": "82646",
+        "name": "Trevor Hayes",
+        "category": "actor"
+      },
+      {
+        "nameID": "4407265",
+        "name": "Benjamin Cappelletti",
+        "category": "Director"
+      }
+    ],
+    "rating": {
+      "avRating": "6.5",
+      "nVotes": "1"
+    }
+  }
+]
