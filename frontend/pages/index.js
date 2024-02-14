@@ -33,7 +33,13 @@ const Home = () => {
       }}
     >
       <AppBar position="static" color="transparent" elevation={0}>
-        <Toolbar>
+        <Toolbar
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <Typography
             variant="h3"
             color="inherit"
@@ -44,18 +50,35 @@ const Home = () => {
               color: "#730000",
               WebkitTextStroke: "1px #000000",
               textAlign: "center",
-              margin: "auto",
               width: "fit-content",
+              textShadow: "0px 5px 2px rgba(0,0,0,0.15)",
+              margin: "auto",
             }}
           >
             NTUAFLIX
+          </Typography>
+          <Typography
+            variant="h6"
+            color="inherit"
+            sx={{
+              fontSize: "25px",
+              textAlign: "center",
+              width: "fit-content",
+              paddingTop: "10px",
+              marginTop: "10px",
+              margin: "auto",
+              textShadow: "0px 2px 2px rgba(0, 0, 0, 0.05)",
+              letterSpacing: "0.5px",
+            }}
+          >
+            Because life's too short for bad movies.
           </Typography>
         </Toolbar>
       </AppBar>
       <Typography
         variant="h4"
         gutterBottom
-        sx={{ marginTop: 10, paddingLeft: 10 }}
+        sx={{ marginTop: 10, paddingLeft: 10, fontWeight: "bold" }}
       >
         Featured Movies
       </Typography>
