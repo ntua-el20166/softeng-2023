@@ -21,7 +21,11 @@ async function getPopularMovies(req, res) {
 async function getSimilarTitles(req, res) {
   try {
     let response, ret, to_send;
-
+    if (req.body.type != "tv" && req.body.type != "movie") {
+      const error = new Error("Bad Request");
+      error.statusCode = 400;
+      throw error;
+    }
     response = await fetchData(
       `/${req.body.type}/${req.body.movie_id}/similar`
     );
@@ -38,7 +42,7 @@ async function getSimilarTitles(req, res) {
     checkResultEmpty(to_send);
     res.send(to_send);
   } catch (error) {
-    catchError(error, res);
+    errorHandler(error, res);
   }
 }
 
