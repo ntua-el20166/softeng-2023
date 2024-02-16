@@ -1,0 +1,34 @@
+{
+  "nameID": "45",
+  "name": "Stephen Massicotte",
+  "namePoster": null,
+  "birthYr": "",
+  "deathYr": "",
+  "profession": "Writing",
+  "nameTitles": [
+    {
+      "titleID": "1186749",
+      "category": "Actor"
+    },
+    {
+      "titleID": "17",
+      "category": "Screenplay"
+    },
+    {
+      "titleID": "12583",
+      "category": "Screenplay"
+    },
+    {
+      "titleID": "975091",
+      "category": "Writer"
+    },
+    {
+      "titleID": "975096",
+      "category": "Writer"
+    },
+    {
+      "titleID": "1186749",
+      "category": "Writer"
+    }
+  ]
+}
