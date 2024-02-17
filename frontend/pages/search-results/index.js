@@ -11,7 +11,6 @@ const SearchResults = () => {
   const router = useRouter();
   const titleResults = useSelector((state) => state.results.titleResults);
   const nameResults = useSelector((state) => state.results.nameResults);
-
   const resultsLoading = useSelector((state) => state.results.resultsLoading);
 
   const { searchInput, rating, genre } = router.query;

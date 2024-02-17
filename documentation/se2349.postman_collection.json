@@ -1,0 +1,1297 @@
+{
+	"info": {
+		"_postman_id": "f534ac95-ec47-4961-9bbf-fc5123ef7142",
+		"name": "se2349",
+		"description": "The **se2349** collection represents the RESTful Application Programming Interface (REST API) for NTUAFLIX. This API facilitates the management of data and services related to the NTUAFLIX platform, offering various endpoints to interact with the system. Users can utilize the API to search  \nfor movies, TV series, and actors, resembling the functionality of a  \ncomprehensive entertainment database.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31582460",
+		"_collection_link": "https://lunar-crescent-407775.postman.co/workspace/My-Workspace~4c3ef9ea-6e75-4a4c-82b8-1b28d6caf262/collection/29067860-f534ac95-ec47-4961-9bbf-fc5123ef7142?action=share&source=collection_link&creator=31582460"
+	},
+	"item": [
+		{
+			"name": "successful_requests",
+			"item": [
+				{
+					"name": "title/titleID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has a valid titleObject structure\", function () {",
+									"    let jsonResponse = pm.response.json();",
+									"    ",
+									"    // Check if the response has titleObject",
+									"    let titleObject = jsonResponse;",
+									"    ",
+									"    // Validate the structure of the titleObject",
+									"    pm.expect(titleObject).to.have.property('titleID').that.is.a('string');",
+									"    pm.expect(titleObject).to.have.property('type').that.is.a('string');",
+									"    pm.expect(titleObject).to.have.property('originalTitle').that.is.a('string');",
+									"    pm.expect(titleObject).to.have.property('titlePoster').that.is.a('string');",
+									"    pm.expect(titleObject).to.have.property('startYear').that.is.a('string');",
+									"    pm.expect(titleObject).to.have.property('endYear').that.is.a('string');",
+									"    pm.expect(titleObject).to.have.property('genres').that.is.an('array');",
+									"    ",
+									"    // Validate genres array structure",
+									"    titleObject.genres.forEach(function (genre) {",
+									"        pm.expect(genre).to.have.property('genreTitle').that.is.a('string');",
+									"    });",
+									"",
+									"    // Validate titleAkas array structure",
+									"    pm.expect(titleObject).to.have.property('titleAkas').that.is.an('array');",
+									"    titleObject.titleAkas.forEach(function (aka) {",
+									"        pm.expect(aka).to.have.property('akaTitle').that.is.a('string');",
+									"        pm.expect(aka).to.have.property('regionAbbrev').that.is.a('string');",
+									"    });",
+									"     pm.expect(titleObject).to.have.property('rating').that.is.an('object');",
+									"        // Validate rating object structure",
+									"    pm.expect(titleObject.rating).to.have.property('avRating').that.is.a('string');",
+									"    pm.expect(titleObject.rating).to.have.property('nVotes').that.is.a('string');",
+									"    // Validate principals array structure",
+									"    pm.expect(titleObject).to.have.property('principals').that.is.an('array');",
+									"    titleObject.principals.forEach(function (principal) {",
+									"        pm.expect(principal).to.have.property('nameID').that.is.a('string');",
+									"        pm.expect(principal).to.have.property('name').that.is.a('string');",
+									"        pm.expect(principal).to.have.property('category').that.is.a('string');",
+									"       ",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9876/ntuaflix_api/title/866398",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9876",
+							"path": [
+								"ntuaflix_api",
+								"title",
+								"866398"
+							]
+						},
+						"description": "Returns a `titleObject` that contains details of the movie/series with `tconst==titleID`, as follows:\n\n| Field | Type | Description |\n| --- | --- | --- |\n| titleID | String | The identifier `tconst` |\n| type | String | Type of title (short, movie, tvEpisode) |\n| originalTitle | String | The original title |\n| titlePoster | String | URL of the movie/series poster |\n| startYear | String | The year of first airing |\n| endYear | String | The year of last airing (if applicable) |\n| genres | List | List of genres the movie/series belongs to, containing objects with the following fields:  <br>\\- `genreTitle`: String - The genre title |\n| titleAkas | List | List of alternative (\"also known as\") titles of the movie/series, containing objects with the following fields:  <br>\\- `akaTitle`: String - The alternative title  <br>\\- `regionAbbrev`: String - The region |\n| principals | List | List containing objects corresponding to the contributors, as follows:  <br>\\- `nameID`: String - The `nconst` field of the contributor  <br>\\- `name`: String - The `primaryName` field of the contributor  <br>\\- `category`: String - The category (director, actor, editor, etc.) of the contributor within the specific movie/episode |\n| rating | Object | Object with the following fields:  <br>\\- `avRating`: String - Average rating of the movie/series  <br>\\- `nVotes`: String - Number of ratings |"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9876/ntuaflix_api/title/866398",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9876",
+									"path": [
+										"ntuaflix_api",
+										"title",
+										"866398"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "searchtitle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response contains nameObjects with the specified namePart\", function () {",
+									"    let jsonResponse = pm.response.json();",
+									"    let titlePart = JSON.parse(pm.request.body.raw).titlePart; // This assumes that the request body is in raw JSON format",
+									"    jsonResponse.forEach(function (titleObject) {",
+									"        pm.expect(titleObject).to.have.property('titleID').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('type').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('originalTitle').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('titlePoster').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('startYear').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('endYear').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('genres').that.is.an('array');",
+									"        ",
+									"        // Validate genres array structure",
+									"        titleObject.genres.forEach(function (genre) {",
+									"            pm.expect(genre).to.have.property('genreTitle').that.is.a('string');",
+									"        });",
+									"",
+									"        // Validate titleAkas array structure",
+									"        pm.expect(titleObject).to.have.property('titleAkas').that.is.an('array');",
+									"        titleObject.titleAkas.forEach(function (aka) {",
+									"            pm.expect(aka).to.have.property('akaTitle').that.is.a('string');",
+									"            pm.expect(aka).to.have.property('regionAbbrev').that.is.a('string');",
+									"        });",
+									"        pm.expect(titleObject).to.have.property('rating').that.is.an('object');",
+									"            // Validate rating object structure",
+									"        pm.expect(titleObject.rating).to.have.property('avRating').that.is.a('string');",
+									"        pm.expect(titleObject.rating).to.have.property('nVotes').that.is.a('string');",
+									"        // Validate principals array structure",
+									"        pm.expect(titleObject).to.have.property('principals').that.is.an('array');",
+									"        titleObject.principals.forEach(function (principal) {",
+									"            pm.expect(principal).to.have.property('nameID').that.is.a('string');",
+									"            pm.expect(principal).to.have.property('name').that.is.a('string');",
+									"            pm.expect(principal).to.have.property('category').that.is.a('string');",
+									"        ",
+									"        });",
+									"    });",
+									"",
+									"    // Check if the response is an array",
+									"    pm.expect(jsonResponse).to.be.an('array');",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"titlePart\": \"a\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9876/ntuaflix_api/searchtitle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9876",
+							"path": [
+								"ntuaflix_api",
+								"searchtitle"
+							]
+						},
+						"description": "Accepts a `tqueryObject` in the body as follows:\n\n#### tqueryObject\n\n| Field | Type | Description |\n| --- | --- | --- |\n| titlePart | String | Part of the title we are searching for |\n\nReturns a list of `titleObject`s whose `originalTitle` field contains the `titlePart`."
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"titlePart\": \"a\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9876/ntuaflix_api/searchtitle",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9876",
+									"path": [
+										"ntuaflix_api",
+										"searchtitle"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "bygenre",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Each titleObject matches the query criteria\", function () {",
+									"    // Assuming that the request was sent with a body containing the gqueryObject",
+									"    let requestBody = JSON.parse(pm.request.body.raw);",
+									"    let gqueryObject = requestBody;",
+									"",
+									"    let jsonResponse = pm.response.json();",
+									"    ",
+									"    // The response should be an array of titleObjects",
+									"    pm.expect(jsonResponse).to.be.an('array');",
+									"",
+									"    jsonResponse.forEach(function (titleObject) {",
+									"        // Check if the titleObject matches the qgenre",
+									"    jsonResponse.forEach(function (titleObject) {",
+									"        pm.expect(titleObject).to.have.property('titleID').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('type').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('originalTitle').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('titlePoster').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('startYear').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('endYear').that.is.a('string');",
+									"        pm.expect(titleObject).to.have.property('genres').that.is.an('array');",
+									"        ",
+									"        // Validate genres array structure",
+									"        titleObject.genres.forEach(function (genre) {",
+									"            pm.expect(genre).to.have.property('genreTitle').that.is.a('string');",
+									"        });",
+									"",
+									"        // Validate titleAkas array structure",
+									"        pm.expect(titleObject).to.have.property('titleAkas').that.is.an('array');",
+									"        titleObject.titleAkas.forEach(function (aka) {",
+									"            pm.expect(aka).to.have.property('akaTitle').that.is.a('string');",
+									"            pm.expect(aka).to.have.property('regionAbbrev').that.is.a('string');",
+									"        });",
+									"        pm.expect(titleObject).to.have.property('rating').that.is.an('object');",
+									"            // Validate rating object structure",
+									"        pm.expect(titleObject.rating).to.have.property('avRating').that.is.a('string');",
+									"        pm.expect(titleObject.rating).to.have.property('nVotes').that.is.a('string');",
+									"        // Validate principals array structure",
+									"        pm.expect(titleObject).to.have.property('principals').that.is.an('array');",
+									"        titleObject.principals.forEach(function (principal) {",
+									"            pm.expect(principal).to.have.property('nameID').that.is.a('string');",
+									"            pm.expect(principal).to.have.property('name').that.is.a('string');",
+									"            pm.expect(principal).to.have.property('category').that.is.a('string');",
+									"        ",
+									"        });",
+									"    });",
+									"",
+									"        pm.expect(titleObject.genres).to.satisfy(function (genres) {",
+									"            return genres.some(genre => genre.genreTitle.toLowerCase() === gqueryObject.qgenre.toLowerCase());",
+									"        });",
+									"",
+									"        // Check if the titleObject has an avRating higher than or equal to minrating",
+									"        pm.expect(parseFloat(titleObject.rating.avRating)).to.be.at.least(parseFloat(gqueryObject.minrating));",
+									"",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"qgenre\": \"western\",\n    \"minrating\": \"9\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9876/ntuaflix_api/bygenre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9876",
+							"path": [
+								"ntuaflix_api",
+								"bygenre"
+							]
+						},
+						"description": "Accepts a `gqueryObject` in the body as follows:\n\n#### gqueryObject\n\n| Field | Type | Description |\n| --- | --- | --- |\n| qgenre | String | The full name of the genre we are searching for |\n| minrating | String | The minimum rating |\n| yrFrom | String | (Optional) Year \"from\" |\n| yrTo | String | (Optional) Year \"to\" |\n\nReturns a list of `titleObject`s where the `genres` list:  \na) Contains the `qgenre` field, and  \nb) The `avRating` field has a value greater than or equal to `minrating`.\n\nIf both optional fields `yrFrom` and `yrTo` are included, the list includes only the `titleObject`s with `startYear` values satisfying `yrFrom <= startYear <= yrTo`."
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"qgenre\": \"western\",\n    \"minrating\": \"9\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9876/ntuaflix_api/bygenre",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9876",
+									"path": [
+										"ntuaflix_api",
+										"bygenre"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28904"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"70e8-IX98WdIlMWM8M0Dh/As/copAYM8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Feb 2024 02:11:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"titleID\": \"618370\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Bill Tilghman and the Outlaws\",\n        \"titlePoster\": \"/1wDQvpOvSaIg6PHoSy5LdGOIBz2.jpg\",\n        \"startYear\": \"2019\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Comedy\"\n            },\n            {\n                \"genreTitle\": \"Action\"\n            },\n            {\n                \"genreTitle\": \"Drama\"\n            },\n            {\n                \"genreTitle\": \"History\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"62036\",\n                \"name\": \"Robert Carradine\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"50975\",\n                \"name\": \"Johnny Crawford\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"10191\",\n                \"name\": \"Lana Wood\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"129668\",\n                \"name\": \"Darby Hinton\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"97478\",\n                \"name\": \"Don Collier\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"572038\",\n                \"name\": \"Ken Arnold\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1355469\",\n                \"name\": \"Johnny Alonso\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"226112\",\n                \"name\": \"Raw Leiba\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"106219\",\n                \"name\": \"Kathy Searle\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"99590\",\n                \"name\": \"Leanna Chamish\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1410713\",\n                \"name\": \"Wayne Shipley\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"2371418\",\n                \"name\": \"Dan Searles\",\n                \"category\": \"Writer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"9.5\",\n            \"nVotes\": \"2\"\n        }\n    },\n    {\n        \"titleID\": \"89828\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Gang of Roses 2: Next Generation\",\n        \"titlePoster\": \"/g6KGKjw74YSfdmYpXI5IEbVr0OJ.jpg\",\n        \"startYear\": \"2012\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Action\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"98087\",\n                \"name\": \"Kellita Smith\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1133737\",\n                \"name\": \"Amber Rose\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"964679\",\n                \"name\": \"Teyana Taylor\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1247036\",\n                \"name\": \"Rocsi\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"448376\",\n                \"name\": \"Eurika Pratts\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"157427\",\n                \"name\": \"Claudia Jordan\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"937800\",\n                \"name\": \"Charli Baltimore\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"18272\",\n                \"name\": \"Gabriel Casseus\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1025375\",\n                \"name\": \"Wiz Khalifa\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"927849\",\n                \"name\": \"Lamont Clayton\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2353481\",\n                \"name\": \"Kyle Kalama\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"7488\",\n                \"name\": \"Jean-Claude La Marre\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2353482\",\n                \"name\": \"Jesse Luna\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2353483\",\n                \"name\": \"Kyrrin Marshall\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1656663\",\n                \"name\": \"Douglas S. Matthews\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1562427\",\n                \"name\": \"Ardeshir Radpour\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2353484\",\n                \"name\": \"Paul Michael Ramirez\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2353485\",\n                \"name\": \"Chris Shumway\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2353487\",\n                \"name\": \"Michael Woxland\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"7488\",\n                \"name\": \"Jean-Claude La Marre\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"7488\",\n                \"name\": \"Jean-Claude La Marre\",\n                \"category\": \"Writer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"9\",\n            \"nVotes\": \"3\"\n        }\n    },\n    {\n        \"titleID\": \"1159043\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Six Days to Die\",\n        \"titlePoster\": \"/49qq2tG6z4bgM864OZmPSSYJaxC.jpg\",\n        \"startYear\": \"2023\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Action\"\n            },\n            {\n                \"genreTitle\": \"Drama\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"10132\",\n                \"name\": \"Colm Feore\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1359997\",\n                \"name\": \"Ari Millen\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2060364\",\n                \"name\": \"Andrew Bushell\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"43259\",\n                \"name\": \"Kyra Harper\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1208563\",\n                \"name\": \"Alice Moran\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1357188\",\n                \"name\": \"Lara Zaluski\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1844475\",\n                \"name\": \"Vicki Kim\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1128322\",\n                \"name\": \"Amanda Barker\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1595033\",\n                \"name\": \"Michael Dufays\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1612663\",\n                \"name\": \"Darryl Hinds\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1437999\",\n                \"name\": \"Casey Hudecki\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4228101\",\n                \"name\": \"Kassandra Santos\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4173301\",\n                \"name\": \"Jani Lauzon\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3342011\",\n                \"name\": \"Nck Name\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"135441\",\n                \"name\": \"Mark Andrada\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1482610\",\n                \"name\": \"Jameson Kraemer\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4089382\",\n                \"name\": \"Melissa D'Agostino\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1698764\",\n                \"name\": \"Tyler Williams\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1461434\",\n                \"name\": \"Lana Carillo\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1811697\",\n                \"name\": \"Justin Michael Carriere\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1838801\",\n                \"name\": \"Marco Timpano\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3020817\",\n                \"name\": \"Ellery Miki-Petite\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4228102\",\n                \"name\": \"Carly Jones\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"112387\",\n                \"name\": \"Matthew Campagna\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"112387\",\n                \"name\": \"Matthew Campagna\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"3342011\",\n                \"name\": \"Nck Name\",\n                \"category\": \"Sound Designer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"1225960\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Drive 2 Palermo: European Journey\",\n        \"titlePoster\": \"/sWS41GDvDis6Nix1ZqaDqiiQy8h.jpg\",\n        \"startYear\": \"2024\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Action\"\n            },\n            {\n                \"genreTitle\": \"Adventure\"\n            },\n            {\n                \"genreTitle\": \"Comedy\"\n            },\n            {\n                \"genreTitle\": \"Drama\"\n            },\n            {\n                \"genreTitle\": \"Science Fiction\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Crime\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"4462522\",\n                \"name\": \"Owen Leslie\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462523\",\n                \"name\": \"Logan Stanczewski\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462524\",\n                \"name\": \"Camden Semlitsch\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462525\",\n                \"name\": \"Lucas Kuehner\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462586\",\n                \"name\": \"Martin Palermo\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462587\",\n                \"name\": \"Ethan Strong\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462588\",\n                \"name\": \"Austin Koerber\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462589\",\n                \"name\": \"Jonathan Wier\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462591\",\n                \"name\": \"Dan Fullerton\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462592\",\n                \"name\": \"Angelo Roncone\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462593\",\n                \"name\": \"Vaughn Benzee\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462595\",\n                \"name\": \"David Castro\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462596\",\n                \"name\": \"Nick Schwaab\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462597\",\n                \"name\": \"Kirk Weiler\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4142166\",\n                \"name\": \"Owen Kent\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462601\",\n                \"name\": \"Thomas Gleeson\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462603\",\n                \"name\": \"Matthew Scott\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462605\",\n                \"name\": \"Tyler Jabowski\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462607\",\n                \"name\": \"Matthew Webster\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4463913\",\n                \"name\": \"John Zeitler\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4462522\",\n                \"name\": \"Owen Leslie\",\n                \"category\": \"Story\"\n            },\n            {\n                \"nameID\": \"4462523\",\n                \"name\": \"Logan Stanczewski\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"4462523\",\n                \"name\": \"Logan Stanczewski\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"4462526\",\n                \"name\": \"John Iocco\",\n                \"category\": \"Music\"\n            },\n            {\n                \"nameID\": \"4462586\",\n                \"name\": \"Martin Palermo\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"4462586\",\n                \"name\": \"Martin Palermo\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"4462586\",\n                \"name\": \"Martin Palermo\",\n                \"category\": \"Cinematography\"\n            },\n            {\n                \"nameID\": \"4462604\",\n                \"name\": \"Samantha Evans\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"4463913\",\n                \"name\": \"John Zeitler\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"4463913\",\n                \"name\": \"John Zeitler\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"4463917\",\n                \"name\": \"Cole Sillyman\",\n                \"category\": \"Editor\"\n            },\n            {\n                \"nameID\": \"4463919\",\n                \"name\": \"Peter Griffin\",\n                \"category\": \"Producer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"1008039\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"The Wind & the Reckoning\",\n        \"titlePoster\": \"/zJ2PNDgxRpRj9EFRFf323oT0WhW.jpg\",\n        \"startYear\": \"2022\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Drama\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"61703\",\n                \"name\": \"Ron Yuan\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2921199\",\n                \"name\": \"Lindsay Watson\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"31166\",\n                \"name\": \"Henry Ian Cusick\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"58319\",\n                \"name\": \"Jason Scott Lee\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"20801\",\n                \"name\": \"John Fusco\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"133635\",\n                \"name\": \"David L. Cunningham\",\n                \"category\": \"Director\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"793333\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Quantum Cowboys\",\n        \"titlePoster\": \"/70D46d0BlSK4kEGCYBIZoHK62VC.jpg\",\n        \"startYear\": \"2023\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Animation\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Science Fiction\"\n            },\n            {\n                \"genreTitle\": \"Adventure\"\n            }\n        ],\n        \"titleAkas\": [\n            {\n                \"akaTitle\": \"The Boardinghouse Reach\",\n                \"regionAbbrev\": \"US\"\n            }\n        ],\n        \"principals\": [\n            {\n                \"nameID\": \"1183917\",\n                \"name\": \"Lily Gladstone\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"84218\",\n                \"name\": \"Kiowa Gordon\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"15234\",\n                \"name\": \"David Arquette\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1231782\",\n                \"name\": \"Neko Case\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"15439\",\n                \"name\": \"Gary Farmer\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"42746\",\n                \"name\": \"John Doe\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"18197\",\n                \"name\": \"Anna Karina\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"31493\",\n                \"name\": \"Alex Cox\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"59696\",\n                \"name\": \"Trieste Kelly Dunn\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1436106\",\n                \"name\": \"Patrick Page\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2562469\",\n                \"name\": \"John Way\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1162439\",\n                \"name\": \"Frank Mosley\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1355603\",\n                \"name\": \"Stephanie Barkley\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1423664\",\n                \"name\": \"Chase Joliet\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1393584\",\n                \"name\": \"Devon Wycoff\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"887794\",\n                \"name\": \"Geoff Marslett\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"887794\",\n                \"name\": \"Geoff Marslett\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"887794\",\n                \"name\": \"Geoff Marslett\",\n                \"category\": \"Art Direction\"\n            },\n            {\n                \"nameID\": \"887794\",\n                \"name\": \"Geoff Marslett\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"1056062\",\n                \"name\": \"Melodie Sisk\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"1350804\",\n                \"name\": \"Eric Friend\",\n                \"category\": \"Sound\"\n            },\n            {\n                \"nameID\": \"1619912\",\n                \"name\": \"Tom Wilson\",\n                \"category\": \"Editor\"\n            },\n            {\n                \"nameID\": \"1699893\",\n                \"name\": \"Howe Gelb\",\n                \"category\": \"Original Music Composer\"\n            },\n            {\n                \"nameID\": \"1699893\",\n                \"name\": \"Howe Gelb\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"1973967\",\n                \"name\": \"Jon Firestone\",\n                \"category\": \"Director of Photography\"\n            },\n            {\n                \"nameID\": \"2896150\",\n                \"name\": \"Bill Way\",\n                \"category\": \"Producer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"2\"\n        }\n    },\n    {\n        \"titleID\": \"1195284\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Jackie\",\n        \"titlePoster\": \"/nao7G1I3mdxl1WrsIJo8pGH533z.jpg\",\n        \"startYear\": \"2022\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Drama\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"4336111\",\n                \"name\": \"Kayleigh Pepper\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4336113\",\n                \"name\": \"Mark Gill\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4336114\",\n                \"name\": \"Karl Pepper\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4328752\",\n                \"name\": \"Cleo Maton\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"4336111\",\n                \"name\": \"Kayleigh Pepper\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"4336111\",\n                \"name\": \"Kayleigh Pepper\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"4336111\",\n                \"name\": \"Kayleigh Pepper\",\n                \"category\": \"Production Designer\"\n            },\n            {\n                \"nameID\": \"4336113\",\n                \"name\": \"Mark Gill\",\n                \"category\": \"Assistant Director\"\n            },\n            {\n                \"nameID\": \"4336114\",\n                \"name\": \"Karl Pepper\",\n                \"category\": \"Sound Designer\"\n            },\n            {\n                \"nameID\": \"4336118\",\n                \"name\": \"Kayleigh Pepper\",\n                \"category\": \"Screenplay\"\n            },\n            {\n                \"nameID\": \"4336120\",\n                \"name\": \"Mark Gill\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"4336124\",\n                \"name\": \"Ren Drury\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"4336127\",\n                \"name\": \"Japhet Ledsma\",\n                \"category\": \"Director of Photography\"\n            },\n            {\n                \"nameID\": \"4336131\",\n                \"name\": \"Alec Lowe\",\n                \"category\": \"Music\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"1122459\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"The Good, the Bad and the Ugly\",\n        \"titlePoster\": \"/vR0PQ6oWYLPU24rgRxp4NN6u78s.jpg\",\n        \"startYear\": \"2015\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Science Fiction\"\n            },\n            {\n                \"genreTitle\": \"Action\"\n            },\n            {\n                \"genreTitle\": \"Animation\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"4045939\",\n                \"name\": \"Troy Manning\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4045940\",\n                \"name\": \"Wolfgang Moser\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4045941\",\n                \"name\": \"Vidal Parker-Caldera\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1307733\",\n                \"name\": \"Mel Turner\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2325029\",\n                \"name\": \"Cal Evans\",\n                \"category\": \"Director\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"736762\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Buck Alamo or (A Phantasmagorical Ballad)\",\n        \"titlePoster\": \"/4FG5jusfY21KWBbC2Gj5yVwxKk4.jpg\",\n        \"startYear\": \"2023\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Drama\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Music\"\n            }\n        ],\n        \"titleAkas\": [\n            {\n                \"akaTitle\": \"Buck Alamo or (A Phantasmagorical Ballad)\",\n                \"regionAbbrev\": \"US\"\n            }\n        ],\n        \"principals\": [\n            {\n                \"nameID\": \"63214\",\n                \"name\": \"Sonny Carl Davis\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"6905\",\n                \"name\": \"Bruce Dern\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1327009\",\n                \"name\": \"Lorelei Linklater\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1029854\",\n                \"name\": \"Lee Eddy\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2241260\",\n                \"name\": \"Benjamin Epstein\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"2241260\",\n                \"name\": \"Benjamin Epstein\",\n                \"category\": \"Writer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"674506\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Onde Nascem os Bravos\",\n        \"titlePoster\": \"/q4dToZV2HK9R78R5Sp93zTlAgv6.jpg\",\n        \"startYear\": \"2017\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Adventure\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"2543374\",\n                \"name\": \"Daniell Abrew\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2543375\",\n                \"name\": \"Aldo Anísio\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2543376\",\n                \"name\": \"Joel Ventura\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2543377\",\n                \"name\": \"Camilo Vidal\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2543379\",\n                \"name\": \"Pry Von Paumgartten\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2543374\",\n                \"name\": \"Daniell Abrew\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"2543374\",\n                \"name\": \"Daniell Abrew\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"2543374\",\n                \"name\": \"Daniell Abrew\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"2543377\",\n                \"name\": \"Camilo Vidal\",\n                \"category\": \"Producer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"594478\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Sertânia\",\n        \"titlePoster\": \"/5hCM9wMWnD0mnNe7SMUSzaDJzBy.jpg\",\n        \"startYear\": \"2019\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Drama\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"History\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"2287122\",\n                \"name\": \"Vertin Moura\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"223336\",\n                \"name\": \"Julio Adrião\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2521858\",\n                \"name\": \"Kecia Prado\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1531689\",\n                \"name\": \"Lourinelson Vladmir\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3440585\",\n                \"name\": \"Igor de Carvalho\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433463\",\n                \"name\": \"Henzo Gabriel M. Vieira\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3684662\",\n                \"name\": \"Gilsergio Botelho\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1044807\",\n                \"name\": \"Edgard Navarro\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433464\",\n                \"name\": \"Sara Galvão\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433465\",\n                \"name\": \"Isa Mei\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1491361\",\n                \"name\": \"Fernando Neves\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2227003\",\n                \"name\": \"Marcelo Cordeiro\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2456602\",\n                \"name\": \"Rogério Leandro\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433468\",\n                \"name\": \"Jomir Gomes\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1323008\",\n                \"name\": \"Marcos Duarte\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433470\",\n                \"name\": \"Teófilo Gobira\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433471\",\n                \"name\": \"Zenilda S. Santana\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3459204\",\n                \"name\": \"Carlos Rizério\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433472\",\n                \"name\": \"Caio Dimitri\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433473\",\n                \"name\": \"Sorak Barbosa\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433474\",\n                \"name\": \"Nanne Nascimento\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433476\",\n                \"name\": \"Francirlei Alves\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433477\",\n                \"name\": \"Arthur Nascimento\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433478\",\n                \"name\": \"Rogério Lopes\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433479\",\n                \"name\": \"Vicente de Paulo\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433480\",\n                \"name\": \"Vitor Quadros\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433481\",\n                \"name\": \"Danilo Araujo\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2586139\",\n                \"name\": \"Tom Rocha\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2016099\",\n                \"name\": \"Paulo Maurício\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433482\",\n                \"name\": \"Claudio Ribas\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433483\",\n                \"name\": \"Alba Maria M. D'Antonio\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433484\",\n                \"name\": \"Aurora Sarno M. Santos\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433485\",\n                \"name\": \"José Vieira Silva\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433487\",\n                \"name\": \"Alton Andrade\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433488\",\n                \"name\": \"Adailson Ferreira\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433489\",\n                \"name\": \"Priscila Amaral\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433490\",\n                \"name\": \"Érica Daniela\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433491\",\n                \"name\": \"Cláudia Cavalcante\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433493\",\n                \"name\": \"Maria Cecília O. Santos\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433494\",\n                \"name\": \"Sofia de Almeida Dias\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433495\",\n                \"name\": \"Iracema Pereira do Carmo\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4433497\",\n                \"name\": \"Augusto de Jesus Silva\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1083269\",\n                \"name\": \"Geraldo Sarno\",\n                \"category\": \"Screenplay\"\n            },\n            {\n                \"nameID\": \"1083269\",\n                \"name\": \"Geraldo Sarno\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"1083269\",\n                \"name\": \"Geraldo Sarno\",\n                \"category\": \"Editor\"\n            },\n            {\n                \"nameID\": \"1142924\",\n                \"name\": \"Miguel Vassy\",\n                \"category\": \"Director of Photography\"\n            },\n            {\n                \"nameID\": \"1371898\",\n                \"name\": \"Bárbara Cariry\",\n                \"category\": \"Executive Producer\"\n            },\n            {\n                \"nameID\": \"1452521\",\n                \"name\": \"Toninho Muricy\",\n                \"category\": \"Sound Recordist\"\n            },\n            {\n                \"nameID\": \"1472842\",\n                \"name\": \"Teta Maia\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"2287117\",\n                \"name\": \"Anita Dominoni\",\n                \"category\": \"Art Direction\"\n            },\n            {\n                \"nameID\": \"2287120\",\n                \"name\": \"Renato Vallone\",\n                \"category\": \"Editor\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"9.1\",\n            \"nVotes\": \"7\"\n        }\n    },\n    {\n        \"titleID\": \"1198128\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"The Standoff\",\n        \"titlePoster\": \"/sDohuEcFjWB1vsM4GprodOsxvh9.jpg\",\n        \"startYear\": \"2023\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Action\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"4346972\",\n                \"name\": \"Jack Cantlin\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4346973\",\n                \"name\": \"Andrew Trujillo\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4346974\",\n                \"name\": \"Joshua Cho\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4346972\",\n                \"name\": \"Jack Cantlin\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"4346972\",\n                \"name\": \"Jack Cantlin\",\n                \"category\": \"Editor\"\n            },\n            {\n                \"nameID\": \"4346972\",\n                \"name\": \"Jack Cantlin\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"4346993\",\n                \"name\": \"Chuck Cowherd\",\n                \"category\": \"Cinematography\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"863525\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Homestead\",\n        \"titlePoster\": \"/aHvBW6Ak6SEXhcwHnGsGKaVANFE.jpg\",\n        \"startYear\": \"2020\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Thriller\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Horror\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"2529549\",\n                \"name\": \"Russell Shealy\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2823696\",\n                \"name\": \"Sarafina King\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3205309\",\n                \"name\": \"Sofia Sorano-Xavier\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1396326\",\n                \"name\": \"Russ Williamson\",\n                \"category\": \"Production Design\"\n            },\n            {\n                \"nameID\": \"2302502\",\n                \"name\": \"McKinley Benson\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"2302502\",\n                \"name\": \"McKinley Benson\",\n                \"category\": \"Editor\"\n            },\n            {\n                \"nameID\": \"2302502\",\n                \"name\": \"McKinley Benson\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"2302503\",\n                \"name\": \"Enzo Hui\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"2302503\",\n                \"name\": \"Enzo Hui\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"2302504\",\n                \"name\": \"Draven Kleer\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"2302506\",\n                \"name\": \"Grace Brass\",\n                \"category\": \"Art Direction\"\n            },\n            {\n                \"nameID\": \"2859665\",\n                \"name\": \"Giuseppe Alfano\",\n                \"category\": \"Music\"\n            },\n            {\n                \"nameID\": \"3204364\",\n                \"name\": \"Patrick Joshua\",\n                \"category\": \"Director of Photography\"\n            },\n            {\n                \"nameID\": \"3205312\",\n                \"name\": \"Lijie Ou\",\n                \"category\": \"Co-Producer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"667387\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Morts à l'aveugle\",\n        \"titlePoster\": \"/n2cL4qmJeoxlNA0hKztyi31adp6.jpg\",\n        \"startYear\": \"2020\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Western\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"587184\",\n                \"name\": \"Alison Wheeler\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1352046\",\n                \"name\": \"Louane Emera\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2186590\",\n                \"name\": \"Joël Zaffarano\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2522247\",\n                \"name\": \"Patrick Noérie\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1715011\",\n                \"name\": \"Bruno Choël\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1326512\",\n                \"name\": \"Hervé Jolly\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"280195\",\n                \"name\": \"Thierry Desroses\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1373137\",\n                \"name\": \"Gabriel Bismuth-Bienaimé\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2522248\",\n                \"name\": \"Marlène Diricq\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"53667\",\n                \"name\": \"Ludmila Ruoso\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2522249\",\n                \"name\": \"Mira Rogliano\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2522252\",\n                \"name\": \"Samuel Surville-Barland\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2522253\",\n                \"name\": \"Vincent l'Anthoën\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2522255\",\n                \"name\": \"Clément Gournay\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"1724718\",\n                \"name\": \"Éric Chevallier\",\n                \"category\": \"Sound Designer\"\n            },\n            {\n                \"nameID\": \"1724718\",\n                \"name\": \"Éric Chevallier\",\n                \"category\": \"Mixing Engineer\"\n            },\n            {\n                \"nameID\": \"1724718\",\n                \"name\": \"Éric Chevallier\",\n                \"category\": \"Sound Effects\"\n            },\n            {\n                \"nameID\": \"2522253\",\n                \"name\": \"Vincent l'Anthoën\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"2522255\",\n                \"name\": \"Clément Gournay\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"2522259\",\n                \"name\": \"Julien Aubert\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"2522259\",\n                \"name\": \"Julien Aubert\",\n                \"category\": \"Idea\"\n            },\n            {\n                \"nameID\": \"2522260\",\n                \"name\": \"Elise Costa\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"2522261\",\n                \"name\": \"Camille Authouart\",\n                \"category\": \"Graphic Designer\"\n            },\n            {\n                \"nameID\": \"2522262\",\n                \"name\": \"Timothée Magot\",\n                \"category\": \"Idea\"\n            },\n            {\n                \"nameID\": \"2522263\",\n                \"name\": \"Mélia Rivoal-Gilson\",\n                \"category\": \"Writers' Assistant\"\n            },\n            {\n                \"nameID\": \"2522264\",\n                \"name\": \"Benoît Mora\",\n                \"category\": \"Sound Designer\"\n            },\n            {\n                \"nameID\": \"2522264\",\n                \"name\": \"Benoît Mora\",\n                \"category\": \"Sound Director\"\n            },\n            {\n                \"nameID\": \"2522264\",\n                \"name\": \"Benoît Mora\",\n                \"category\": \"Sound Recordist\"\n            },\n            {\n                \"nameID\": \"2522264\",\n                \"name\": \"Benoît Mora\",\n                \"category\": \"Mixing Engineer\"\n            },\n            {\n                \"nameID\": \"2522265\",\n                \"name\": \"Herman Dune\",\n                \"category\": \"Musical\"\n            },\n            {\n                \"nameID\": \"2522267\",\n                \"name\": \"Jennifer Troszezynski\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"2522268\",\n                \"name\": \"Edouard Gasnier\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"2522270\",\n                \"name\": \"Isabelle Vang\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"2522271\",\n                \"name\": \"Chloé Mazuel\",\n                \"category\": \"Producer's Assistant\"\n            },\n            {\n                \"nameID\": \"2522275\",\n                \"name\": \"Angélique Simonnet\",\n                \"category\": \"Producer's Assistant\"\n            },\n            {\n                \"nameID\": \"2522277\",\n                \"name\": \"Thanh-Nhan Ly Cam\",\n                \"category\": \"Producer's Assistant\"\n            },\n            {\n                \"nameID\": \"2522280\",\n                \"name\": \"Fabrice Smadja\",\n                \"category\": \"Supervising Sound Editor\"\n            },\n            {\n                \"nameID\": \"2522284\",\n                \"name\": \"Maxime Singer\",\n                \"category\": \"Sound Designer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"637741\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Wanted\",\n        \"titlePoster\": \"/wdjvoKcTsKlWCgWm5DK9Z7NKkO3.jpg\",\n        \"startYear\": \"2019\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Romance\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Animation\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"2642662\",\n                \"name\": \"Maeve Denneen\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2642664\",\n                \"name\": \"Cara Wu\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2642667\",\n                \"name\": \"Eli Betchik\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2431992\",\n                \"name\": \"Margot Gordon\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"2431992\",\n                \"name\": \"Margot Gordon\",\n                \"category\": \"Sound\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"3\"\n        }\n    },\n    {\n        \"titleID\": \"888119\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Malvagia, Oppressa e Salvatrice\",\n        \"titlePoster\": \"/kjkZshuFOtmbTclONjOpxE8ExVq.jpg\",\n        \"startYear\": \"2021\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Fantasy\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            }\n        ],\n        \"titleAkas\": [\n            {\n                \"akaTitle\": \"Villana, Oprimida y Salvadora\",\n                \"regionAbbrev\": \"ES\"\n            },\n            {\n                \"akaTitle\": \"Malvagia, Oppressa e Salvatrice\",\n                \"regionAbbrev\": \"IT\"\n            },\n            {\n                \"akaTitle\": \"Malvagia, Oppressa e Salvatrice\",\n                \"regionAbbrev\": \"ES\"\n            }\n        ],\n        \"principals\": [\n            {\n                \"nameID\": \"2800721\",\n                \"name\": \"Irene García Blanco\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3279627\",\n                \"name\": \"Yaël García Febrero\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3279629\",\n                \"name\": \"Alicia José Campos\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2800656\",\n                \"name\": \"Javier Gómez de la Parte\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"2800656\",\n                \"name\": \"Javier Gómez de la Parte\",\n                \"category\": \"Editor\"\n            },\n            {\n                \"nameID\": \"2800656\",\n                \"name\": \"Javier Gómez de la Parte\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"2800656\",\n                \"name\": \"Javier Gómez de la Parte\",\n                \"category\": \"Cinematography\"\n            },\n            {\n                \"nameID\": \"2800656\",\n                \"name\": \"Javier Gómez de la Parte\",\n                \"category\": \"Sound\"\n            },\n            {\n                \"nameID\": \"2800721\",\n                \"name\": \"Irene García Blanco\",\n                \"category\": \"Makeup Artist\"\n            },\n            {\n                \"nameID\": \"2800721\",\n                \"name\": \"Irene García Blanco\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"3279627\",\n                \"name\": \"Yaël García Febrero\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"3279629\",\n                \"name\": \"Alicia José Campos\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"3279629\",\n                \"name\": \"Alicia José Campos\",\n                \"category\": \"Costume Designer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"1103007\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"O Deus da Bike\",\n        \"titlePoster\": \"/u89xXDExLIZ7HaCqS9kc1XNBMcx.jpg\",\n        \"startYear\": \"2023\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Comedy\"\n            },\n            {\n                \"genreTitle\": \"Action\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Science Fiction\"\n            }\n        ],\n        \"titleAkas\": [\n            {\n                \"akaTitle\": \"The Bike God\",\n                \"regionAbbrev\": \"US\"\n            },\n            {\n                \"akaTitle\": \"The Bike God\",\n                \"regionAbbrev\": \"GB\"\n            },\n            {\n                \"akaTitle\": \"El Dios De La Bicicleta\",\n                \"regionAbbrev\": \"ES\"\n            },\n            {\n                \"akaTitle\": \"El Dios De La Bicicleta\",\n                \"regionAbbrev\": \"MX\"\n            },\n            {\n                \"akaTitle\": \"El Dios De La Bicicleta\",\n                \"regionAbbrev\": \"AR\"\n            },\n            {\n                \"akaTitle\": \"Бог велосипедов\",\n                \"regionAbbrev\": \"RU\"\n            },\n            {\n                \"akaTitle\": \"Le Dieu Du Vélo\",\n                \"regionAbbrev\": \"FR\"\n            },\n            {\n                \"akaTitle\": \"The Bike God\",\n                \"regionAbbrev\": \"CA\"\n            },\n            {\n                \"akaTitle\": \"The Bike God\",\n                \"regionAbbrev\": \"NZ\"\n            },\n            {\n                \"akaTitle\": \"The Bike God\",\n                \"regionAbbrev\": \"AU\"\n            }\n        ],\n        \"principals\": [\n            {\n                \"nameID\": \"3973078\",\n                \"name\": \"Daniel Reis\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3973079\",\n                \"name\": \"Matheus Renato\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3973080\",\n                \"name\": \"Rafael Bellon\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3973081\",\n                \"name\": \"Fernando \\\"Fernandão\\\" Marques\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3973078\",\n                \"name\": \"Daniel Reis\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"3973078\",\n                \"name\": \"Daniel Reis\",\n                \"category\": \"Costume Designer\"\n            },\n            {\n                \"nameID\": \"3973079\",\n                \"name\": \"Matheus Renato\",\n                \"category\": \"Costume Designer\"\n            },\n            {\n                \"nameID\": \"3973080\",\n                \"name\": \"Rafael Bellon\",\n                \"category\": \"Assistant Camera\"\n            },\n            {\n                \"nameID\": \"3973080\",\n                \"name\": \"Rafael Bellon\",\n                \"category\": \"Costume Designer\"\n            },\n            {\n                \"nameID\": \"3973082\",\n                \"name\": \"Miguel Racco\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"3973082\",\n                \"name\": \"Miguel Racco\",\n                \"category\": \"Director of Photography\"\n            },\n            {\n                \"nameID\": \"3973082\",\n                \"name\": \"Miguel Racco\",\n                \"category\": \"Editor\"\n            },\n            {\n                \"nameID\": \"3973082\",\n                \"name\": \"Miguel Racco\",\n                \"category\": \"Executive Producer\"\n            },\n            {\n                \"nameID\": \"3973082\",\n                \"name\": \"Miguel Racco\",\n                \"category\": \"Visual Effects\"\n            },\n            {\n                \"nameID\": \"3973082\",\n                \"name\": \"Miguel Racco\",\n                \"category\": \"Writer\"\n            },\n            {\n                \"nameID\": \"3973082\",\n                \"name\": \"Miguel Racco\",\n                \"category\": \"Costume Assistant\"\n            },\n            {\n                \"nameID\": \"3973093\",\n                \"name\": \"Paulo Jorge Figueira\",\n                \"category\": \"Assistant Script\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"1056347\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"Waste\",\n        \"titlePoster\": \"/7ElSCdRZHLz226QKhhxfMXu8dTl.jpg\",\n        \"startYear\": \"2022\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Thriller\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"3812334\",\n                \"name\": \"Isaac Umana\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3812347\",\n                \"name\": \"Joey Edivan-Hernandez\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"3812347\",\n                \"name\": \"Joey Edivan-Hernandez\",\n                \"category\": \"Editor\"\n            },\n            {\n                \"nameID\": \"3812347\",\n                \"name\": \"Joey Edivan-Hernandez\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"3812347\",\n                \"name\": \"Joey Edivan-Hernandez\",\n                \"category\": \"Writer\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"9\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"1144139\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"The 3:10 to Claremorris\",\n        \"titlePoster\": \"/nUltMhMaguHkMUpHfVeI0swLXtl.jpg\",\n        \"startYear\": \"2010\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Western\"\n            },\n            {\n                \"genreTitle\": \"Comedy\"\n            },\n            {\n                \"genreTitle\": \"Action\"\n            },\n            {\n                \"genreTitle\": \"Adventure\"\n            },\n            {\n                \"genreTitle\": \"Family\"\n            },\n            {\n                \"genreTitle\": \"Drama\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"4129438\",\n                \"name\": \"Peter Davey\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4129440\",\n                \"name\": \"Peadar Conway\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4129442\",\n                \"name\": \"Marie McIntyre\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4129443\",\n                \"name\": \"Stephen Connolly\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4129445\",\n                \"name\": \"Pat Feely\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4129447\",\n                \"name\": \"Tom Towey\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4129448\",\n                \"name\": \"Francis Frain\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"4139437\",\n                \"name\": \"Tom Walsh\",\n                \"category\": \"Director\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    },\n    {\n        \"titleID\": \"917546\",\n        \"type\": \"movie\",\n        \"originalTitle\": \"The Summer Field\",\n        \"titlePoster\": \"/zwb94434XN8R5eDDk06k9oChQEh.jpg\",\n        \"startYear\": \"2021\",\n        \"endYear\": \"\",\n        \"genres\": [\n            {\n                \"genreTitle\": \"Drama\"\n            },\n            {\n                \"genreTitle\": \"Western\"\n            }\n        ],\n        \"titleAkas\": [],\n        \"principals\": [\n            {\n                \"nameID\": \"2804418\",\n                \"name\": \"Ben Petersen\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"3351720\",\n                \"name\": \"Harland Allen\",\n                \"category\": \"actor\"\n            },\n            {\n                \"nameID\": \"2804410\",\n                \"name\": \"Jiayang Liu\",\n                \"category\": \"Screenplay\"\n            },\n            {\n                \"nameID\": \"2804410\",\n                \"name\": \"Jiayang Liu\",\n                \"category\": \"Director\"\n            },\n            {\n                \"nameID\": \"2804410\",\n                \"name\": \"Jiayang Liu\",\n                \"category\": \"Director of Photography\"\n            },\n            {\n                \"nameID\": \"2804410\",\n                \"name\": \"Jiayang Liu\",\n                \"category\": \"Editor\"\n            },\n            {\n                \"nameID\": \"2804410\",\n                \"name\": \"Jiayang Liu\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"2804826\",\n                \"name\": \"Joe JuanyaoZheng\",\n                \"category\": \"Producer\"\n            },\n            {\n                \"nameID\": \"2804834\",\n                \"name\": \"Zach Nelson\",\n                \"category\": \"Assistant Director\"\n            },\n            {\n                \"nameID\": \"2974878\",\n                \"name\": \"Samuel Mohart\",\n                \"category\": \"Music\"\n            },\n            {\n                \"nameID\": \"3351723\",\n                \"name\": \"Damin Grussendorf\",\n                \"category\": \"Assistant Director\"\n            },\n            {\n                \"nameID\": \"3351724\",\n                \"name\": \"Ian Gibson\",\n                \"category\": \"Assistant Camera\"\n            },\n            {\n                \"nameID\": \"3351725\",\n                \"name\": \"Koren Anderson\",\n                \"category\": \"Production Assistant\"\n            },\n            {\n                \"nameID\": \"3351727\",\n                \"name\": \"Isabelle Muldowney\",\n                \"category\": \"Boom Operator\"\n            }\n        ],\n        \"rating\": {\n            \"avRating\": \"10\",\n            \"nVotes\": \"1\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "name/nameID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate nameObject structure\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    ",
+									"    var nameObject = jsonData;",
+									"    ",
+									"    // Validate structure of the nameObject",
+									"    pm.expect(nameObject).to.have.property('nameID');",
+									"    pm.expect(nameObject.nameID).to.be.a('string');",
+									"    pm.expect(nameObject).to.have.property('name');",
+									"    pm.expect(nameObject.name).to.be.a('string');",
+									"    pm.expect(nameObject).to.have.property('namePoster');",
+									"    pm.expect(nameObject.namePoster).to.be.a('string');",
+									"    pm.expect(nameObject).to.have.property('birthYr');",
+									"    pm.expect(nameObject.birthYr).to.be.a('string');",
+									"    pm.expect(nameObject).to.have.property('deathYr');",
+									"    pm.expect(nameObject.deathYr).to.be.a('string');",
+									"    pm.expect(nameObject).to.have.property('profession');",
+									"    pm.expect(nameObject.profession).to.be.a('string');",
+									"    ",
+									"    // Check if the response has nameTitles list",
+									"    pm.expect(nameObject).to.have.property('nameTitles');",
+									"    pm.expect(nameObject.nameTitles).to.be.an('array');",
+									"    ",
+									"    // Optionally, check each item in the nameTitles list",
+									"    nameObject.nameTitles.forEach(function (item) {",
+									"        pm.expect(item).to.have.property('titleID');",
+									"        pm.expect(item.titleID).to.be.a('string');",
+									"        pm.expect(item).to.have.property('category');",
+									"        pm.expect(item.category).to.be.a('string');",
+									"    });",
+									"});",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9876/ntuaflix_api/name/31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9876",
+							"path": [
+								"ntuaflix_api",
+								"name",
+								"31"
+							]
+						},
+						"description": "Returns a `nameObject` that contains details of the contributor with `nconst==nameID`, as follows:\n\n#### nameObject\n\n| Field | Type | Description |\n| --- | --- | --- |\n| nameID | String | The identifier `nconst` |\n| name | String | The full name of the contributor |\n| namePoster | String | URL with the image of the contributor |\n| birthYr | String | The year of birth |\n| deathYr | String | The year of death (if applicable) |\n| profession | String | The `primaryProfession` field |\n| nameTitles | List | List of movies/series where the contributor is recorded (in `title.principals`), containing objects with the following fields:  <br>\\- `titleID`: String - The identifier `tconst` of the movie/series  <br>\\- `category`: String - The category of the contributor's involvement (director, composer, actor, etc.) |\n\nThis endpoint provides information about the contributor, including personal details, profession, and a list of titles in which they have participated."
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:9876/ntuaflix_api/name/31",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9876",
+									"path": [
+										"ntuaflix_api",
+										"name",
+										"31"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "searchname",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response contains nameObjects with the specified namePart\", function () {",
+									"    let jsonResponse = pm.response.json();",
+									"    let namePart = JSON.parse(pm.request.body.raw).namePart; // This assumes that the request body is in raw JSON format",
+									"    ",
+									"    // Check if the response is an array",
+									"    pm.expect(jsonResponse).to.be.an('array');",
+									"",
+									"    // For each nameObject in the response, check if the name includes the namePart",
+									"    jsonResponse.forEach(function (nameObject) {",
+									"        pm.expect(nameObject).to.have.property('nameID');",
+									"    pm.expect(nameObject.nameID).to.be.a('string');",
+									"    pm.expect(nameObject).to.have.property('name');",
+									"    pm.expect(nameObject.name).to.be.a('string');",
+									"    pm.expect(nameObject).to.have.property('namePoster');",
+									"    pm.expect(nameObject.namePoster).to.be.a('string');",
+									"    pm.expect(nameObject).to.have.property('birthYr');",
+									"    pm.expect(nameObject.birthYr).to.be.a('string');",
+									"    pm.expect(nameObject).to.have.property('deathYr');",
+									"    pm.expect(nameObject.deathYr).to.be.a('string');",
+									"    pm.expect(nameObject).to.have.property('profession');",
+									"    pm.expect(nameObject.profession).to.be.a('string');",
+									"    ",
+									"    // // // Check if the response has nameTitles list",
+									"    pm.expect(nameObject).to.have.property('nameTitles');",
+									"    pm.expect(nameObject.nameTitles).to.be.an('array');",
+									"    ",
+									"    // // Optionally, check each item in the nameTitles list",
+									"    nameObject.nameTitles.forEach(function (item) {",
+									"        pm.expect(item).to.have.property('titleID');",
+									"        pm.expect(item.titleID).to.be.a('string');",
+									"        pm.expect(item).to.have.property('category');",
+									"        pm.expect(item.category).to.be.a('string');",
+									"    });",
+									"        pm.expect(nameObject.name.toLowerCase()).to.include(namePart.toLowerCase());",
+									"    });",
+									"});",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"namePart\": \"a\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9876/ntuaflix_api/searchname",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9876",
+							"path": [
+								"ntuaflix_api",
+								"searchname"
+							]
+						},
+						"description": "Accepts an `nqueryObject` in the body as follows:\n\n#### nqueryObject\n\n| Field | Type | Description |\n| --- | --- | --- |\n| namePart | String | Part of the contributor's name we are searching for |\n\nReturns a list of `nameObject`s whose `name` field contains the `namePart`."
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"namePart\": \"a\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9876/ntuaflix_api/searchname",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9876",
+									"path": [
+										"ntuaflix_api",
+										"searchname"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"description": "This folder contains a collection of endpoints representing successful API calls that return relevant data. Each endpoint serves a specific purpose in interacting with the ntuaflix software. The following endpoints are implemented to fulfill necessary functionalities:\n\n1. \\[GET\\] /title/:titleID:  \n    Retrieve details of a movie or TV series by its unique identifier.\n2. \\[GET\\] /searchtitle:  \n    Search for titles based on a provided part of the title.\n3. \\[GET\\] /bygenre:  \n    Filter titles by genre, minimum rating, and optional release years.\n4. \\[GET\\] /name/:nameID:  \n    Retrieve details of a contributor by their unique identifier.\n5. \\[GET\\] /searchname:  \n    Search for contributors based on a provided part of their name.\n    \n\nFurther insights into each endpoint are provided below for a comprehensive understanding."
+		},
+		{
+			"name": "errors",
+			"item": [
+				{
+					"name": "title/titleID",
+					"item": [
+						{
+							"name": "400",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Get the titleIDs from the environment\r",
+											"const titleIDs = pm.environment.get(\"titleIDs400\");\r",
+											"\r",
+											"// Check if titleIDs is not empty\r",
+											"if (titleIDs) {\r",
+											"    try {\r",
+											"        // Parse the JSON array\r",
+											"        const titleIDsArray = JSON.parse(titleIDs);\r",
+											"\r",
+											"        // Iterate through each titleID\r",
+											"        titleIDsArray.forEach(titleID => {\r",
+											"            // Set the current titleID in the request URL\r",
+											"            pm.request.url.update('http://localhost:9876/ntuaflix_api/title/{{titleIDs}}', { titleIDs: titleID });\r",
+											"\r",
+											"            // Send the request\r",
+											"            pm.sendRequest(pm.request, (err, response) => {\r",
+											"                // Handle the response if needed\r",
+											"                console.log('Response for titleID', titleID, ':', response.status);\r",
+											"            });\r",
+											"        });\r",
+											"    } catch (error) {\r",
+											"        console.error('Error parsing titleIDs:', error);\r",
+											"    }\r",
+											"} else {\r",
+											"    console.log('No titleIDs found in the environment');\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/title/4444444444",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"title",
+										"4444444444"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// intentionally left empty",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/title/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"title",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "possible errors for `[GET] /title/:titleID`"
+				},
+				{
+					"name": "searchtitle",
+					"item": [
+						{
+							"name": "204",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"titlePart\": \"ricksdfsdfsdfsf\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/searchtitle",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"searchtitle"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "400",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"titleart\": \"rick\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/searchtitle",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"searchtitle"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// intentionally left empty",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/searchtitl",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"searchtitl"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "possible errors for `[GET] /searchtitle`"
+				},
+				{
+					"name": "bygenre",
+					"item": [
+						{
+							"name": "204",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"qgenre\": \"mystery\",\r\n    \"minrating\": \"9\",\r\n    \"yrFrom\": \"1850\",\r\n    \"yrTo\": \"1851\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/bygenre",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"bygenre"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "400",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"qgnre\": \"mystery\",\r\n    \"minrting\": \"9\",\r\n    \"yrrom\": \"1800\",\r\n    \"yTo\": \"1801\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/bygenre",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"bygenre"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// intentionally left empty",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/bygenr",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"bygenr"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "possible errors for `[GET] /bygenre`"
+				},
+				{
+					"name": "name/nameID",
+					"item": [
+						{
+							"name": "400",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const nameIDs = pm.environment.get(\"nameIDs400\");\r",
+											"if (nameIDs) {\r",
+											"    try {\r",
+											"        const nameIDsArray = JSON.parse(nameIDs);\r",
+											"        nameIDsArray.forEach(titleID => {\r",
+											"            pm.request.url.update('http://localhost:9876/ntuaflix_api/title/{{nameIDs}}', { nameIDs: titleID });\r",
+											"            pm.sendRequest(pm.request, (err, response) => {\r",
+											"                console.log('Response for titleID', titleID, ':', response.status);\r",
+											"            });\r",
+											"        });\r",
+											"    } catch (error) {\r",
+											"        console.error('Error parsing nameIDs:', error);\r",
+											"    }\r",
+											"} else {\r",
+											"    console.log('No nameIDs found in the environment');\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseURL}}/name/nm@@@123%&^^",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"name",
+										"nm@@@123%&^^"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// intentionally left empty",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/name/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"name",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "possible errors for `[GET] /name/:nameID`"
+				},
+				{
+					"name": "searchname",
+					"item": [
+						{
+							"name": "204",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"namePart\": \"aerbregregeer44444\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/searchname",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"searchname"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "400",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"nameart\": \"aerbregregeer\"}"
+								},
+								"url": {
+									"raw": "{{baseURL}}/searchname",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"searchname"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// intentionally empty",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/searchnamesfzbdhsertbye5rdxbyse",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"searchnamesfzbdhsertbye5rdxbyse"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "possible errors for `[GET] /searchname`"
+				}
+			],
+			"description": "This folder provides detailed documentation on the possible error responses that can be encountered when making requests to the NTUAFLIX API. Each request is analyzed for potential issues, and the corresponding HTTP status codes are documented along with a brief description and message.\n\n| Error Code | Description | Message |\n| --- | --- | --- |\n| 200 | Success | Successful call that returns a non-empty data payload |\n| 204 | No data | Successful call that does not return any data (e.g., empty response) |\n| 400 | Bad request | The parameters provided in the call are not valid |\n| 404 | Not available | The requested service is not available |\n| 500 | Internal server error | In every other case of error |\n\n**(!) Note: Some errors are not possible in certain requests.**  \nFor example, the `204 No data` response, indicating a successful call that does not return any data (e.g., empty response), is not applicable to the `[GET] /title/:titleID` request. This is because when a valid `titleID` is provided, the specific title details will always be returned. In this context, it is inherently contradictory for the response to indicate a successful call without returning any data. As a result, certain errors are logically excluded in specific requests due to the expected behavior of the API.\n\n**(!) Note: Testing error 500 is not included.**\n\n`500 Internal server error` is typically triggered by unexpected issues on the server side. To simulate and test error 500, intentionally introduce another type of internal server error during testing. This could include scenarios such as server misconfigurations, unexpected exceptions, or other issues affecting the server's functionality."
+		}
+	]
+}
