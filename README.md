@@ -1,4 +1,4 @@
-# Software Technologies 2023-2024
+# Software Engineering 2023-2024
 
 ## Team: softeng23-49
 
