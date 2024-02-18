@@ -50,7 +50,9 @@
 This is how it should look like:
 ![image](https://github.com/ntua-el20166/softeng-2023/assets/147999065/4f70d1a4-d2f7-4658-bdfb-36e4416e54bf)
 
-![image](https://github.com/ntua-el20166/softeng-2023/assets/147999065/19ee9537-5c96-473a-8db0-92d4d4cc867b)
+
+![image](https://github.com/ntua-el20166/softeng-2023/assets/147999065/d8016140-2db0-441f-bbf7-c00254ef4010)
+
 
 ![image](https://github.com/ntua-el20166/softeng-2023/assets/147999065/cff12c16-efe2-4343-9a9e-2d822c334ecf)
 
