@@ -11,25 +11,26 @@
 
 
 ## Use Cases
-1. **Use Case 1:**
-   - Allows users to navigate and view lists of movies, actors, and directors within the application.
-
-2. **Use Case 2:**
-   - Enables users to perform targeted searches for movies, actors, or directors based on specific criteria like title, genre, or rating.
+| Use Case    | Description                                                                                                                 |
+|-------------|------------------------------------------------------------------------------------------------------------------------------|
+| Use Case 1  | Allows users to navigate and view lists of movies, actors, and directors within the application.                            |
+| Use Case 2  | Enables users to perform targeted searches for movies, actors, or directors based on specific criteria like title, genre, or rating. |
 
 ### Implementation
-- **BACKEND:** Node.js  
-- **DATABASE:** TMDb API (No Database)  
-- **REST API:** ExpressJS  
-- **API DOC:** OpenAPI 3.0.0, Postman  
-- **CLI:** Javascript  
-- **FRONTEND:** React.js, Next.js, Redux  
-  React.js with Next.js for server-side rendering. Redux for state management.
+| Category   | Technology                   |
+|------------|------------------------------|
+| BACKEND    | Node.js                      |
+| DATABASE   | TMDb API (No Database)       |
+| REST API   | ExpressJS                    |
+| API DOC    | OpenAPI 3.0.0, Postman       |
+| CLI        | Javascript                   |
+| FRONTEND   | React.js, Next.js, Redux     |
 
 ### Testing
-- **API Testing:** Postman  
-- **CLI Functional Testing:** Python
-
+| Category                   | Technology  |
+|---------------------------|-------------|
+| API Testing               | Postman     |
+| CLI Functional Testing    | Python      |
 
 ### Development Environment Setup
 1. Navigate to the folder you want to clone the Source Code into.
@@ -48,3 +49,9 @@
 
 This is how it should look like:
 ![image](https://github.com/ntua-el20166/softeng-2023/assets/147999065/4f70d1a4-d2f7-4658-bdfb-36e4416e54bf)
+
+![image](https://github.com/ntua-el20166/softeng-2023/assets/147999065/19ee9537-5c96-473a-8db0-92d4d4cc867b)
+
+![image](https://github.com/ntua-el20166/softeng-2023/assets/147999065/cff12c16-efe2-4343-9a9e-2d822c334ecf)
+
+
