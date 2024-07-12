@@ -12,7 +12,7 @@
 YouTube Video containing a Presentation of our Project:
 
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/[https://www.youtube.com/embed/HwITGDYlY1w?si=qw3gzxhdQYRcnSeb]/0.jpg)](https://www.youtube.com/watch?v=[https://www.youtube.com/embed/HwITGDYlY1w?si=qw3gzxhdQYRcnSeb])
+[[![](https://img.youtube.com/vi/[https://www.youtube.com/embed/HwITGDYlY1w?si=qw3gzxhdQYRcnSeb]/0.jpg)](https://www.youtube.com/watch?v=[https://www.youtube.com/embed/HwITGDYlY1w?si=qw3gzxhdQYRcnSeb])](https://www.youtube.com/embed/HwITGDYlY1w?si=qw3gzxhdQYRcnSeb)
 
 
 ## Use Cases
