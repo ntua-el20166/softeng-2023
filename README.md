@@ -12,7 +12,7 @@
 YouTube Video containing a Presentation of our Project:
 
 
-[https://www.youtube.com/embed/HwITGDYlY1w?si=qw3gzxhdQYRcnSeb](https://www.youtube.com/embed/HwITGDYlY1w?si=qw3gzxhdQYRcnSeb)
+[https://www.youtube.com/watch?v=HwITGDYlY1w&ab_channel=PhilipMard](https://www.youtube.com/watch?v=HwITGDYlY1w&ab_channel=PhilipMard)
 
 
 ## Use Cases
